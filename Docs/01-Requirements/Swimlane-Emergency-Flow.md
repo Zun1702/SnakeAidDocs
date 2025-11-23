@@ -9,162 +9,215 @@
 
 ## SWIMLANE DIAGRAM - LUỒNG CHÍNH
 
-```mermaid
-sequenceDiagram
-    participant P as Patient
-    participant MA as Mobile App
-    participant AI as AI System
-    participant BE as Backend System
-    participant ES as Emergency Service (115)
-    participant HD as Hospital Database
+```
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                           SWIMLANE DIAGRAM: XỬ LÝ SỰ CỐ RẮN CẮN KHẨN CẤP                                              │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 
-    Note over P,HD: GIAI ĐOẠN 1: PHÁT HIỆN VÀ XỬ LÝ BAN ĐẦU
-
-    P->>MA: Mở app, chọn "Tôi bị rắn cắn"
-    activate MA
-    MA->>MA: Hiển thị hướng dẫn sơ cứu ngay
-    MA-->>P: FE-01: Hướng dẫn băng ép từng bước
-    MA-->>P: FE-02: Hình ảnh minh họa
-    MA-->>P: FE-03: Cảnh báo hành động cấm kỵ
-    
-    P->>P: Thực hiện sơ cứu theo hướng dẫn
-    
-    MA->>P: Yêu cầu: "Chụp ảnh rắn (nếu có thể)"
-    P->>MA: Upload ảnh rắn
-    
-    MA->>AI: Gửi ảnh để nhận diện
-    activate AI
-    AI->>AI: Xử lý ảnh bằng CNN Model
-    AI->>AI: So sánh với database loài rắn
-    AI-->>MA: Kết quả: Loài rắn, độc tính, mức độ nguy hiểm
-    deactivate AI
-    
-    MA-->>P: FE-12: Hiển thị tên rắn
-    MA-->>P: FE-13: Độc tính (Có độc/Không độc)
-    MA-->>P: FE-14: Đề xuất biện pháp sơ cứu phù hợp
-
-    Note over P,HD: GIAI ĐOẠN 2: ĐÁNH GIÁ MỨC ĐỘ NGHIÊM TRỌNG
-
-    MA->>P: Yêu cầu: "Chụp ảnh vết cắn"
-    P->>MA: Upload ảnh vết cắn
-    
-    MA->>P: Yêu cầu: "Nhập triệu chứng"
-    P->>MA: Nhập: Đau, sưng, tê, buồn nôn...
-    
-    MA->>AI: Gửi ảnh vết cắn + triệu chứng
-    activate AI
-    AI->>AI: Phân tích hình ảnh vết cắn
-    AI->>AI: Đánh giá dựa trên triệu chứng
-    AI->>AI: Kết hợp với thông tin loài rắn
-    AI->>AI: Tính điểm mức độ nghiêm trọng (0-100)
-    AI-->>MA: Mức độ: Nhẹ/Trung bình/Nặng/Nguy kịch
-    deactivate AI
-    
-    MA->>BE: Lưu thông tin sự cố
-    activate BE
-    BE->>BE: Tạo bản ghi Emergency Case
-    BE->>BE: Lưu: ảnh, triệu chứng, kết quả AI
-    BE-->>MA: CaseID + Timestamp
-    deactivate BE
-
-    alt Mức độ NẶNG hoặc NGUY KỊCH
-        MA-->>P: ⚠️ CẢNH báo khẩn cấp (FE-16)
-        MA-->>P: 🚨 Hiển thị nút "GỌI CẤP CỨU NGAY"
-        Note over P,ES: Chuyển sang GIAI ĐOẠN 3
-    else Mức độ NHẸ hoặc TRUNG BÌNH
-        MA-->>P: ℹ️ Hướng dẫn tiếp tục sơ cứu
-        MA-->>P: 🏥 Đề xuất tìm cơ sở y tế gần nhất
-        Note over P,HD: Chuyển sang GIAI ĐOẠN 4
-    end
-
-    Note over P,HD: GIAI ĐOẠN 3: KÍCH HOẠT SOS VÀ GỌI CẤP CỨU
-
-    P->>MA: Nhấn nút SOS (FE-04)
-    activate MA
-    MA->>MA: Lấy vị trí GPS hiện tại
-    MA->>MA: Chuẩn bị thông tin khẩn cấp
-    
-    par Gọi cấp cứu
-        MA->>ES: Gọi điện thoại đến 115
-        activate ES
-        MA->>ES: Gửi SMS: Tọa độ GPS + Thông tin sơ bộ
-        ES->>ES: Tiếp nhận cuộc gọi
-        ES-->>MA: Xác nhận đã nhận thông tin
-    and Chia sẻ vị trí
-        MA->>BE: Kích hoạt GPS tracking
-        activate BE
-        BE->>BE: Tạo session theo dõi real-time
-        BE-->>ES: Gửi link theo dõi vị trí
-        BE->>BE: Bắt đầu cập nhật vị trí mỗi 10s
-        deactivate BE
-    and Gửi thông tin bổ sung
-        MA->>BE: Gửi Emergency Package
-        activate BE
-        BE->>ES: Chuyển tiếp thông tin:
-        Note right of BE: - Kết quả nhận diện rắn<br/>- Ảnh vết cắn<br/>- Triệu chứng<br/>- Mức độ nghiêm trọng<br/>- CaseID
-        deactivate BE
-    end
-    
-    ES-->>P: Thông báo: "Xe cấp cứu đang đến"
-    deactivate ES
-    
-    MA-->>P: Hiển thị màn hình chờ cấp cứu
-    MA-->>P: ⏱️ Timer đếm thời gian
-    MA-->>P: 📍 Vị trí hiện tại
-    MA-->>P: ✅ Tiếp tục hiển thị hướng dẫn sơ cứu
-    
-    opt Nếu đã cấu hình người thân
-        MA->>BE: Gửi thông báo khẩn cấp
-        activate BE
-        BE->>BE: Lấy danh sách emergency contacts
-        BE-->>MA: Gửi SMS + Push notification đến người thân
-        deactivate BE
-    end
-    deactivate MA
-
-    Note over P,HD: GIAI ĐOẠN 4: TÌM CƠ SỞ ĐIỀU TRỊ GẦN NHẤT
-
-    P->>MA: Chọn "Tìm bệnh viện gần nhất"
-    activate MA
-    MA->>MA: Lấy vị trí GPS hiện tại
-    
-    MA->>HD: Truy vấn: Tìm cơ sở có huyết thanh
-    activate HD
-    HD->>HD: Query: SELECT facilities<br/>WHERE has_antivenom = true<br/>AND distance < 20km<br/>ORDER BY distance ASC
-    HD-->>MA: Danh sách cơ sở điều trị
-    deactivate HD
-    
-    MA->>MA: Xử lý dữ liệu
-    MA->>MA: FE-07: Tính khoảng cách, thời gian
-    MA->>MA: FE-08: Lọc theo loại huyết thanh
-    MA->>MA: Đánh dấu cơ sở mở cửa 24/7
-    
-    MA-->>P: Hiển thị bản đồ + Danh sách
-    MA-->>P: 📍 Vị trí các bệnh viện
-    MA-->>P: 🚗 Khoảng cách và thời gian
-    MA-->>P: 💉 Loại huyết thanh có sẵn
-    MA-->>P: 🕐 Giờ mở cửa
-    
-    P->>MA: Chọn một bệnh viện
-    
-    MA-->>P: Hiển thị thông tin chi tiết:
-    Note right of MA: - Tên bệnh viện<br/>- Địa chỉ<br/>- Số điện thoại<br/>- Nút "Chỉ đường"<br/>- Nút "Gọi điện"
-    
-    alt Patient chọn "Chỉ đường"
-        MA->>MA: Mở Google Maps/Apple Maps
-        MA-->>P: Điều hướng đến bệnh viện
-    else Patient chọn "Gọi điện"
-        MA->>MA: Gọi đến số điện thoại bệnh viện
-    end
-    
-    MA->>BE: Lưu lịch sử hành động (FE-11)
-    activate BE
-    BE->>BE: UPDATE case<br/>SET selected_hospital = hospital_id,<br/>visited_at = NOW()
-    BE-->>MA: Xác nhận đã lưu
-    deactivate BE
-    deactivate MA
-
-    Note over P,HD: KẾT THÚC LUỒNG KHẨN CẤP
+    Patient                 Mobile App              AI System            Backend System       Emergency Service       Hospital DB
+       │                         │                       │                      │                      │                    │
+       │                         │                       │                      │                      │                    │
+┌──────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  GIAI ĐOẠN 1: PHÁT HIỆN VÀ XỬ LÝ BAN ĐẦU                                                                                   │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+       │                         │                       │                      │                      │                    │
+       │  Bị rắn cắn            │                       │                      │                      │                    │
+       │  Mở app                │                       │                      │                      │                    │
+       │────────────────────────>│                       │                      │                      │                    │
+       │                         │                       │                      │                      │                    │
+       │                    ┌────────────┐              │                      │                      │                    │
+       │                    │ Hiển thị   │              │                      │                      │                    │
+       │                    │ hướng dẫn  │              │                      │                      │                    │
+       │                    │ sơ cứu ngay│              │                      │                      │                    │
+       │                    └────────────┘              │                      │                      │                    │
+       │<─────────────────────────────────              │                      │                      │                    │
+       │  FE-01: Băng ép                                │                      │                      │                    │
+       │  FE-02: Hình ảnh                               │                      │                      │                    │
+       │  FE-03: Cảnh báo                               │                      │                      │                    │
+       │                         │                       │                      │                      │                    │
+  ┌─────────┐                   │                       │                      │                      │                    │
+  │ Thực    │                   │                       │                      │                      │                    │
+  │ hiện    │                   │                       │                      │                      │                    │
+  │ sơ cứu  │                   │                       │                      │                      │                    │
+  └─────────┘                   │                       │                      │                      │                    │
+       │                         │                       │                      │                      │                    │
+       │  Chụp ảnh rắn          │                       │                      │                      │                    │
+       │────────────────────────>│                       │                      │                      │                    │
+       │                         │  Gửi ảnh nhận diện   │                      │                      │                    │
+       │                         │──────────────────────>│                      │                      │                    │
+       │                         │                   ┌───────────┐             │                      │                    │
+       │                         │                   │ Xử lý AI  │             │                      │                    │
+       │                         │                   │ CNN Model │             │                      │                    │
+       │                         │                   │ Nhận diện │             │                      │                    │
+       │                         │                   │ loài rắn  │             │                      │                    │
+       │                         │                   └───────────┘             │                      │                    │
+       │                         │<──────────────────────                      │                      │                    │
+       │                         │  Loài rắn, độc tính                         │                      │                    │
+       │<─────────────────────────                                             │                      │                    │
+       │  FE-12: Tên rắn                                                       │                      │                    │
+       │  FE-13: Độc tính                                                      │                      │                    │
+       │  FE-14: Biện pháp                                                     │                      │                    │
+       │                         │                       │                      │                      │                    │
+┌──────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  GIAI ĐOẠN 2: ĐÁNH GIÁ MỨC ĐỘ NGHIÊM TRỌNG                                                                                 │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+       │                         │                       │                      │                      │                    │
+       │  Chụp vết cắn +        │                       │                      │                      │                    │
+       │  Nhập triệu chứng      │                       │                      │                      │                    │
+       │────────────────────────>│                       │                      │                      │                    │
+       │                         │  Gửi dữ liệu đánh giá│                      │                      │                    │
+       │                         │──────────────────────>│                      │                      │                    │
+       │                         │                   ┌───────────┐             │                      │                    │
+       │                         │                   │ Phân tích │             │                      │                    │
+       │                         │                   │ vết cắn & │             │                      │                    │
+       │                         │                   │ triệu chứng│            │                      │                    │
+       │                         │                   │ Tính điểm │             │                      │                    │
+       │                         │                   │ 0-100     │             │                      │                    │
+       │                         │                   └───────────┘             │                      │                    │
+       │                         │<──────────────────────                      │                      │                    │
+       │                         │  Mức độ nghiêm trọng                        │                      │                    │
+       │                         │                       │                      │                      │                    │
+       │                         │  Lưu thông tin sự cố │                      │                      │                    │
+       │                         │───────────────────────────────────────────>│                      │                    │
+       │                         │                       │                 ┌──────────┐              │                    │
+       │                         │                       │                 │ Tạo Case │              │                    │
+       │                         │                       │                 │ Lưu dữ liệu              │                    │
+       │                         │                       │                 └──────────┘              │                    │
+       │                         │<─────────────────────────────────────────                         │                    │
+       │                         │  CaseID                                                            │                    │
+       │                         │                       │                      │                      │                    │
+       │                    ╔════════════╗              │                      │                      │                    │
+       │                    ║ Mức độ     ║              │                      │                      │                    │
+       │                    ║ Nặng/Nguy  ║              │                      │                      │                    │
+       │                    ║ kịch?      ║              │                      │                      │                    │
+       │                    ╚═════╤══════╝              │                      │                      │                    │
+       │                          │                      │                      │                      │                    │
+       │              ┌───────────┴───────────┐         │                      │                      │                    │
+       │              │                       │         │                      │                      │                    │
+       │           Yes│                     No│         │                      │                      │                    │
+       │              │                       │         │                      │                      │                    │
+       │              ▼                       ▼         │                      │                      │                    │
+       │    ┌──────────────────┐   ┌─────────────────┐ │                      │                      │                    │
+       │    │ Cảnh báo khẩn    │   │ Hướng dẫn tiếp  │ │                      │                      │                    │
+       │    │ cấp FE-16        │   │ tục sơ cứu      │ │                      │                      │                    │
+       │    │ Hiển thị nút SOS │   │ Tìm bệnh viện   │ │                      │                      │                    │
+       │    └──────────────────┘   └─────────────────┘ │                      │                      │                    │
+       │              │                       │         │                      │                      │                    │
+       │              │                       │         │                      │                      │                    │
+       │       [Sang Giai đoạn 3]    [Sang Giai đoạn 4]│                      │                      │                    │
+       │              │                       │         │                      │                      │                    │
+┌──────┴──────────────┼───────────────────────┼─────────────────────────────────────────────────────────────────────────────┐
+│  GIAI ĐOẠN 3: KÍCH HOẠT SOS VÀ GỌI CẤP CỨU                                                                                 │
+└─────────────────────┼───────────────────────┼─────────────────────────────────────────────────────────────────────────────┘
+       │              │                       │         │                      │                      │                    │
+       │  Nhấn nút SOS FE-04                │         │                      │                      │                    │
+       │────────────────────────>│           │         │                      │                      │                    │
+       │                    ┌─────────────┐  │         │                      │                      │                    │
+       │                    │ Lấy GPS     │  │         │                      │                      │                    │
+       │                    │ Chuẩn bị dữ │  │         │                      │                      │                    │
+       │                    │ liệu khẩn   │  │         │                      │                      │                    │
+       │                    │ cấp         │  │         │                      │                      │                    │
+       │                    └─────────────┘  │         │                      │                      │                    │
+       │                         │           │         │                      │                      │                    │
+       │                         │  Gọi điện + SMS     │                      │                      │                    │
+       │                         │────────────────────────────────────────────────────────────────>│                    │
+       │                         │           │         │                      │            ┌──────────┐                  │
+       │                         │           │         │                      │            │ Tiếp nhận│                  │
+       │                         │           │         │                      │            │ cuộc gọi │                  │
+       │                         │           │         │                      │            └──────────┘                  │
+       │                         │           │         │                      │<──────────────────────                   │
+       │                         │<──────────────────────────────────────────────────────────────────                   │
+       │                         │           │         │  Xác nhận            │                      │                    │
+       │<─────────────────────────           │         │                      │                      │                    │
+       │  Hiển thị chờ cấp cứu               │         │                      │                      │                    │
+       │                         │           │         │                      │                      │                    │
+       │                         │  Kích hoạt GPS tracking                    │                      │                    │
+       │                         │───────────────────────────────────────────>│                      │                    │
+       │                         │           │         │            ┌──────────────┐                 │                    │
+       │                         │           │         │            │ Tạo session  │                 │                    │
+       │                         │           │         │            │ tracking     │                 │                    │
+       │                         │           │         │            │ Gửi link cho │                 │                    │
+       │                         │           │         │            │ Emergency    │                 │                    │
+       │                         │           │         │            └──────────────┘                 │                    │
+       │                         │           │         │                      │──────────────────────>│                    │
+       │                         │           │         │                      │  Link tracking         │                    │
+       │                         │           │         │                      │                      │                    │
+       │                         │  Gửi Emergency Package                     │                      │                    │
+       │                         │───────────────────────────────────────────>│                      │                    │
+       │                         │           │         │            ┌──────────────┐                 │                    │
+       │                         │           │         │            │ Chuyển tiếp: │                 │                    │
+       │                         │           │         │            │ - Loài rắn   │                 │                    │
+       │                         │           │         │            │ - Vết cắn    │                 │                    │
+       │                         │           │         │            │ - Triệu chứng│                 │                    │
+       │                         │           │         │            │ - Mức độ     │                 │                    │
+       │                         │           │         │            └──────────────┘                 │                    │
+       │                         │           │         │                      │──────────────────────>│                    │
+       │                         │           │         │                      │  Thông tin đầy đủ     │                    │
+       │                         │           │         │                      │                      │                    │
+       │<──────────────────────────────────────────────────────────────────────────────────────────────                   │
+       │  "Xe cấp cứu đang đến"              │         │                      │                      │                    │
+       │                         │           │         │                      │                      │                    │
+┌──────┴──────────────┬───────────────────────┬─────────────────────────────────────────────────────────────────────────────┐
+│  GIAI ĐOẠN 4: TÌM CƠ SỞ ĐIỀU TRỊ GẦN NHẤT  │                                                                             │
+└─────────────────────┴───────────────────────┴─────────────────────────────────────────────────────────────────────────────┘
+       │                         │           │         │                      │                      │                    │
+       │  Chọn "Tìm bệnh viện"  │           │         │                      │                      │                    │
+       │────────────────────────>│           │         │                      │                      │                    │
+       │                    ┌─────────────┐  │         │                      │                      │                    │
+       │                    │ Lấy GPS     │  │         │                      │                      │                    │
+       │                    └─────────────┘  │         │                      │                      │                    │
+       │                         │           │         │                      │                      │                    │
+       │                         │  Truy vấn bệnh viện có huyết thanh         │                      │                    │
+       │                         │────────────────────────────────────────────────────────────────────────────────────────>│
+       │                         │           │         │                      │                      │          ┌──────────┐
+       │                         │           │         │                      │                      │          │ Query DB │
+       │                         │           │         │                      │                      │          │ distance │
+       │                         │           │         │                      │                      │          │ < 20km   │
+       │                         │           │         │                      │                      │          └──────────┘
+       │                         │<────────────────────────────────────────────────────────────────────────────────────────│
+       │                         │  Danh sách bệnh viện│         │                      │                      │            │
+       │                    ┌─────────────┐  │         │                      │                      │                    │
+       │                    │ Tính khoảng │  │         │                      │                      │                    │
+       │                    │ cách, thời  │  │         │                      │                      │                    │
+       │                    │ gian, lọc   │  │         │                      │                      │                    │
+       │                    │ huyết thanh │  │         │                      │                      │                    │
+       │                    └─────────────┘  │         │                      │                      │                    │
+       │<─────────────────────────           │         │                      │                      │                    │
+       │  Hiển thị bản đồ + Danh sách        │         │                      │                      │                    │
+       │  FE-06, FE-07, FE-08                │         │                      │                      │                    │
+       │                         │           │         │                      │                      │                    │
+       │  Chọn bệnh viện        │           │         │                      │                      │                    │
+       │────────────────────────>│           │         │                      │                      │                    │
+       │<─────────────────────────           │         │                      │                      │                    │
+       │  Chi tiết BV + Nút hành động        │         │                      │                      │                    │
+       │                         │           │         │                      │                      │                    │
+       │                    ╔════════════╗  │         │                      │                      │                    │
+       │                    ║ Chọn hành  ║  │         │                      │                      │                    │
+       │                    ║ động?      ║  │         │                      │                      │                    │
+       │                    ╚═════╤══════╝  │         │                      │                      │                    │
+       │              ┌───────────┴───────────┐       │                      │                      │                    │
+       │              │                       │       │                      │                      │                    │
+       │        Chỉ đường│              Gọi điện      │                      │                      │                    │
+       │              │                       │       │                      │                      │                    │
+       │              ▼                       ▼       │                      │                      │                    │
+       │    ┌──────────────────┐   ┌─────────────────┐                      │                      │                    │
+       │    │ Mở Google Maps   │   │ Gọi số điện     │                      │                      │                    │
+       │    │ / Apple Maps     │   │ thoại BV        │                      │                      │                    │
+       │    └──────────────────┘   └─────────────────┘                      │                      │                    │
+       │                         │           │         │                      │                      │                    │
+       │                         │  Lưu lịch sử hành động                    │                      │                    │
+       │                         │───────────────────────────────────────────>│                      │                    │
+       │                         │           │         │            ┌──────────────┐                 │                    │
+       │                         │           │         │            │ UPDATE case  │                 │                    │
+       │                         │           │         │            │ hospital_id  │                 │                    │
+       │                         │           │         │            └──────────────┘                 │                    │
+       │                         │<─────────────────────────────────────────                         │                    │
+       │                         │  Xác nhận lưu (FE-11)                                             │                    │
+       │                         │           │         │                      │                      │                    │
+       │                         │           │         │                      │                      │                    │
+┌──────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  KẾT THÚC LUỒNG                                                                                                             │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---

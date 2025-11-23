@@ -7,13 +7,15 @@
 
 ---
 
-## SWIMLANE DIAGRAM - LUỒNG CHÍNH
+## SWIMLANE DIAGRAM - LUỒNG CHÍNH (CHIA NHỎ THEO GIAI ĐOẠN)
 
-### Phiên bản Plant(UML)
+### 1.1. GIAI ĐOẠN 1: PHÁT HIỆN VÀ XỬ LÝ BAN ĐẦU
+
+**PlantUML Code:**
 
 ```plantuml
-@startuml
-title XỬ LÝ SỰ CỐ RẮN CẮN KHẨN CẤP - SWIMLANE DIAGRAM
+@startuml Stage-1-Initial-Response
+title GIAI ĐOẠN 1.1 - PHÁT HIỆN VÀ XỬ LÝ BAN ĐẦU
 
 |Patient|
 start
@@ -21,7 +23,8 @@ start
 :Mở app SnakeAid;
 
 |Mobile App|
-:Hiển thị hướng dẫn sơ cứu ngay lập tức;
+:Hiển thị hướng dẫn
+sơ cứu ngay lập tức;
 note right
   FE-01: Băng ép từng bước
   FE-02: Hình ảnh minh họa
@@ -29,16 +32,21 @@ note right
 end note
 
 |Patient|
-:Thực hiện sơ cứu theo hướng dẫn;
-:Chụp ảnh rắn (nếu có thể);
+:Thực hiện sơ cứu
+theo hướng dẫn;
+:Chụp ảnh rắn
+(nếu có thể);
 
 |Mobile App|
 :Nhận ảnh rắn;
 
 |AI System|
-:Xử lý ảnh bằng CNN Model;
-:So sánh với database loài rắn;
-:Trả về kết quả nhận diện;
+:Xử lý ảnh bằng
+CNN Model;
+:So sánh với
+database loài rắn;
+:Trả về kết quả
+nhận diện;
 
 |Mobile App|
 :Hiển thị kết quả;
@@ -47,6 +55,341 @@ note right
   FE-13: Độc tính
   FE-14: Biện pháp sơ cứu
 end note
+
+|Patient|
+:Xem thông tin
+loài rắn;
+
+stop
+@enduml
+```
+
+---
+
+### 1.2. GIAI ĐOẠN 2: ĐÁNH GIÁ MỨC ĐỘ NGHIÊM TRỌNG
+
+**PlantUML Code:**
+
+```plantuml
+@startuml Stage-2-Severity-Assessment
+title GIAI ĐOẠN 1.2 - ĐÁNH GIÁ MỨC ĐỘ NGHIÊM TRỌNG
+
+|Patient|
+start
+:Chụp ảnh vết cắn;
+:Nhập triệu chứng
+(đau, sưng, tê...);
+
+|Mobile App|
+:Nhận dữ liệu
+vết cắn + triệu chứng;
+
+|AI System|
+:Phân tích ảnh
+vết cắn;
+:Đánh giá triệu chứng;
+:Kết hợp thông tin
+loài rắn;
+:Tính điểm nghiêm trọng
+(0-100);
+:Phân loại mức độ
+(Nhẹ, Trung bình,
+Nặng, Nguy kịch);
+
+|Mobile App|
+:Nhận kết quả
+đánh giá;
+
+|Backend System|
+:Lưu thông tin sự cố;
+:Tạo Emergency Case;
+:Sinh CaseID;
+note right
+  Lưu:
+  - Ảnh rắn
+  - Ảnh vết cắn
+  - Triệu chứng
+  - Kết quả AI
+  - Timestamp
+end note
+
+|Mobile App|
+:Nhận CaseID;
+:Hiển thị mức độ
+nghiêm trọng;
+
+if (Mức độ Nặng hoặc Nguy kịch?) then (yes)
+  :Hiển thị cảnh báo
+  khẩn cấp (FE-16);
+  :Hiển thị nút SOS
+  nổi bật;
+  note right
+    Chuyển sang
+    Giai đoạn 1.3
+  end note
+else (no)
+  :Hướng dẫn tiếp tục
+  sơ cứu;
+  :Đề xuất tìm
+  bệnh viện;
+  note right
+    Chuyển sang
+    Giai đoạn 1.4
+  end note
+endif
+
+stop
+@enduml
+```
+
+---
+
+### 1.3. GIAI ĐOẠN 3: KÍCH HOẠT SOS VÀ GỌI CẤP CỨU
+
+**PlantUML Code:**
+
+```plantuml
+@startuml Stage-3-Emergency-SOS
+title GIAI ĐOẠN 1.3 - KÍCH HOẠT SOS VÀ GỌI CẤP CỨU
+
+|Patient|
+start
+:Nhấn nút SOS
+(FE-04);
+
+|Mobile App|
+:Lấy vị trí GPS
+hiện tại;
+:Chuẩn bị thông tin
+khẩn cấp;
+
+fork
+  |Emergency Service|
+  :Nhận cuộc gọi
+  từ app;
+  :Nhận SMS với
+  tọa độ GPS;
+  note right
+    SMS bao gồm:
+    - Tọa độ GPS
+    - Link tracking
+    - Thông tin sơ bộ
+  end note
+  :Tiếp nhận
+  cuộc gọi;
+  :Xác nhận đã nhận
+  thông tin;
+fork again
+  |Backend System|
+  :Kích hoạt
+  GPS tracking;
+  :Tạo session
+  theo dõi real-time;
+  :Cập nhật vị trí
+  mỗi 10 giây;
+  
+  |Emergency Service|
+  :Nhận link
+  tracking GPS;
+fork again
+  |Backend System|
+  :Chuẩn bị
+  Emergency Package;
+  :Gửi thông tin chi tiết:;
+  note right
+    Emergency Package:
+    - CaseID
+    - Loài rắn nhận diện
+    - Ảnh vết cắn
+    - Triệu chứng
+    - Mức độ nghiêm trọng
+    - Thông tin bệnh nhân
+    - Vị trí GPS
+  end note
+  
+  |Emergency Service|
+  :Nhận Emergency
+  Package đầy đủ;
+  :Chuẩn bị xuất
+  xe cấp cứu;
+end fork
+
+|Emergency Service|
+:Gửi xác nhận:
+"Xe cấp cứu đang đến";
+
+|Mobile App|
+:Hiển thị màn hình
+chờ cấp cứu;
+note right
+  Hiển thị:
+  - Timer đếm thời gian
+  - Vị trí GPS
+  - Hướng dẫn sơ cứu
+  - Trạng thái cấp cứu
+end note
+
+|Patient|
+:Xem trạng thái
+chờ cấp cứu;
+:Tiếp tục sơ cứu
+theo hướng dẫn;
+
+|Backend System|
+if (Đã cấu hình\nngười thân?) then (yes)
+  :Gửi SMS + Push
+  notification đến
+  người thân;
+  note right
+    Thông báo khẩn cấp:
+    - Người thân bị rắn cắn
+    - Vị trí hiện tại
+    - Tình trạng
+    - Link theo dõi
+  end note
+else (no)
+  :Bỏ qua bước này;
+endif
+
+stop
+@enduml
+```
+
+---
+
+### 1.4. GIAI ĐOẠN 4: TÌM CƠ SỞ ĐIỀU TRỊ GẦN NHẤT
+
+**PlantUML Code:**
+
+```plantuml
+@startuml Stage-4-Find-Hospital
+title GIAI ĐOẠN 1.4 - TÌM CƠ SỞ ĐIỀU TRỊ GẦN NHẤT
+
+|Patient|
+start
+:Chọn "Tìm bệnh viện
+gần nhất";
+
+|Mobile App|
+:Lấy vị trí GPS
+hiện tại;
+
+|Hospital Database|
+:Nhận yêu cầu
+truy vấn;
+:Query: Tìm BV có
+huyết thanh;
+note right
+  SELECT hospitals
+  WHERE has_antivenom = true
+    AND distance < 20km
+  ORDER BY distance ASC
+end note
+:Trả về danh sách
+bệnh viện;
+
+|Mobile App|
+:Nhận danh sách
+bệnh viện;
+:Tính khoảng cách
+và thời gian (FE-07);
+:Lọc theo loại
+huyết thanh (FE-08);
+:Đánh dấu BV
+mở cửa 24/7;
+:Sắp xếp theo
+khoảng cách;
+
+|Patient|
+:Xem bản đồ +
+danh sách BV;
+note right
+  Hiển thị:
+  - Vị trí trên bản đồ
+  - Khoảng cách (km)
+  - Thời gian ước tính
+  - Loại huyết thanh
+  - Giờ mở cửa
+  - Đánh giá (rating)
+end note
+:Chọn một bệnh viện;
+
+|Mobile App|
+:Hiển thị chi tiết
+bệnh viện;
+note right
+  Chi tiết:
+  - Tên bệnh viện
+  - Địa chỉ đầy đủ
+  - Số điện thoại
+  - Nút "Chỉ đường"
+  - Nút "Gọi điện"
+end note
+
+|Patient|
+if (Chọn hành động?) then (Chỉ đường)
+  |Mobile App|
+  :Mở Google Maps hoặc
+  Apple Maps;
+  :Điều hướng đến
+  bệnh viện;
+  
+  |Patient|
+  :Di chuyển đến
+  bệnh viện;
+else (Gọi điện)
+  |Mobile App|
+  :Gọi số điện thoại
+  bệnh viện;
+  
+  |Patient|
+  :Trao đổi với
+  bệnh viện;
+endif
+
+|Backend System|
+:Lưu lịch sử
+hành động (FE-11);
+:UPDATE emergency_case;
+note right
+  UPDATE:
+  - selected_hospital_id
+  - action_taken
+  - selected_at timestamp
+end note
+
+|Mobile App|
+:Xác nhận đã lưu
+lịch sử;
+
+|Patient|
+:Kết thúc quy trình
+tìm bệnh viện;
+
+stop
+@enduml
+```
+
+---
+
+## TÓM TẮT CÁC GIAI ĐOẠN
+
+| Giai đoạn | Tên | Actors chính | Thời gian ước tính |
+|-----------|-----|--------------|-------------------|
+| **1.1** | Phát hiện và xử lý ban đầu | Patient, Mobile App, AI System | 30-60 giây |
+| **1.2** | Đánh giá mức độ nghiêm trọng | Patient, Mobile App, AI System, Backend | 30-45 giây |
+| **1.3** | Kích hoạt SOS và gọi cấp cứu | Patient, Mobile App, Backend, Emergency Service | 10-15 giây |
+| **1.4** | Tìm cơ sở điều trị gần nhất | Patient, Mobile App, Hospital Database, Backend | 20-30 giây |
+
+---
+
+## SWIMLANE DIAGRAM TỔNG HỢP (TẤT CẢ CÁC GIAI ĐOẠN)
+
+### Phiên bản PlantUML đầy đủ
+
+```plantuml
+@startuml Complete-Emergency-Flow
+title XỬ LÝ SỰ CỐ RẮN CẮN KHẨN CẤP - SWIMLANE DIAGRAM ĐẦY ĐỦ
 
 |Patient|
 :Chụp ảnh vết cắn;

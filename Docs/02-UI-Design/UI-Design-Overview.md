@@ -65,9 +65,9 @@ SnakeAid platform có **4 roles chính**, mỗi role có application riêng:
 ├── 🧑 PATIENT SCREENS/
 │   ├── Patient-Emergency-Flow-Screens.md          ✅ COMPLETE (9 screens)
 │   ├── Patient-Rescue-Request-Flow-Screens.md     ✅ COMPLETE (11 screens)
-│   ├── Patient-Expert-Consultation-Screens.md     ⏳ TODO
-│   ├── Patient-Homepage-Enhanced.md               ✅ COMPLETE
-│   └── Patient-Profile-Settings-Screens.md        ⏳ TODO
+│   ├── Patient-Expert-Consultation-Flow-Screens.md ✅ COMPLETE (8 screens)
+│   ├── Patient-Homepage-Enhanced.md               ✅ COMPLETE (1 screen)
+│   └── Patient-Profile-Settings-Screens.md        ⏳ TODO (~5 screens)
 │
 ├── 🚑 RESCUER SCREENS/
 │   ├── Rescuer-Dashboard-Screens.md               ⏳ TODO
@@ -101,10 +101,10 @@ SnakeAid platform có **4 roles chính**, mỗi role có application riêng:
 | **Patient-Emergency-Flow-Screens.md** | ✅ Complete | 9 screens | ⭐⭐⭐ | Emergency snakebite handling |
 | **Patient-Rescue-Request-Flow-Screens.md** | ✅ Complete | 11 screens | ⭐⭐⭐ | Snake rescue request flow |
 | **Patient-Homepage-Enhanced.md** | ✅ Complete | 1 screen | ⭐⭐⭐ | Main dashboard |
-| **Patient-Expert-Consultation-Screens.md** | ⏳ TODO | ~6 screens | ⭐⭐ | Book & consult with experts |
+| **Patient-Expert-Consultation-Flow-Screens.md** | ✅ Complete | 8 screens | ⭐⭐ | Book & consult with experts |
 | **Patient-Profile-Settings-Screens.md** | ⏳ TODO | ~5 screens | ⭐ | Profile, settings, history |
 
-**Total Patient Screens:** 21+ screens
+**Total Patient Screens:** 29 screens completed (21 completed + ~5 TODO)
 
 ---
 
@@ -215,15 +215,15 @@ Mapping các interactions giữa roles:
 ✅ **COMPLETED:**
 - Patient Emergency Flow (9 screens)
 - Patient Rescue Request Flow (11 screens)
+- Patient Expert Consultation Flow (8 screens)
 - Patient Homepage (1 screen)
 
-⏳ **IN PROGRESS:**
+**Total Completed:** 29 screens
+
+⏳ **NEXT UP:**
 - Rescuer Rescue Request Flow (~8 screens)
 - Expert Consultation Flow (~6 screens)
-
-⏳ **NEXT:**
-- Admin Dashboard & User Management
-- Basic analytics & reporting
+- Admin Dashboard & User Management (~7 screens)
 
 ### Phase 2: Enhanced Features (Medium Priority ⭐⭐)
 **Target:** Q2 2026
@@ -287,6 +287,24 @@ Before marking any screen design as "Complete":
 
 ---
 
-**Last Updated:** December 4, 2025  
+**Last Updated:** December 5, 2025  
 **Maintained by:** SnakeAid Design Team  
 **Status:** Living Document - Updated as designs progress
+
+---
+
+## 📈 CURRENT PROGRESS SUMMARY
+
+**Overall Platform Progress:**
+- **Patient Module:** 29/34 screens (85% complete)
+  - ✅ Emergency Flow: 9 screens
+  - ✅ Rescue Request Flow: 11 screens
+  - ✅ Expert Consultation Flow: 8 screens
+  - ✅ Homepage: 1 screen
+  - ⏳ Profile & Settings: ~5 screens TODO
+
+- **Rescuer Module:** 0/20 screens (0% complete)
+- **Expert Module:** 0/17 screens (0% complete)
+- **Admin Module:** 0/22 screens (0% complete)
+
+**Total Platform:** 29/93 screens completed (31% overall)

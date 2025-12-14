@@ -589,28 +589,6 @@ Timeline:
 #### 3.1. Quy trình thanh toán (CHỌN PHƯƠNG ÁN 2)
 
 **✅ PHƯƠNG ÁN CHÍNH: Rescuer chia sẻ phí cứu hộ cho Expert**
-
-```
-┌──────────┐                  ┌──────────┐                  ┌──────────┐
-│          │   1. Yêu cầu hỗ  │          │   2. Kết nối    │          │
-│ RESCUER  │────trợ khẩn cấp─>│ PLATFORM │────ngay lập tức─>│  EXPERT  │
-│          │                  │          │                  │          │
-└────┬─────┘                  └────┬─────┘                  └────┬─────┘
-     │                             │                             │
-     │ 3. Tư vấn qua               │                             │
-     │    chat/video call          │                             │
-     │<───────────────────────────────────────────────────────>│
-     │                             │                             │
-     │                             │ 4. Sau khi tư vấn xong      │
-     │                             │    Platform trả phí Expert  │
-     │                             ├────────────────────────────>│
-     │                             │    (50,000 - 100,000 VNĐ)  │
-     │                             │                             │
-     │                             │ 5. Rescuer KHÔNG mất tiền   │
-     │                             │    Patient KHÔNG mất tiền   │
-     │                             │                             │
-```
-
 ```
 ┌──────────┐                  ┌──────────┐                  ┌──────────┐
 │          │   1. Yêu cầu hỗ  │          │   2. Kết nối    │          │

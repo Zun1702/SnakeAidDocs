@@ -192,17 +192,27 @@ Chi tiết tính giá:
 
 | Khoảng Cách | Giá/km | Tổng Chi Phí | Thời Gian Dự Kiến |
 |-------------|--------|--------------|-------------------|
-| **0-3 km** (Trong khu vực) | **5,000 đ/km** | **0-15,000 đ** | 5-10 phút |
-| **3-10 km** (Nội thành) | **6,000 đ/km** | **18,000-60,000 đ** | 10-20 phút |
-| **10-20 km** (Ngoại thành) | **7,000 đ/km** | **70,000-140,000 đ** | 20-40 phút |
-| **20-50 km** (Tỉnh lân cận) | **8,000 đ/km** | **160,000-400,000 đ** | 40-90 phút |
-| **> 50 km** (Xa) | **Thỏa thuận** | **Theo hợp đồng** | > 90 phút |
+| **0-3 km** (Trong khu vực) | **8,000 đ/km** | **0-24,000 đ** | 5-10 phút |
+| **3-10 km** (Nội thành) | **9,000 đ/km** | **27,000-90,000 đ** | 10-20 phút |
+| **10-20 km** (Ngoại thành) | **10,000 đ/km** | **100,000-200,000 đ** | 20-40 phút |
+| **20-50 km** (Tỉnh lân cận) | **11,000 đ/km** | **220,000-550,000 đ** | 40-90 phút |
+| **> 50 km** (Xa) | **12,000 đ/km** | **600,000+ đ** | > 90 phút |
+
+**Lý do điều chỉnh giá:**
+- Rescuer sử dụng **xe hơi 4-7 chỗ** (không phải xe máy)
+- Chi phí vận hành xe hơi: ~4,000đ/km (xăng + bảo dưỡng + khấu hao)
+- So sánh thị trường:
+  - Grab Car: 8,000-12,000đ/km
+  - Taxi truyền thống: 10,000-15,000đ/km
+  - Dịch vụ vận chuyển: 6,000-10,000đ/km
+- Giá **8,000-12,000đ/km** hợp lý và cạnh tranh
 
 **Lưu ý:**
 - Chi phí tính **1 chiều** từ vị trí Rescuer đến Patient
 - Sử dụng Google Maps API để tính khoảng cách chính xác
 - Rescuer có quyền **từ chối** nếu quá xa (> 30km)
 - Chi phí cao hơn **20%** nếu đường khó đi (đường đất, miền núi)
+- Rescuer cần xe đủ lớn để chở thiết bị an toàn (bẫy, lồng, dụng cụ bắt)
 
 ### 3.2. Phụ thu theo thời gian
 

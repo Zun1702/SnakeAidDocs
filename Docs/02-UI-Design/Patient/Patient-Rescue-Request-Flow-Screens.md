@@ -209,13 +209,14 @@ Design: Card-based medical app interface, clear visual hierarchy, color-coded da
 
 ---
 
-### Screen 3: Request Rescue Confirmation Screen
+### Screen 3: Request Rescue Confirmation & Deposit Payment Screen
 
 #### Thông tin màn hình:
-- **Tên:** Màn hình xác nhận yêu cầu cứu hộ
-- **Mục đích:** Hiển thị ước tính phí dịch vụ và cho phép người dùng xác nhận yêu cầu
+- **Tên:** Màn hình xác nhận yêu cầu cứu hộ và thanh toán đặt cọc
+- **Mục đích:** Hiển thị phí dịch vụ, thanh toán đặt cọc 30% và xác nhận yêu cầu
 - **Flow position:** Sau khi chọn "Request Rescue Team"
 - **Priority:** ⭐⭐⭐
+- **Related:** Payment Flow 1 - Deposit mechanism (30% upfront, 70% after completion)
 
 #### Key Components:
 1. **Header:**
@@ -229,58 +230,92 @@ Design: Card-based medical app interface, clear visual hierarchy, color-coded da
    - Your location preview
 
 3. **Estimated Fee Section:**
-   - Title: "Service Fee"
-   - Base fee amount (e.g., "300,000 VNĐ")
-   - Platform fee (10%): "30,000 VNĐ"
+   - Title: "Service Fee Breakdown"
+   - Base fee amount: "500,000 VNĐ"
+   - Platform fee (10%): "50,000 VNĐ"
+   - Insurance fund (5%): "25,000 VNĐ"
    - Divider line
-   - Total amount (bold, large): "330,000 VNĐ"
-   - Small note: "Final fee may vary based on actual service"
+   - Total amount (bold, large): "575,000 VNĐ"
+   - Small note: "Final fee may vary based on distance and complexity"
 
-4. **What Happens Next:**
+4. **Deposit Payment Section:**
+   - Title: "Deposit Payment (30%)"
+   - Info box (light blue):
+     - "You pay 30% deposit now to confirm booking"
+     - "Remaining 70% due after service completion"
+   - Deposit amount (bold, large): "172,500 VNĐ" (30% of 575K)
+   - Balance due later: "402,500 VNĐ" (70%)
+
+5. **Payment Method Selection:**
+   - Title: "Select Payment Method"
+   - Radio buttons or cards for:
+     - Momo (with logo)
+     - VNPay (with logo)
+     - ZaloPay (with logo)
+     - Credit Card
+
+6. **What Happens Next:**
    - Numbered steps (1-2-3) with icons:
-     1. "Finding nearby rescuer (2-5 min)"
+     1. "Pay deposit & finding rescuer (2-5 min)"
      2. "Rescuer arrives and handles snake"
-     3. "Payment after completion"
+     3. "Pay remaining 70% after completion"
 
-5. **Important Notes:**
+7. **Important Notes:**
    - Yellow info box with bullet points:
      - "Stay safe, keep distance from snake"
      - "Rescuer response time: 15-60 minutes"
      - "You can track rescuer location on map"
+     - "Deposit is refundable if no rescuer available"
 
-6. **Action Buttons:**
-   - Large primary button (forest green): "Confirm & Request Rescue"
+8. **Action Buttons:**
+   - Large primary button (forest green): "Pay Deposit (172,500 VNĐ) & Confirm"
    - Secondary text link: "Cancel and go back"
 
 #### Stitch Prompt (English):
 
 ```
-Mobile app confirmation screen for snake rescue request in app "SnakeAid". Clean transactional interface with forest green (#228B22) primary color.
+Mobile app confirmation and deposit payment screen for snake rescue in app "SnakeAid". Transactional interface with forest green (#228B22) primary color.
 
 Top navigation: Back arrow left, centered title "Xác Nhận Yêu Cầu Cứu Hộ".
 
 Main content starts with white card containing checkmark icon in forest green circle. Next to icon: bold text "Dịch Vụ Cứu Hộ Rắn". Below that, two lines of gray text: "Loài: Rắn hổ mang chúa" and "Vị trí: 123 Tên đường, Quận".
 
-Below service card, section titled "Chi Phí Dịch Vụ" in dark gray bold text. White card with pricing breakdown:
-- Line 1: "Phí cứu hộ cơ bản" aligned left, "300,000 VNĐ" aligned right, both in dark gray
-- Line 2: "Phí nền tảng (10%)" aligned left, "30,000 VNĐ" aligned right, both in medium gray
+Below service card, section titled "Chi Phí Dịch Vụ" in dark gray bold. White card with pricing breakdown:
+- Line 1: "Phí cứu hộ cơ bản" aligned left, "500,000 VNĐ" aligned right, both in dark gray
+- Line 2: "Phí nền tảng (10%)" aligned left, "50,000 VNĐ" aligned right, medium gray
+- Line 3: "Quỹ bảo hiểm (5%)" aligned left, "25,000 VNĐ" aligned right, medium gray
 - Thin gray divider line
-- Line 3: "Tổng Cộng" bold dark gray left, "330,000 VNĐ" bold large dark gray right
-Below card, small gray italic text "Chi phí cuối cùng có thể thay đổi tùy dịch vụ thực tế".
+- Line 4: "Tổng Cộng" bold dark gray left, "575,000 VNĐ" bold large dark gray right
+Below card, small gray italic text "Chi phí cuối cùng có thể thay đổi tùy khoảng cách và độ phức tạp".
 
-Next section titled "Điều Gì Sẽ Xảy Ra Tiếp Theo" with 3 numbered steps vertically arranged. Each step has circular number badge (1, 2, 3) in forest green, followed by text description:
-1. Tìm đội cứu hộ gần nhất (2-5 phút)
+Next section titled "Thanh Toán Đặt Cọc (30%)" in dark gray bold. Light blue info box (#E7F3FF background) with 2 lines:
+• Thanh toán 30% đặt cọc ngay để xác nhận
+• Thanh toán 70% còn lại sau khi hoàn tất
+
+White card showing:
+- "Đặt cọc (30%)" left, "172,500 VNĐ" bold large forest green right
+- "Còn lại sau" left, "402,500 VNĐ" gray right
+
+Next section titled "Chọn Phương Thức Thanh Toán". Four horizontally arranged payment option cards (equal width, white background, forest green border when selected):
+- Card 1: "Momo" with Momo logo placeholder (selected with forest green border)
+- Card 2: "VNPay" with VNPay logo placeholder
+- Card 3: "ZaloPay" with ZaloPay logo placeholder
+- Card 4: "Thẻ" with credit card icon
+
+Next section titled "Điều Gì Sẽ Xảy Ra Tiếp Theo" with 3 numbered steps. Each step has circular number badge (1, 2, 3) in forest green:
+1. Thanh toán đặt cọc & tìm đội cứu hộ (2-5 phút)
 2. Đội cứu hộ đến và xử lý rắn
-3. Thanh toán sau khi hoàn tất
+3. Thanh toán 70% còn lại sau khi hoàn tất
 
-Yellow info box (#FFF3CD background, #FFC107 left border) titled "Lưu ý Quan Trọng" with 3 bullet points:
+Yellow info box (#FFF3CD background, #FFC107 left border) titled "Lưu ý Quan Trọng" with 4 bullet points:
 • Giữ an toàn, giữ khoảng cách với rắn
 • Thời gian đội cứu hộ phản hồi: 15-60 phút
 • Bạn có thể theo dõi vị trí đội cứu hộ trên bản đồ
+• Đặt cọc được hoàn lại nếu không tìm thấy đội cứu hộ
 
-Bottom section: Large solid forest green button "Xác Nhận & Yêu Cầu Cứu Hộ" spanning full width. Below button, centered gray text link "Hủy và quay lại".
+Bottom section: Large solid forest green button "Thanh Toán Đặt Cọc (172,500 VNĐ) & Xác Nhận" spanning full width. Below button, centered gray text link "Hủy và quay lại".
 
-Design: Transaction confirmation style, clear pricing breakdown, reassuring step-by-step explanation, mobile-optimized.
+Design: Transaction confirmation style with integrated payment, clear deposit amount, reassuring information, mobile payment optimization.
 ```
 
 #### Notes for Stitch:
@@ -591,13 +626,14 @@ Design: In-progress status interface, reassuring messaging, clear safety instruc
 
 ---
 
-### Screen 8: Payment & Rating Screen
+### Screen 8: Balance Payment & Rating Screen
 
 #### Thông tin màn hình:
-- **Tên:** Màn hình thanh toán và đánh giá
-- **Mục đích:** Xử lý thanh toán và cho phép đánh giá rescuer sau khi hoàn thành
+- **Tên:** Màn hình thanh toán số dư và đánh giá
+- **Mục đích:** Thanh toán 70% còn lại và đánh giá rescuer sau khi hoàn thành
 - **Flow position:** Giai đoạn 2.4 - Sau khi rescue hoàn tất
 - **Priority:** ⭐⭐⭐
+- **Related:** Payment Flow 1 - Balance payment (70% after completion)
 
 #### Key Components:
 1. **Header:**
@@ -618,18 +654,22 @@ Design: In-progress status interface, reassuring messaging, clear safety instruc
      - Date & time completed
    - Photos (if uploaded by rescuer): thumbnails of captured snake
 
-4. **Invoice Section:**
-   - Title: "Payment Details"
+4. **Balance Payment Section:**
+   - Title: "Balance Payment (70%)"
+   - Info box (light blue):
+     - "You paid 172,500 VNĐ deposit earlier"
+     - "Complete payment for remaining balance"
    - Breakdown:
-     - Base rescue fee: "300,000 VNĐ"
-     - Platform fee (10%): "30,000 VNĐ"
-     - Divider
-     - Total: "330,000 VNĐ" (bold, large)
+     - Total service fee: "575,000 VNĐ"
+     - Deposit paid: "-172,500 VNĐ" (green, with checkmark)
+     - Divider line
+     - Balance due: "402,500 VNĐ" (bold, large, forest green)
 
 5. **Payment Method Selection:**
    - Title: "Select Payment Method"
+   - Note: "Use same method or choose new one"
    - Radio buttons or cards for:
-     - Momo (with logo)
+     - Momo (with logo) - if used for deposit, show "Used for deposit" badge
      - VNPay (with logo)
      - ZaloPay (with logo)
      - Credit Card
@@ -641,13 +681,13 @@ Design: In-progress status interface, reassuring messaging, clear safety instruc
    - Character count: "0/200"
 
 7. **Action Buttons:**
-   - Large primary button: "Pay & Submit Rating"
-   - Secondary text link: "Pay later / Dispute"
+   - Large primary button: "Pay Balance (402,500 VNĐ) & Submit Rating"
+   - Secondary text link: "Dispute / Report Issue"
 
 #### Stitch Prompt (English):
 
 ```
-Mobile app payment and rating screen for completed snake rescue in app "SnakeAid". Transaction completion interface with forest green (#228B22) primary color.
+Mobile app balance payment and rating screen for completed snake rescue in app "SnakeAid". Transaction completion interface with forest green (#228B22) primary color.
 
 Top navigation: Back arrow left, centered title "Hoàn Thành Dịch Vụ".
 
@@ -656,30 +696,33 @@ Full-width success banner with light green background (#D4EDDA). Large green che
 Main white card showing service summary. Top shows small circular avatar (50px) and bold name "Nguyễn Văn A" next to it. Below, 3 lines of gray text with icons:
 - Snake icon: "Loài: Rắn hổ mang chúa"
 - Clock icon: "Thời gian: 25 phút"
-- Calendar icon: "04/12/2025 - 3:15 PM"
+- Calendar icon: "15/12/2025 - 3:15 PM"
 
 Horizontal row of 2 small thumbnail images (square, rounded corners) labeled "Ảnh từ ca cứu hộ".
 
-Below photos, section titled "Chi Tiết Thanh Toán" in dark gray bold. White card with pricing breakdown:
-- "Phí cứu hộ cơ bản" left aligned, "300,000 VNĐ" right aligned (dark gray)
-- "Phí nền tảng (10%)" left aligned, "30,000 VNĐ" right aligned (medium gray)
-- Thin gray divider line
-- "Tổng Cộng" bold left, "330,000 VNĐ" bold large right (forest green color)
+Next section titled "Thanh Toán Số Dư (70%)" in dark gray bold. Light blue info box (#E7F3FF) with 2 lines:
+• Bạn đã thanh toán 172,500 VNĐ đặt cọc trước đó
+• Hoàn tất thanh toán số dư còn lại
 
-Next section titled "Chọn Phương Thức Thanh Toán". Four horizontally arranged payment option cards (equal width, white background, forest green border when selected):
-- Card 1: "Momo" with Momo logo placeholder
+White card with payment breakdown:
+- "Tổng chi phí dịch vụ" left aligned, "575,000 VNĐ" right aligned (dark gray)
+- "Đặt cọc đã thanh toán" left aligned, "-172,500 VNĐ" right aligned (green with checkmark icon)
+- Thin gray divider line
+- "Số Dư Còn Lại" bold left, "402,500 VNĐ" bold large right (forest green color, 24pt)
+
+Next section titled "Chọn Phương Thức Thanh Toán". Small gray text "Dùng lại phương thức cũ hoặc chọn mới". Four horizontally arranged payment option cards (equal width, white background, forest green border when selected):
+- Card 1: "Momo" with Momo logo placeholder and small purple badge "Đã dùng cho đặt cọc" (selected with forest green border)
 - Card 2: "VNPay" with VNPay logo placeholder
 - Card 3: "ZaloPay" with ZaloPay logo placeholder
 - Card 4: "Thẻ" with credit card icon
-First card (Momo) has forest green border indicating selection.
 
 Below payment, section titled "Đánh Giá Trải Nghiệm". Row of 5 large star outlines (yellow/amber color). First 4 stars filled, 5th empty (indicating 4-star rating). 
 
 Below stars, multiline text input field with placeholder "Viết nhận xét (tùy chọn)" and character counter "0/200" in bottom-right.
 
-Bottom section: Large solid forest green button "Thanh Toán & Gửi Đánh Giá" spanning full width. Below button, centered gray text link "Thanh toán sau / Khiếu nại".
+Bottom section: Large solid forest green button "Thanh Toán Số Dư (402,500 VNĐ) & Gửi Đánh Giá" spanning full width. Below button, centered gray text link "Khiếu nại / Báo cáo sự cố".
 
-Design: Transaction completion flow, clear pricing breakdown, integrated rating system, mobile payment optimization.
+Design: Balance payment completion flow, clear deposit reference, remaining amount prominent, integrated rating system, mobile payment optimization.
 ```
 
 #### Notes for Stitch:

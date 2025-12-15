@@ -22,11 +22,12 @@
 - Set consultation fees
 
 **Revenue Sources:**
-1. **Patient Consultations (Scheduled):** 750,000 VNĐ per session (Expert receives 90% = 675K after 10% platform fee)
-2. **Rescuer Consultations (Urgent):** 500,000 VNĐ per session (Expert receives 90% = 450K)
-3. **AI Verification (Confirm):** 50,000 VNĐ per case
-4. **AI Verification (Correction):** 75,000 VNĐ per case
-5. **Complex Verification with Notes:** 100,000 VNĐ per case
+1. **Patient Consultations (Scheduled):** 300,000 VNĐ per session (Expert receives 90% = 270K after 10% platform fee)
+2. **SOS Emergency Consultations (Patient):** 500,000 VNĐ per session (Expert receives 90% = 450K after 10% platform fee)
+3. **Rescuer Support (Emergency):** Expert receives 50,000 VNĐ (10% shared from Rescuer's 500K order)
+4. **AI Verification (Confirm):** 50,000 VNĐ per case
+5. **AI Verification (Correction):** 75,000 VNĐ per case
+6. **Complex Verification with Notes:** 100,000 VNĐ per case
 
 **Key Features (Reference: Major-Features-Summary.md):**
 - FE-13: Set consultation fees for different services
@@ -153,7 +154,7 @@ Comprehensive overview of Expert's earnings, upcoming payments, withdrawal statu
    - "Giao Dịch Gần Đây (5)"
    - List of 5 most recent:
      - Each row: Icon + Type + Amount + Date + Status badge
-     - Example: "Tư vấn Patient - Nguyễn Văn A" | "+675,000 VNĐ" | "10/12" | "Hoàn thành" (green)
+     - Example: "Tư vấn Patient - Nguyễn Văn A" | "+270,000 VNĐ" | "10/12" | "Hoàn thành" (green)
    - Link: "Xem Tất Cả →" → Screen 2
 
 **Stitch Prompt (English):**
@@ -230,9 +231,10 @@ QUICK ACTIONS (horizontal scroll):
 RECENT TRANSACTIONS (preview list):
 - "Giao Dịch Gần Đây (5)" header
 - 5 rows:
-  * Row 1: Video icon + "Tư vấn Patient - Nguyễn Văn A" + "+675,000 VNĐ" (green) + "10/12" + "Hoàn thành" green badge
+  * Row 1: Video icon + "Tư vấn Patient - Nguyễn Văn A" + "+270,000 VNĐ" (green) + "10/12" + "Hoàn thành" green badge
+  * Row 2: Video icon + "Tư vấn SOS - Trần Văn B" + "+450,000 VNĐ" (green) + "10/12" + "Hoàn thành" green badge
   * Row 2: Checkmark icon + "Xác minh AI - Rắn Hổ Mang" + "+75,000 VNĐ" (green) + "10/12" + "Hoàn thành"
-  * Row 3: Video icon + "Tư vấn Rescuer - Đội SG" + "+450,000 VNĐ" (green) + "9/12" + "Hoàn thành"
+  * Row 3: Video icon + "Hỗ trợ Rescuer - Đội SG" + "+50,000 VNĐ" (green) + "9/12" + "Hoàn thành"
   * Row 4: Checkmark + "Xác minh AI" + "+50,000 VNĐ" (amber) + "9/12" + "Đang chờ" amber badge
   * Row 5: Bank icon + "Rút tiền về ngân hàng" + "-2,000,000 VNĐ" (red) + "8/12" + "Hoàn thành"
 - "Xem Tất Cả →" blue link
@@ -301,8 +303,8 @@ Complete transaction history with advanced filtering, search, and export capabil
      - Details: "Nguyễn Văn A - #TVC20251210001"
      - Time: "14:30 - 15:17 (47 phút)"
    - Right:
-     - Amount: "+675,000 VNĐ" (24pt, green, bold)
-     - Net: "750K - 75K phí" (12pt, gray)
+     - Amount: "+270,000 VNĐ" (24pt, green, bold)
+     - Net: "300K - 30K phí" (12pt, gray)
      - Status: "Hoàn thành" (green badge)
    - Tap for details arrow
 
@@ -319,11 +321,11 @@ Complete transaction history with advanced filtering, search, and export capabil
    **Transaction Card 3 (Pending Payment):**
    - Left: Video icon (purple circle, with clock overlay)
    - Main content:
-     - Type: "Tư Vấn Rescuer"
-     - Details: "Đội Cứu Hộ SG - #TVR20251210003"
+     - Type: "Hỗ Trợ Rescuer" (Emergency support, not full consultation)
+     - Details: "Đội Cứu Hộ SG - #HT20251210003"
      - Time: "11:45 - 12:08 (23 phút)"
    - Right:
-     - Amount: "+450,000 VNĐ" (24pt, amber)
+     - Amount: "+50,000 VNĐ" (24pt, amber)
      - Status: "Đang chờ" (amber badge)
      - Countdown: "Còn 18h"
 
@@ -347,7 +349,7 @@ Complete transaction history with advanced filtering, search, and export capabil
      - Details: "Patient hủy - #TVC20251209012"
      - Time: "09:30"
    - Right:
-     - Amount: "-675,000 VNĐ" (24pt, red)
+     - Amount: "-270,000 VNĐ" (24pt, red)
      - Status: "Hoàn tất" (gray badge)
 
 6. **Load More:**
@@ -392,8 +394,8 @@ CARD 1 (white, rounded, shadow):
   * "Nguyễn Văn A - #TVC20251210001" (14pt gray)
   * "14:30 - 15:17 (47 phút)" (12pt gray)
 - Right:
-  * "+675,000 VNĐ" (24pt green bold)
-  * "750K - 75K phí" (12pt gray)
+  * "+270,000 VNĐ" (24pt green bold)
+  * "300K - 30K phí" (12pt gray)
   * "Hoàn thành" green badge
 - Arrow icon (far right)
 
@@ -411,11 +413,11 @@ CARD 2:
 CARD 3:
 - Left: Purple circle + video icon + clock overlay
 - Middle:
-  * "Tư Vấn Rescuer"
-  * "Đội Cứu Hộ SG - #TVR20251210003"
+  * "Hỗ Trợ Rescuer"
+  * "Đội Cứu Hộ SG - #HT20251210003"
   * "11:45 - 12:08 (23 phút)"
 - Right:
-  * "+450,000 VNĐ" (24pt amber)
+  * "+50,000 VNĐ" (24pt amber)
   * "Đang chờ" amber badge
   * "Còn 18h" (12pt amber)
 - Arrow
@@ -441,7 +443,7 @@ CARD 5:
   * "Patient hủy - #TVC20251209012"
   * "09:30"
 - Right:
-  * "-675,000 VNĐ" (24pt red)
+  * "-270,000 VNĐ" (24pt red)
   * "Hoàn tất" gray badge
 - Arrow
 
@@ -480,7 +482,7 @@ Detailed information about a specific transaction with receipt/invoice download 
    - Large transaction type icon (80px)
    - Type: "Tư Vấn Patient" (24pt, bold)
    - Transaction ID: "#TVC20251210001" (gray, monospace)
-   - Amount: "+675,000 VNĐ" (40pt, green, bold)
+   - Amount: "+270,000 VNĐ" (40pt, green, bold)
    - Date & Time: "10 Tháng 12, 2025 - 14:30"
 
 4. **Consultation Details** (For consultation transactions):
@@ -503,12 +505,12 @@ Detailed information about a specific transaction with receipt/invoice download 
 5. **Payment Breakdown:**
    - "Chi Tiết Thanh Toán"
    - Line items:
-     - "Phí tư vấn cơ bản (45 phút)" → 750,000 VNĐ
+     - "Phí tư vấn cơ bản (45 phút)" → 300,000 VNĐ
      - "Thời gian vượt quá (2 phút)" → +0 VNĐ (free)
-     - "Tổng phí dịch vụ" → 750,000 VNĐ (subtotal, bold)
-     - "Platform phí (10%)" → -75,000 VNĐ (red)
+     - "Tổng phí dịch vụ" → 300,000 VNĐ (subtotal, bold)
+     - "Platform phí (10%)" → -30,000 VNĐ (red)
      - Divider line
-     - "Bạn nhận được" → +675,000 VNĐ (large, green, bold)
+     - "Bạn nhận được" → +270,000 VNĐ (large, green, bold)
    - Payment method: "Ví SnakeAid" (icon)
    - Payment status: "Đã thanh toán" (green badge)
 
@@ -551,7 +553,7 @@ SUMMARY CARD (white, centered):
 - Large video icon (80px, purple circle background)
 - "Tư Vấn Patient" (24pt bold)
 - "#TVC20251210001" (16pt gray monospace)
-- "+675,000 VNĐ" (40pt green bold)
+- "+270,000 VNĐ" (40pt green bold)
 - "10 Tháng 12, 2025 - 14:30" (14pt gray)
 
 CONSULTATION DETAILS:
@@ -574,12 +576,12 @@ CONSULTATION DETAILS:
 PAYMENT BREAKDOWN:
 - "Chi Tiết Thanh Toán" header
 - Line items:
-  * "Phí tư vấn cơ bản (45 phút)" → "750,000 VNĐ"
+  * "Phí tư vấn cơ bản (45 phút)" → "300,000 VNĐ"
   * "Thời gian vượt quá (2 phút)" → "+0 VNĐ" (gray, strikethrough)
-  * "Tổng phí dịch vụ" → "750,000 VNĐ" (bold)
-  * "Platform phí (10%)" → "-75,000 VNĐ" (red)
+  * "Tổng phí dịch vụ" → "300,000 VNĐ" (bold)
+  * "Platform phí (10%)" → "-30,000 VNĐ" (red)
   * Dashed divider
-  * "Bạn nhận được" → "+675,000 VNĐ" (28pt green bold)
+  * "Bạn nhận được" → "+270,000 VNĐ" (28pt green bold)
 - "Ví SnakeAid" payment method + wallet icon
 - "Đã thanh toán" green badge
 

@@ -11,17 +11,33 @@
 
 ## Flow Context
 
-### Dual Consultation Modes
+### Three Consultation Types with Different Payment Models
 
-**Mode 1: Scheduled Patient Consultation (Flow 3.1)**
+**Type 1: Scheduled Patient Consultation (Tư vấn thường)**
 - Patient books appointment in advance
-- Expert prepares by reviewing case materials
+- **Price:** 300,000 VNĐ
+- **Expert receives:** 270,000 VNĐ (90%)
+- **Platform fee:** 30,000 VNĐ (10%)
+- **Payment:** 100% upfront, held in ESCROW
 - Scheduled video/chat session
-- Post-consultation summary and payment
+- Post-consultation summary
 
-**Mode 2: Urgent Rescuer Support (Flow 3.2)**
-- Rescuer encounters unknown snake at scene
-- Immediate expert help needed
+**Type 2: SOS Emergency Consultation (Tư vấn SOS - Optional)**
+- Patient bitten by snake, needs urgent consultation
+- **Price:** 500,000 VNĐ (higher due to urgency)
+- **Expert receives:** 450,000 VNĐ (90%)
+- **Platform fee:** 50,000 VNĐ (10%)
+- **Payment:** 100% upfront, held in ESCROW
+- **Response time:** 1-2 minutes
+- **Priority:** Highest in system
+
+**Type 3: Rescuer Support (Hỗ trợ Rescuer)**
+- Rescuer at scene, encounters unknown snake
+- **Patient pays:** 500,000 VNĐ (unchanged)
+- **Expert receives:** 50,000 VNĐ (10% from Rescuer's share)
+- **Rescuer receives:** 375,000 VNĐ (75%, reduced from 85%)
+- **Platform fee:** 50,000 VNĐ (10%)
+- **Insurance fund:** 25,000 VNĐ (5%)
 - Real-time video/photo sharing
 - Quick identification and safety guidance
 
@@ -55,14 +71,112 @@ Status Badges:      14pt, Bold
 
 ---
 
-## PART 1: PRE-CONSULTATION & REQUEST HANDLING (4 Screens)
+## PART 1: PRE-CONSULTATION & REQUEST HANDLING (5 Screens)
 
 ---
 
-### Screen 1: Urgent Rescuer Request Detail
+### Screen 1A: SOS Emergency Request (from Patient)
 
 **Screen Purpose:**  
-Expert views urgent request from Rescuer who needs immediate help identifying snake at rescue scene.
+Expert views urgent SOS request from Patient who was bitten by snake and needs immediate first-aid consultation (Luồng 4 - Tư vấn SOS).
+
+**Navigation:**
+- Entry: Tap urgent SOS banner from Dashboard or push notification
+- Exit: Accept → Screen 5 (Live Consultation), Decline → Back to Dashboard
+
+**Key Components:**
+
+1. **SOS Header Banner:**
+   - Bright red background with pulse animation
+   - "🆘 KHẨN CẤP - BỊ RẮN CẮN" (26pt, Bold, White)
+   - Timer: "Còn 1:30 phút để phản hồi" (countdown - shorter for SOS)
+   - Priority badge: "ƯU TIÊN CAO NHẤT" (yellow badge)
+
+2. **Patient Information Card:**
+   - Avatar + Name: "Nguyễn Văn A" 
+   - Age/Gender: "35 tuổi, Nam"
+   - Location: "Củ Chi, TP.HCM"
+   - Time since bite: "Bị cắn 15 phút trước" (red text, bold)
+
+3. **Bite Information Section:**
+   - Large photo of bite wound (full width, 300px height)
+   - Zoom controls on image
+   - Bite location: "Vị trí: Bắp chân trái"
+   - Symptoms: "Triệu chứng: Sưng đỏ, đau nhức, hơi tê" (red badge)
+
+4. **Snake Photo (if available):**
+   - Photo of snake that bit Patient
+   - AI Prediction: "Rắn Hổ Mang (Độ tin cậy: 78%)" - red badge
+   - Or: "Chưa có ảnh rắn" placeholder if not available
+
+5. **Patient's SOS Message:**
+   - "Tôi bị rắn cắn lúc đi trong vườn. Chân đang sưng và hơi tê. Không biết có nguy hiểm không. Cần tư vấn gấp!"
+   - Audio message button (if available)
+   - Emergency status: "Đã gọi 115" (green) or "Chưa gọi cấp cứu" (amber)
+
+6. **Quick Assessment:**
+   - Vital signs (if available): "Huyết áp: 120/80", "Nhịp tim: 85"
+   - Button: "Xem Thêm Ảnh Vết Cắn" (if multiple photos)
+   - Button: "Xem Vị Trí GPS Bệnh Nhân"
+
+7. **Action Buttons:**
+   - Primary: "Chấp Nhận & Tư Vấn Ngay" (large, red, 60px)
+   - Secondary: "Từ Chối" (outlined gray)
+   - Payment note: "Bạn sẽ nhận 450,000 VNĐ cho tư vấn SOS này" (green text, bold)
+
+**Stitch Prompt (English):**
+
+```
+SOS emergency consultation request screen for snake expert mobile app.
+
+SOS BANNER (bright red #E53E3E background, pulse animation):
+- "🆘 KHẨN CẤP - BỊ RẮN CẮN" (26pt bold white)
+- Countdown "Còn 1:30 phút để phản hồi" (18pt white)
+- "ƯU TIÊN CAO NHẤT" yellow badge (top-right)
+
+PATIENT CARD (white background, red left border 4px):
+- Avatar (60px) + "Nguyễn Văn A" (20pt semi-bold)
+- "35 tuổi, Nam" (14pt gray)
+- Location pin + "Củ Chi, TP.HCM" (16pt)
+- "Bị cắn 15 phút trước" (14pt red, bold)
+
+BITE WOUND IMAGE (full-width, 300px height):
+- Large photo of bite wound with zoom icons
+- "Vị trí: Bắp chân trái" badge (red)
+- "Triệu chứng: Sưng đỏ, đau nhức, hơi tê" badge (red)
+
+SNAKE PHOTO (if available, 200px height):
+- Snake photo or gray placeholder "Chưa có ảnh rắn"
+- AI badge "Rắn Hổ Mang (78%)" (red)
+
+PATIENT MESSAGE CARD:
+- Quote text: "Tôi bị rắn cắn lúc đi trong vườn. Chân đang sưng và hơi tê..."
+- Audio icon "Tin nhắn thoại SOS" (if available)
+- Emergency status badge: "Đã gọi 115" (green) or "Chưa gọi cấp cứu" (amber)
+
+VITAL SIGNS (if available):
+- Row: "Huyết áp: 120/80" | "Nhịp tim: 85"
+
+TWO BUTTONS:
+- "Xem Thêm Ảnh Vết Cắn" (outlined purple)
+- "Xem Vị Trí GPS Bệnh Nhân" (outlined blue)
+
+BOTTOM ACTIONS:
+- Large red button "Chấp Nhận & Tư Vấn Ngay" (60px height, pulse)
+- Small gray outlined "Từ Chối"
+- Note "Bạn sẽ nhận 450,000 VNĐ cho tư vấn SOS này" (green text, bold)
+
+DESIGN: Critical emergency interface, bright red indicators, medical focus on bite wound, vital signs display, shorter countdown for urgency.
+```
+
+---
+
+### Screen 1B: Urgent Rescuer Request Detail
+
+### Screen 1B: Urgent Rescuer Request Detail
+
+**Screen Purpose:**  
+Expert views urgent request from Rescuer who needs immediate help identifying snake at rescue scene (Luồng 3 - Hỗ trợ Rescuer).
 
 **Navigation:**
 - Entry: Tap urgent banner from Dashboard or notification
@@ -72,7 +186,7 @@ Expert views urgent request from Rescuer who needs immediate help identifying sn
 
 1. **Urgent Header Banner:**
    - Red background with pulse animation
-   - "🚨 YÊU CẦU KHẨN CẤP" (24pt, Bold, White)
+   - "🚨 YÊU CẦU KHẨN CẤP - HỖ TRỢ RESCUER" (24pt, Bold, White)
    - Timer: "Còn 2:45 phút để phản hồi" (countdown)
 
 2. **Rescuer Information Card:**
@@ -98,7 +212,7 @@ Expert views urgent request from Rescuer who needs immediate help identifying sn
 6. **Action Buttons:**
    - Primary: "Chấp Nhận & Tư Vấn Ngay" (large, red, 60px)
    - Secondary: "Từ Chối" (outlined gray)
-   - Note: "Bạn sẽ nhận 500K VNĐ cho tư vấn này"
+   - Payment note: "Bạn sẽ nhận 50,000 VNĐ (Rescuer chia sẻ 10%)" (green text)
 
 **Stitch Prompt (English):**
 
@@ -158,7 +272,7 @@ Expert reviews Patient's case materials before scheduled consultation session.
    - Appointment: "11/12/2025 - 14:00"
    - Duration: "45 phút"
    - Method: "Video Call" badge (purple)
-   - Fee: "750,000 VNĐ"
+   - Fee: "300,000 VNĐ" (tư vấn thường)
 
 3. **Patient's Case Summary:**
    - Section: "Lý Do Tư Vấn"
@@ -208,7 +322,7 @@ HEADER:
 SESSION CARD (purple tint background):
 - Patient "Nguyễn Văn A" (20pt bold)
 - "11/12/2025 - 14:00" + "45 phút"
-- "Video Call" badge (purple) + "750,000 VNĐ" (green)
+- "Video Call" badge (purple) + "300,000 VNĐ" (green)
 
 CASE SUMMARY:
 - "Lý Do Tư Vấn" header
@@ -282,9 +396,11 @@ Quick confirmation screen before starting consultation session (both scheduled a
      - "Thời gian dự kiến: 15-20 phút"
 
 4. **Payment Info:**
-   - "Phí tư vấn: 750,000 VNĐ"
+   - For Scheduled: "Phí tư vấn: 300,000 VNĐ" (90% = 270K cho Expert)
+   - For Urgent/SOS: "Phí tư vấn: 500,000 VNĐ" (90% = 450K cho Expert)
+   - For Rescuer Support: "Phí tư vấn: 50,000 VNĐ" (10% từ Rescuer)
    - "Trạng thái: Đã thanh toán" (green) or "Sẽ thanh toán tự động" (amber)
-   - "Bạn sẽ nhận: 675,000 VNĐ (sau phí nền tảng 10%)"
+   - "Bạn sẽ nhận: XXX VNĐ (sau phí nền tảng 10%)"
 
 5. **Checklist:**
    - ✓ Camera và micro đã kiểm tra
@@ -312,9 +428,9 @@ SESSION DETAILS CARD:
 - "Phương thức: Video Call" (16pt gray)
 
 PAYMENT CARD (light green background):
-- "Phí tư vấn: 750,000 VNĐ" (18pt bold)
+- "Phí tư vấn: 300,000 VNĐ" (18pt bold) [hoặc 500K nếu SOS]
 - "Trạng thái: Đã thanh toán" green badge
-- "Bạn sẽ nhận: 675,000 VNĐ" (16pt green)
+- "Bạn sẽ nhận: 270,000 VNĐ" (16pt green) [hoặc 450K nếu SOS]
 - "(sau phí nền tảng 10%)" (14pt gray)
 
 CHECKLIST:
@@ -826,9 +942,12 @@ Confirmation screen showing consultation completed successfully and payment proc
 
 4. **Payment Confirmation:**
    - "Thanh Toán Hoàn Tất" (green badge)
-   - Fee: "750,000 VNĐ"
-   - Platform fee (10%): "-75,000 VNĐ"
-   - Your earnings: "+675,000 VNĐ" (large, green, bold)
+   - 3 loại:
+     * **Tư vấn thường:** Fee 300K → Expert nhận 270K (90%)
+     * **Tư vấn SOS:** Fee 500K → Expert nhận 450K (90%)
+     * **Hỗ trợ Rescuer:** Expert nhận 50K (10% từ đơn 500K của Rescuer)
+   - Platform fee: "Phí nền tảng (10%): -XXK"
+   - Your earnings: "+XXX VNĐ" (large, green, bold)
    - Payment method: "Chuyển vào ví SnakeAid"
    - Processing time: "Trong vòng 24h"
 
@@ -867,10 +986,11 @@ SESSION CARD (white, rounded):
 
 PAYMENT CARD (light green background):
 - "Thanh Toán Hoàn Tất" green badge
-- Row: "Phí tư vấn" | "750,000 VNĐ"
-- Row: "Phí nền tảng (10%)" | "-75,000 VNĐ" (red)
+- Row: "Loại tư vấn" | "Tư vấn thường" (hoặc "SOS" / "Hỗ trợ Rescuer")
+- Row: "Phí tư vấn" | "300,000 VNĐ" (hoặc 500K/50K)
+- Row: "Phí nền tảng (10%)" | "-30,000 VNĐ" (red) (hoặc -50K/-5K)
 - Divider line
-- Row: "Bạn nhận được" | "+675,000 VNĐ" (28pt bold green)
+- Row: "Bạn nhận được" | "+270,000 VNĐ" (28pt bold green) (hoặc +450K/+50K)
 - Small text: "Chuyển vào ví SnakeAid trong vòng 24h"
 
 RATING SECTION:
@@ -914,27 +1034,48 @@ DESIGN: Celebratory success screen, clear payment confirmation, transparent fee 
 - Auto-save notes every 30 seconds
 
 ### Payment Flow:
-- Scheduled: Patient pre-pays → Escrow → Expert completes → Auto-release
-- Urgent: Platform pays Expert directly → Deduct from Rescuer earnings (if agreed) or Platform absorbs cost
+
+**Type 1: Tư vấn thường (Scheduled)**
+- Patient pre-pays 300K → Escrow → Expert completes → Auto-release 270K (90%)
+- Platform receives: 30K (10%)
+
+**Type 2: Tư vấn SOS (Emergency)**
+- Patient pre-pays 500K → Escrow → Expert completes in 1-2min → Auto-release 450K (90%)
+- Platform receives: 50K (10%)
+- Higher price due to priority and 24/7 availability
+
+**Type 3: Hỗ trợ Rescuer (Rescuer Support)**
+- Patient pays 500K to Rescuer → Rescuer shares 10% (50K) with Expert
+- Expert receives: 50K (10%)
+- Rescuer receives: 375K (75%, reduced from 85%)
+- Platform receives: 50K (10%)
+- Insurance fund: 25K (5%)
+
+**Payment Timeline:**
+- Scheduled/SOS: Payment held in ESCROW until consultation completed
+- Rescuer Support: Auto-split after rescue job completed
+- Expert receives payment within 24h to SnakeAid wallet
 
 ---
 
 ## Version History
+- **v1.1** - December 15, 2025: Updated payment structure with 3 consultation types
 - **v1.0** - December 11, 2025: Initial consultation flow design (8 screens)
 
 ---
 
 ## Design Review Checklist
-- [x] Dual mode support (Scheduled + Urgent)
+- [x] Three consultation types support (Scheduled + SOS + Rescuer Support)
 - [x] Video and chat interfaces designed
 - [x] Pre-consultation preparation for scheduled sessions
 - [x] Quick reference database access during calls
 - [x] Comprehensive post-consultation summary
-- [x] Payment transparency and confirmation
+- [x] Payment transparency with 3 different pricing models
 - [x] Real-time connection quality indicators
 - [x] Evidence-based medical documentation
 - [x] All touch targets minimum 44x44px
 - [x] Consistent purple color scheme
+- [x] Updated payment flows aligned with platform economics
 
 ---
 

@@ -533,7 +533,7 @@ Detailed view of Expert's monthly earnings from consultations, showing breakdown
          - Row 2: Patient name "Nguyễn Văn A" (14pt, Neutral Gray)
          - Row 3: Date/time "11/12/2025 - 09:00" (12pt, Neutral Gray)
        - Right:
-         - Amount "+750K VNĐ" (18pt, Bold, Success Green for income, Red for withdrawal)
+         - Amount "+270K VNĐ" (18pt, Bold, Success Green for income, Red for withdrawal)
          - Status badge: "Đã Nhận" (green background), "Đang Chờ" (amber), "Đã Rút" (gray)
 
 7. **Payment Method Card** (Bottom):
@@ -581,14 +581,15 @@ ACTION BUTTONS (2 equal-width buttons, 16px gap):
 REVENUE BREAKDOWN SECTION:
 - Header: "Phân Loại Thu Nhập" (18pt semi-bold purple-dark)
 - Donut chart (200px diameter):
-  * Purple segment (70%): Patient Consultations
-  * Red segment (25%): Rescuer Support
-  * Amber segment (5%): Verifications
+  * Purple segment (60%): Patient Consultations (Scheduled + SOS)
+  * Green segment (15%): Rescuer Support
+  * Amber segment (25%): Verifications
   * Center: "18 Tư Vấn" (total count)
-- Legend (3 rows):
-  * Purple dot + "Tư Vấn Patient (12)" → "8.75M VNĐ"
-  * Red dot + "Hỗ Trợ Rescuer (5)" → "3.12M VNĐ"
-  * Amber dot + "Xác Minh AI (1)" → "625K VNĐ"
+- Legend (4 rows):
+  * Purple dot + "Tư Vấn Patient Scheduled (8)" → "2.16M VNĐ" (8 × 270K)
+  * Purple dot + "Tư Vấn SOS Patient (4)" → "1.80M VNĐ" (4 × 450K)
+  * Green dot + "Hỗ Trợ Rescuer (6)" → "300K VNĐ" (6 × 50K)
+  * Amber dot + "Xác Minh AI (varies)" → "625K VNĐ"
 
 7-DAY EARNINGS TREND:
 - Header: "Xu Hướng 7 Ngày" (18pt semi-bold purple-dark)
@@ -601,10 +602,10 @@ REVENUE BREAKDOWN SECTION:
 RECENT TRANSACTIONS:
 - Header: "Giao Dịch Gần Đây" (18pt semi-bold), "Xem Tất Cả" link (right)
 - 5 transaction cards (80px height each):
-  * Card 1: Consultation icon, "Tư Vấn Video Call", "Nguyễn Văn A", "11/12/2025 - 09:00", "+750K VNĐ" (green), "Đã Nhận" badge (green)
-  * Card 2: Consultation icon, "Hỗ Trợ Rescuer", "Đội Cứu Hộ SG", "10/12/2025 - 16:30", "+625K VNĐ" (green), "Đã Nhận" badge
-  * Card 3: Verification icon, "Xác Minh AI", "Hệ Thống", "10/12/2025 - 14:00", "+625K VNĐ" (green), "Đang Chờ" badge (amber)
-  * Card 4: Consultation icon, "Tư Vấn Chat", "Lê Thị B", "09/12/2025 - 11:00", "+500K VNĐ" (green), "Đã Nhận" badge
+  * Card 1: Consultation icon, "Tư Vấn Patient (Scheduled)", "Nguyễn Văn A", "11/12/2025 - 09:00", "+270K VNĐ" (green), "Đã Nhận" badge (green)
+  * Card 2: Consultation icon, "Tư Vấn SOS (Patient)", "Trần Văn B", "10/12/2025 - 16:30", "+450K VNĐ" (green), "Đã Nhận" badge
+  * Card 3: Consultation icon, "Hỗ Trợ Rescuer", "Đội Cứu Hộ SG", "10/12/2025 - 14:00", "+50K VNĐ" (green), "Đang Chờ" badge (amber)
+  * Card 4: Verification icon, "Xác Minh AI", "Hệ Thống", "09/12/2025 - 11:00", "+75K VNĐ" (green), "Đã Nhận" badge
   * Card 5: Withdrawal icon, "Rút Tiền", "Vietcombank", "08/12/2025 - 10:00", "-5.0M VNĐ" (red), "Đã Rút" badge (gray)
 
 PAYMENT METHOD SECTION:

@@ -5,9 +5,9 @@
 - **Module:** Patient Mobile Application
 - **Flow:** Emergency Flow (Xử lý sự cố rắn cắn khẩn cấp)
 - **Công cụ thiết kế:** Stitch with Google (prompt-based design)
-- **Số lượng màn hình:** 15 screens (9 main + 4 alternative flow + 2 payment screens)
+- **Số lượng màn hình:** 20 screens (9 main + 5 expert SOS + 4 alternative flow + 2 payment screens)
 - **Ngày tạo:** November 30, 2025
-- **Cập nhật:** December 17, 2025 (Added alternative flow + payment screens)
+- **Cập nhật:** December 18, 2025 (Added Expert SOS Consultation screens 7.5-7.9)
 - **Location:** `/02-UI-Design/Patient-Emergency-Flow-Screens.md`
 
 ---
@@ -1284,6 +1284,613 @@ Style: Emergency medical alert interface, high urgency, clear hierarchy, critica
 
 ---
 
+### Screen 7.5: Expert SOS Consultation Offer (OPTIONAL)
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình đề xuất tư vấn khẩn cấp với chuyên gia
+- **Mục đích:** Cung cấp tùy chọn tư vấn video với chuyên gia ngay lập tức với phí 500,000 VNĐ
+- **Flow position:** Sau Screen 7 (Assessment Result) - Optional branch trước khi gọi SOS
+- **Priority:** ⭐⭐⭐
+- **Note:** Màn hình này là OPTIONAL - Patient có thể bỏ qua và đi thẳng đến Screen 8 (SOS)
+
+#### Key Components:
+1. **Header:**
+   - Back button
+   - Title: "Tư vấn khẩn cấp"
+   - Skip button (top right): "Bỏ qua →"
+
+2. **Premium Badge:**
+   - Purple/gold badge: "DỊCH VỤ ƯU TIÊN"
+   - Subtitle: "Phản hồi trong 1-2 phút"
+
+3. **Hero Banner Card:**
+   - Large illustration/icon: Video call with expert (doctor avatar + video icon)
+   - Main title: "Gọi chuyên gia ngay lập tức"
+   - Subtitle: "Tư vấn sơ cứu qua video call 5-10 phút"
+
+4. **Benefits List:**
+   - Title: "Bạn sẽ nhận được:"
+   - 5 items với checkmark icons:
+     - Phản hồi trong 1-2 phút (ưu tiên cao nhất)
+     - Tư vấn trực tiếp với chuyên gia rắn
+     - Hướng dẫn sơ cứu chi tiết qua video
+     - Đánh giá mức độ nguy hiểm chính xác
+     - Khuyến nghị cần thiết đến bệnh viện hay không
+
+5. **Pricing Card:**
+   - Large prominent card with border
+   - Main price: "500,000 VNĐ" (large, bold)
+   - Original price crossed: "~~300,000 VNĐ~~" (regular consultation)
+   - Label: "Phí khẩn cấp - Thanh toán trước"
+   - Small badge: ESCROW badge ("Giữ an toàn đến khi hoàn tất")
+
+6. **Trust Signals:**
+   - Small info box với amber background:
+     - "Hoàn tiền 100% nếu không có chuyên gia trong 2 phút"
+     - "Hoàn 50% nếu không hài lòng (khiếu nại trong 1 giờ)"
+
+7. **Action Buttons:**
+   - Large primary button (purple): "Gọi chuyên gia ngay (500,000 VNĐ)"
+   - Secondary outlined button (forest green): "Bỏ qua - Gọi đội cứu hộ SOS"
+
+8. **Context Note:**
+   - Small gray text at bottom:
+     - "Đội cứu hộ vẫn sẽ được gọi sau khi tư vấn"
+     - "Tư vấn chỉ mất 5-10 phút"
+
+#### Stitch Prompt (English):
+
+```
+Mobile app premium expert consultation offer screen for emergency snakebite app. Medical emergency upsell design with trust signals.
+
+Top nav: Back arrow left, title "Tư vấn khẩn cấp" centered, "Bỏ qua →" link in forest green top-right.
+
+Purple/gold badge at top center: "DỊCH VỤ ƯU TIÊN" with subtitle "Phản hồi trong 1-2 phút" in small gray text.
+
+Large white card with video call illustration: doctor avatar in circle with video camera icon overlay. Below illustration, large bold text "Gọi chuyên gia ngay lập tức" and subtitle "Tư vấn sơ cứu qua video call 5-10 phút" in gray.
+
+White card titled "Bạn sẽ nhận được:" with 5 items listed vertically, each with green checkmark icon:
+Phản hồi trong 1-2 phút (ưu tiên cao nhất)
+Tư vấn trực tiếp với chuyên gia rắn
+Hướng dẫn sơ cứu chi tiết qua video
+Đánh giá mức độ nguy hiểm chính xác
+Khuyến nghị cần thiết đến bệnh viện hay không
+
+Prominent white card with purple border showing large bold price "500,000 VNĐ" centered. Above price, small crossed-out text "~~300,000 VNĐ~~" in gray. Below price, text "Phí khẩn cấp - Thanh toán trước". Small badge "Giữ an toàn đến khi hoàn tất".
+
+Amber background info box with 2 lines:
+Hoàn tiền 100% nếu không có chuyên gia trong 2 phút
+Hoàn 50% nếu không hài lòng (khiếu nại trong 1 giờ)
+
+Two full-width buttons with 16px spacing:
+1. Large purple primary button "Gọi chuyên gia ngay (500,000 VNĐ)" (60px height)
+2. Secondary outlined forest green button "Bỏ qua - Gọi đội cứu hộ SOS" (52px height)
+
+Bottom gray text in small font:
+Đội cứu hộ vẫn sẽ được gọi sau khi tư vấn
+Tư vấn chỉ mất 5-10 phút
+
+Style: Premium medical service offer, emergency context, clear value proposition, trust signals prominent, purple as premium accent, professional medical upsell design, emergency-appropriate pricing transparency.
+```
+
+#### Notes for Stitch:
+- Purple/gold premium badge phải nổi bật nhưng không overwhelming
+- Price 500K phải rõ ràng và justify với benefits list
+- Trust signals (refund policy) là critical cho high-price emergency payment
+- "Bỏ qua" button phải visible - không force user
+- ESCROW badge quan trọng để reassure về payment safety
+
+---
+
+### Screen 7.6: Expert SOS Payment Confirmation
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình thanh toán tư vấn khẩn cấp
+- **Mục đích:** Xử lý payment 500K upfront và hiển thị ESCROW protection
+- **Flow position:** Sau Screen 7.5 khi Patient chọn "Gọi chuyên gia ngay"
+- **Priority:** ⭐⭐⭐
+
+#### Key Components:
+1. **Header:**
+   - Back button
+   - Title: "Thanh toán tư vấn khẩn cấp"
+   - Progress indicator: "Bước 1/2"
+
+2. **Service Summary Card:**
+   - Icon: Video call with expert
+   - Service name: "Tư vấn chuyên gia SOS"
+   - Description: "Phản hồi 1-2 phút, tư vấn 5-10 phút"
+   - Status badge: "Ưu tiên cao nhất" (purple)
+
+3. **Payment Amount:**
+   - Large prominent display: "500,000 VNĐ"
+   - Subtitle: "Thanh toán trước - Giữ trong ESCROW"
+   - Info icon với tooltip: "Tiền được giữ an toàn và chỉ chuyển cho chuyên gia sau khi hoàn tất tư vấn"
+
+4. **Payment Summary:**
+   - Simple display (no breakdown needed):
+     - Phí tư vấn khẩn cấp: 500,000 VNĐ (bold)
+     - Thanh toán trước - Giữ trong ESCROW
+
+5. **Payment Methods:**
+   - Title: "Phương thức thanh toán"
+   - 4 options (radio buttons):
+     - 💳 Thẻ tín dụng/Ghi nợ (Visa, Mastercard)
+     - 🏦 Ví điện tử (MoMo, ZaloPay, VNPay)
+     - 🏧 Chuyển khoản ngân hàng
+     - 💰 Ví SnakeAid (nếu có số dư)
+   - Selected option highlighted với forest green border
+
+6. **ESCROW Protection Badge:**
+   - Prominent green box with shield icon:
+     - "BẢO VỆ THANH TOÁN ESCROW"
+     - 3 bullet points:
+       - Tiền được giữ an toàn trong hệ thống
+       - Chỉ chuyển cho chuyên gia sau tư vấn hoàn tất
+       - Hoàn tiền tự động nếu không kết nối trong 2 phút
+
+7. **Important Notes Card:**
+   - Amber background box:
+     - Title: "Lưu ý quan trọng:"
+     - 3 points:
+       - Hoàn 100% nếu không có chuyên gia trong 2 phút
+       - Hoàn 50% nếu khiếu nại chất lượng trong 1 giờ
+       - Không hoàn nếu đã tư vấn đầy đủ hoặc Patient hủy sau khi bắt đầu
+
+8. **Terms Checkbox:**
+   - Checkbox: "Tôi đồng ý với Điều khoản dịch vụ và Chính sách hoàn tiền"
+   - Link to full terms (opens modal)
+
+9. **Action Buttons:**
+   - Large primary button (purple): "Xác nhận thanh toán 500,000 VNĐ"
+   - Secondary text button: "Quay lại"
+
+10. **Security Badge:**
+    - Small footer with lock icon:
+      - "Thanh toán được mã hóa và bảo mật"
+
+#### Stitch Prompt (English):
+
+```
+Mobile app payment confirmation screen for emergency expert consultation. Medical service payment with ESCROW protection emphasis.
+
+Top nav: Back arrow left, title "Thanh toán tư vấn khẩn cấp" centered, progress indicator "Bước 1/2" right side in gray.
+
+White card at top showing video call icon, service name "Tư vấn chuyên gia SOS" in bold, description "Phản hồi 1-2 phút, tư vấn 5-10 phút" in gray, and purple badge "Ưu tiên cao nhất".
+
+Large payment amount display: "500,000 VNĐ" in huge bold text centered. Below in gray "Thanh toán trước - Giữ trong ESCROW" with info icon.
+
+Simple payment summary:
+Phí tư vấn khẩn cấp: 500,000 VNĐ (bold)
+Thanh toán trước - Giữ trong ESCROW
+
+White card titled "Phương thức thanh toán" with 4 radio button options vertically:
+Thẻ tín dụng/Ghi nợ (Visa, Mastercard)
+Ví điện tử (MoMo, ZaloPay, VNPay)
+Chuyển khoản ngân hàng
+Ví SnakeAid (nếu có số dư)
+First option selected with forest green border.
+
+Green background card with shield icon:
+BẢO VỆ THANH TOÁN ESCROW
+Three checkmarked items:
+Tiền được giữ an toàn trong hệ thống
+Chỉ chuyển cho chuyên gia sau tư vấn hoàn tất
+Hoàn tiền tự động nếu không kết nối trong 2 phút
+
+Amber background card:
+Lưu ý quan trọng:
+Hoàn 100% nếu không có chuyên gia trong 2 phút
+Hoàn 50% nếu khiếu nại chất lượng trong 1 giờ
+Không hoàn nếu đã tư vấn đầy đủ hoặc Patient hủy sau khi bắt đầu
+
+Checkbox with text "Tôi đồng ý với Điều khoản dịch vụ và Chính sách hoàn tiền" with underlined link.
+
+Two buttons:
+1. Large purple primary button "Xác nhận thanh toán 500,000 VNĐ" (60px height)
+2. Text-only gray button "Quay lại" below
+
+Bottom footer with small gray text:
+Thanh toán được mã hóa và bảo mật
+
+Style: Professional payment interface, ESCROW protection prominent, trust signals throughout, clear refund policy, medical service payment, emergency context appropriate, purple as premium accent.
+```
+
+#### Notes for Stitch:
+- ESCROW badge phải very prominent - đây là key trust signal cho 500K upfront
+- Payment methods phải show familiar Vietnamese options (MoMo, ZaloPay, VNPay)
+- Refund policy phải crystal clear - 3 scenarios rõ ràng
+- Terms checkbox required before payment button active
+- Security badges quan trọng cho high-value emergency payment
+
+---
+
+### Screen 7.7: Waiting for Expert - Matching Screen
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình chờ kết nối với chuyên gia
+- **Mục đích:** Loading state sau payment, show matching progress với countdown 2 phút
+- **Flow position:** Sau Screen 7.6 (Payment confirmed)
+- **Priority:** ⭐⭐⭐
+
+#### Key Components:
+1. **Header:**
+   - Back button (disabled during matching)
+   - Title: "Đang kết nối chuyên gia"
+   - Status: "Đang xử lý..."
+
+2. **Countdown Timer (Prominent):**
+   - Large circular countdown: "1:45" (mm:ss)
+   - Color-coded:
+     - Green (2:00-1:00): Normal
+     - Amber (1:00-0:30): Warning
+     - Red (0:30-0:00): Critical
+   - Label below: "Thời gian phản hồi tối đa: 2 phút"
+
+3. **Matching Animation:**
+   - Center animated element:
+     - Pulsing circles/waves emanating from center
+     - OR rotating dots
+     - OR searching radar animation
+   - Icon: Video call symbol or expert avatar placeholder
+
+4. **Status Messages (Dynamic):**
+   - Main status text (changes every 5-10 seconds):
+     - "Đang tìm chuyên gia khả dụng..."
+     - "Đã tìm thấy 3 chuyên gia, đang kết nối..."
+     - "Chuyên gia đang chuẩn bị, vui lòng chờ..."
+     - "Sắp kết nối..."
+   - Progress indicator: 4 dots showing current step
+
+5. **Guarantee Badge:**
+   - Green box with checkmark:
+     - "Cam kết phản hồi trong 2 phút"
+     - "Hoàn tiền 100% nếu không kết nối"
+
+6. **What's Happening Card:**
+   - Expandable info card: "Đang diễn ra gì? ▼"
+   - When expanded shows 4 steps with progress:
+     - Thanh toán đã xác nhận (completed - green checkmark)
+     - Đang tìm chuyên gia khả dụng (in progress - animated)
+     - Kết nối video call (pending - gray)
+     - Bắt đầu tư vấn (pending - gray)
+
+7. **Expert Matching Stats:**
+   - Small info box:
+     - "12 chuyên gia đang online"
+     - "Thời gian phản hồi trung bình: 1m 20s"
+     - "95% cuộc gọi kết nối thành công"
+
+8. **Emergency Context Reminder:**
+   - Amber box at bottom:
+     - "Trong khi chờ:"
+     - 3 quick tips:
+       - Continue sơ cứu theo hướng dẫn AI
+       - Giữ bình tĩnh
+       - Chuẩn bị câu hỏi cho chuyên gia
+
+9. **Cancel Option:**
+   - Small text link at bottom: "Hủy yêu cầu & hoàn tiền"
+   - Confirmation modal if clicked
+
+#### Stitch Prompt (English):
+
+```
+Mobile app waiting/matching screen for emergency expert consultation. Loading state with countdown timer and progress indicators.
+
+Top nav: Back arrow left (faded/disabled), title "Đang kết nối chuyên gia" centered, status badge "Đang xử lý..." in amber right side.
+
+Large circular countdown timer centered at top: "1:45" in huge bold text inside circle. Circle has green progress ring (75% filled). Below timer, gray text "Thời gian phản hồi tối đa: 2 phút".
+
+Below timer, center animated pulsing circles radiating outward from video call icon. Icon is purple. Animation suggests searching/matching.
+
+Dynamic status text below animation: "Đã tìm thấy 3 chuyên gia, đang kết nối..." with 4 progress dots below (2 filled purple, 2 gray).
+
+Green background card with checkmark:
+Cam kết phản hồi trong 2 phút
+Hoàn tiền 100% nếu không kết nối
+
+White card with expandable header "Đang diễn ra gì? ▼". Expanded showing 4 steps:
+1. Thanh toán đã xác nhận (green checkmark)
+2. Đang tìm chuyên gia khả dụng (purple animated spinner)
+3. Kết nối video call (gray clock icon)
+4. Bắt đầu tư vấn (gray clock icon)
+
+Small info card with 3 stat lines:
+12 chuyên gia đang online
+Thời gian phản hồi trung bình: 1m 20s
+95% cuộc gọi kết nối thành công
+
+Amber background card at bottom:
+Trong khi chờ:
+Continue sơ cứu theo hướng dẫn AI
+Giữ bình tĩnh
+Chuẩn bị câu hỏi cho chuyên gia
+
+Bottom center small link text "Hủy yêu cầu & hoàn tiền" in gray.
+
+Style: Professional medical waiting interface, reassuring design, progress transparency, countdown prominent, animated matching feedback, trust signals throughout, emergency context appropriate.
+```
+
+#### Notes for Stitch:
+- Countdown timer phải very prominent và update real-time
+- Animation phải smooth và reassuring (không stressful)
+- Status messages phải update để show progress
+- Guarantee badge critical để reduce anxiety về 500K payment
+- Cancel option phải available nhưng not prominent
+- Color coding cho countdown: green → amber → red theo thời gian
+
+---
+
+### Screen 7.8: Live Video Consultation with Expert
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình tư vấn video trực tiếp với chuyên gia
+- **Mục đích:** Video call interface cho consultation 5-10 phút
+- **Flow position:** Sau Screen 7.7 khi Expert connected
+- **Priority:** ⭐⭐⭐
+
+#### Key Components:
+1. **Expert Video (Large - Primary):**
+   - Full screen OR 70% screen height
+   - Expert's camera feed
+   - Overlay elements on video:
+     - Expert name badge (top): "TS. Nguyễn Văn A" + verified badge
+     - Connection quality indicator (top-right): Signal bars (green/amber/red)
+     - Session timer (top-left): "05:32" elapsed time
+
+2. **Patient Video (PIP - Picture-in-Picture):**
+   - Small floating window (bottom-right corner)
+   - Patient's own camera feed
+   - 120px × 160px size
+   - Can be dragged to different corners
+   - Minimize button
+
+3. **Control Bar (Bottom Overlay - Semi-transparent dark):**
+   - 5 main controls in row:
+     - Mic button (mute/unmute) - red when muted
+     - Camera button (on/off) - red when off
+     - Switch camera (front/back)
+     - Speaker button (toggle)
+     - End call button (red, requires confirmation)
+   - Each button is circular with icon, 56px diameter
+
+4. **Quick Actions Drawer (Slide up from bottom):**
+   - Trigger: "⋯" button on control bar
+   - Options when opened:
+     - Chụp ảnh rắn/vết thương
+     - Gửi ảnh cho chuyên gia
+     - Xem ghi chú của chuyên gia
+     - Chia sẻ vị trí
+     - Danh sách bệnh viện gần
+
+5. **Expert Notes Panel (Slide in from right):**
+   - Trigger: "Ghi chú" button on control bar OR auto-show khi Expert gửi note
+   - Purple tab "Ghi chú của chuyên gia" on right edge
+   - Slides in 50% width:
+     - Header: "Ghi chú từ TS. Nguyễn Văn A"
+     - Scrollable notes area showing:
+       - Timestamp + note content
+       - "14:35 - Rắn lục đuôi đỏ, độc tương đối cao"
+       - "14:37 - Cần đến bệnh viện trong 2 giờ"
+       - "14:38 - Sưng tấy và tê là bình thường, không lo lắng"
+     - Auto-save badge at bottom
+     - Notes persist after call
+
+6. **Chat Messages (Overlay - Bottom):**
+   - Minimal chat bubble overlay during call
+   - Expert can send quick text messages:
+     - "Vui lòng chụp rõ hơn vết cắn"
+     - "Hãy giữ yên và thở đều"
+   - Patient can send quick replies (thumbs up, OK, etc.)
+   - Shows last 2 messages only
+
+7. **Status Indicators:**
+   - Connection status badge (top center, auto-hide after 3s):
+     - "Kết nối tốt" (green)
+     - "Kết nối yếu" (amber)
+     - "Đang kết nối lại..." (red with spinner)
+   - Recording indicator: "Cuộc gọi đang được ghi lại" (small text bottom)
+
+8. **Session Info Bar (Collapsible top banner):**
+   - Swipe down to show full info:
+     - Expert profile: Avatar + Name + Specialization
+     - Rating: 4.9 (328 đánh giá)
+     - Consultation fee: "500,000 VNĐ - Đã thanh toán"
+     - Time remaining estimate: "~5 phút còn lại"
+
+9. **Emergency Actions (Always Visible):**
+   - Small floating button (top-right):
+     - "SOS" - red button
+     - Nếu nhấn → Confirmation: "Gọi cứu hộ ngay & kết thúc tư vấn?"
+
+#### Stitch Prompt (English):
+
+```
+Mobile app video call screen for medical expert consultation. Professional video conference interface with medical context.
+
+Full-screen expert video feed showing doctor in professional setting. Video has slight rounded corners (12px).
+
+Top-left overlay on video: Timer badge "05:32" in white text on semi-transparent dark background (40% opacity black), 14pt font.
+
+Top-center overlay: Expert name badge "TS. Nguyễn Văn A" with small blue verified checkmark icon, white text on dark semi-transparent background.
+
+Top-right overlay: Connection quality indicator showing 3/4 signal bars in green, on dark semi-transparent background.
+
+Bottom-right corner: Small picture-in-picture patient video window (120×160px) with rounded corners. Has small "−" minimize button in top-left corner of PIP window.
+
+Bottom of screen: Semi-transparent dark overlay bar (60% opacity black) containing 5 circular control buttons (56px diameter each) centered horizontally with 16px spacing:
+1. Microphone icon (white)
+2. Camera icon (white)
+3. Switch camera icon (white)
+4. Speaker icon (white)
+5. End call X icon (red)
+6. More menu ⋯ icon (white) at far right
+
+Right edge: Purple vertical tab "Ghi chú" (collapsed). When expanded, shows white panel sliding in from right (50% screen width) with header "Ghi chú từ TS. Nguyễn Văn A" and scrollable notes:
+14:35 - Rắn lục đuôi đỏ, độc tương đối cao
+14:37 - Cần đến bệnh viện trong 2 giờ
+14:38 - Sưng tấy và tê là bình thường, không lo lắng
+
+Top-center of screen: Small green badge "Kết nối tốt" in white text on dark semi-transparent background.
+
+Bottom center above controls: Small gray text "Cuộc gọi đang được ghi lại" (12pt).
+
+Top-right corner outside video: Small red circular floating button "SOS" (48px diameter).
+
+Style: Professional medical video consultation interface, clean overlay design, controls accessible but not intrusive, medical emergency context, expert's video prominent, patient PIP secondary, purple accent for notes panel.
+```
+
+#### Notes for Stitch:
+- Expert video phải large và clear - primary focus
+- Patient PIP nhỏ và movable - không che expert
+- Control bar transparent overlay - không che video
+- Notes panel critical - Expert gửi instructions để Patient follow sau call
+- Connection quality indicator quan trọng - nếu poor thì show warning
+- SOS button phải always accessible - có thể cần gọi cứu hộ ngay
+- Recording notice required cho legal compliance
+
+---
+
+### Screen 7.9: Consultation Complete & Payment Confirmation
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình hoàn tất tư vấn và xác nhận thanh toán
+- **Mục đích:** Kết thúc consultation, confirm payment released to Expert, collect rating, show recommendations
+- **Flow position:** Sau Screen 7.8 khi video call ended
+- **Priority:** ⭐⭐⭐
+
+#### Key Components:
+1. **Header:**
+   - No back button (flow complete)
+   - Title: "Tư vấn hoàn tất"
+   - Checkmark icon
+
+2. **Success Banner:**
+   - Large green checkmark animation (plays once)
+   - Main text: "Tư vấn thành công"
+   - Subtitle: "Cảm ơn bạn đã sử dụng dịch vụ"
+
+3. **Consultation Summary Card:**
+   - Expert avatar + name: "TS. Nguyễn Văn A"
+   - Duration: "Thời gian: 08:42"
+   - Date/time: "18/12/2025 - 14:35"
+   - Status badge: "Đã hoàn tất" (green)
+
+4. **Payment Confirmation Card:**
+   - Title: "Thanh toán đã xử lý"
+   - Summary:
+     - Tổng phí dịch vụ: 500,000 VNĐ
+     - Payment method: "Ví MoMo •••• 8888"
+     - Transaction ID: "#TXN-2025-12345"
+     - Green checkmark: "Thanh toán thành công"
+
+5. **Expert Recommendations Card:**
+   - Title: "Khuyến nghị từ chuyên gia"
+   - Expert's final notes/recommendations:
+     - "Rắn lục đuôi đỏ - Độc tính trung bình"
+     - "Cần đến bệnh viện trong 2 giờ để theo dõi"
+     - "Mang theo ảnh rắn khi đến bệnh viện"
+     - "Theo dõi triệu chứng: sưng, khó thở, buồn nôn"
+   - Button: "Xem đầy đủ ghi chú" → Opens full notes
+
+6. **Rating Section:**
+   - Title: "Đánh giá chuyên gia"
+   - Expert avatar (small)
+   - 5 stars (large, interactive): ⭐⭐⭐⭐⭐
+   - Optional comment box: "Chia sẻ trải nghiệm của bạn..." (expandable)
+   - Character count: "0/500"
+
+7. **Next Steps Card:**
+   - Title: "Bước tiếp theo"
+   - Recommended actions:
+     - Large button: "Tìm bệnh viện gần nhất" (primary action)
+     - Secondary button: "Gọi đội cứu hộ SOS" (if recommended by Expert)
+     - Link: "Xem lại ghi chú tư vấn"
+     - Link: "Tải xuống tóm tắt tư vấn (PDF)"
+
+8. **Support & Receipt:**
+   - Small links at bottom:
+     - "Gửi hóa đơn qua email"
+     - "Trung tâm hỗ trợ"
+     - "Báo cáo vấn đề"
+
+9. **Return to Emergency Flow:**
+   - If Expert recommended Rescuer:
+     - Large amber banner: "Chuyên gia khuyên gọi đội cứu hộ"
+     - Button: "Tiếp tục gọi SOS" → Returns to Screen 8
+   - If Expert said no need Rescuer:
+     - Button: "Về trang chủ"
+
+10. **Consultation Record Saved:**
+    - Small info badge:
+      - "Ghi chú và recording đã lưu vào hồ sơ của bạn"
+      - "Xem trong Lịch sử → Tư vấn"
+
+#### Stitch Prompt (English):
+
+```
+Mobile app consultation completion screen for medical expert service. Success confirmation with payment details and rating.
+
+Top header: Title "Tư vấn hoàn tất" centered with green checkmark icon left side.
+
+Large animated green checkmark at top center (128px). Below checkmark, large bold text "Tư vấn thành công" and subtitle "Cảm ơn bạn đã sử dụng dịch vụ" in gray.
+
+White card showing expert info: Small avatar circle (48px), name "TS. Nguyễn Văn A" next to it (16pt bold). Below name:
+Thời gian: 08:42
+18/12/2025 - 14:35
+Green badge "Đã hoàn tất"
+
+White card titled "Thanh toán đã xử lý":
+Tổng phí dịch vụ: 500,000 VNĐ (bold)
+Payment method: Ví MoMo •••• 8888
+Transaction ID: #TXN-2025-12345 (small gray)
+Green checkmark with text "Thanh toán thành công" at bottom
+
+White card titled "Khuyến nghị từ chuyên gia":
+Rắn lục đuôi đỏ - Độc tính trung bình
+Cần đến bệnh viện trong 2 giờ để theo dõi
+Mang theo ảnh rắn khi đến bệnh viện
+Theo dõi triệu chứng: sưng, khó thở, buồn nôn
+Button below "Xem đầy đủ ghi chú" (outlined forest green)
+
+Rating section with title "Đánh giá chuyên gia":
+Small expert avatar (40px)
+5 large star icons (44px each) in a row, all filled yellow ⭐⭐⭐⭐⭐
+Expandable text area "Chia sẻ trải nghiệm của bạn..." with character count "0/500" below
+
+White card titled "Bước tiếp theo":
+Large forest green primary button "Tìm bệnh viện gần nhất" (60px height)
+Secondary outlined red button "Gọi đội cứu hộ SOS" (52px height)
+Two links below:
+"Xem lại ghi chú tư vấn" (forest green)
+"Tải xuống tóm tắt tư vấn (PDF)" (forest green)
+
+Amber banner at bottom: "Chuyên gia khuyên gọi đội cứu hộ" with amber warning icon.
+
+Bottom links in small gray text:
+Gửi hóa đơn qua email
+Trung tâm hỗ trợ
+Báo cáo vấn đề
+
+Small info badge at very bottom:
+Ghi chú và recording đã lưu vào hồ sơ của bạn
+Xem trong Lịch sử → Tư vấn
+
+Style: Professional service completion screen, success confirmation prominent, payment transparency, expert recommendations clear, rating section friendly, next steps actionable, medical context appropriate.
+```
+
+#### Notes for Stitch:
+- Success animation phải reassuring - tư vấn complete OK
+- Payment confirmation đơn giản - Patient chỉ cần biết đã thanh toán thành công
+- Expert recommendations là most critical - Patient cần follow
+- Rating section friendly nhưng optional - không force
+- Next steps depend on Expert recommendation: hospital vs rescuer vs home care
+- Receipt và support links available
+- Flow có thể return về Screen 8 (SOS) nếu Expert recommend rescuer
+
+---
+
 ### Screen 8: SOS Emergency Call - Live Tracking Screen
 
 #### Thông tin màn hình:
@@ -1595,7 +2202,7 @@ Top nav: X close button on right, centered title "Thanh toán thành công".
 
 Center top shows large animated green checkmark icon (80px) in green circle (#28A745) with light green background glow.
 
-Large bold text below checkmark "Cảm ơn bạn! 🙏" (28pt). Below that, medium gray text "Thanh toán đã được xử lý thành công".
+Large bold text below checkmark "Cảm ơn bạn!" (28pt). Below that, medium gray text "Thanh toán đã được xử lý thành công".
 
 Two lines of small gray text:
 - "Mã giao dịch: #TXN-20231217-00123"

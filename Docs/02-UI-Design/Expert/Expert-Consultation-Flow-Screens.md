@@ -152,7 +152,7 @@ SNAKE PHOTO (if available, 200px height):
 PATIENT MESSAGE CARD:
 - Quote text: "Tôi bị rắn cắn lúc đi trong vườn. Chân đang sưng và hơi tê..."
 - Audio icon "Tin nhắn thoại SOS" (if available)
-- Emergency status badge: "Đã gọi 115" (green) or "Chưa gọi cấp cứu" (amber)
+- Emergency status badge: "Đã gọi cứu hộ" (green) or "Chưa gọi cấp cứu" (amber)
 
 VITAL SIGNS (if available):
 - Row: "Huyết áp: 120/80" | "Nhịp tim: 85"
@@ -529,18 +529,17 @@ DESIGN: Professional video call waiting room, clear connection status, technical
 
 ---
 
-### Screen 5: Live Video/Chat Consultation
+### Screen 5: Live Video Consultation
 
 **Screen Purpose:**  
-Active consultation session with Patient or Rescuer via video call or chat.
+Active video consultation session with Patient or Rescuer.
 
 **Navigation:**
 - Entry: Auto from Screen 4 when connected
 - Exit: End session → Screen 7 (Post-Consultation Summary)
+- Switch to Chat: Tap "⋯" → "Chuyển sang Chat" → Screen 5.1
 
 **Key Components:**
-
-**VIDEO CALL MODE:**
 
 1. **Participant Video** (Full screen):
    - Large video of Patient/Rescuer (75% screen)
@@ -568,36 +567,7 @@ Active consultation session with Patient or Rescuer via video call or chat.
    - Button: "Yêu Cầu Ảnh Bổ Sung"
    - Received images appear as thumbnails (tap to fullscreen)
 
-**CHAT MODE:**
-
-1. **Chat Interface:**
-   - Messages list (scrollable)
-   - Expert messages: Right-aligned, purple bubbles
-   - Patient/Rescuer messages: Left-aligned, gray bubbles
-   - Timestamps for each message
-
-2. **Media Messages:**
-   - Images inline (tap to expand)
-   - Voice messages with play button
-   - "Đang gõ..." indicator
-
-3. **Input Section:**
-   - Text input field
-   - Attach photo button
-   - Voice message button (hold to record)
-   - Send button (purple)
-
-4. **Quick Reply Templates:**
-   - Swipe up for templates:
-     - "Vui lòng chụp ảnh rõ hơn"
-     - "Bạn có thấy triệu chứng nào khác?"
-     - "Tôi khuyên bạn nên đến bệnh viện"
-
-5. **Side Panel Access:**
-   - Button: "Xem Hồ Sơ Bệnh Nhân"
-   - Button: "Tra Cứu Rắn"
-
-**Stitch Prompt Part 2-A (Video Mode):**
+**Stitch Prompt (English):**
 
 ```
 Live video consultation screen for snake expert.
@@ -633,49 +603,189 @@ FLOATING ACTION (bottom-left):
 DESIGN: Professional video call interface, clear controls, non-intrusive notes panel, focus on conversation.
 ```
 
-**Stitch Prompt Part 2-B (Chat Mode):**
+---
+
+### Screen 5.1: Live Chat Consultation
+
+**Screen Purpose:**  
+Active text-based consultation session with Patient or Rescuer via chat interface. Used when video is not available or patient prefers text communication.
+
+**Navigation:**
+- Entry: Auto from Screen 4 (if chat mode selected) OR Switch from Screen 5 video mode
+- Exit: End session → Screen 7 (Post-Consultation Summary)
+- Switch to Video: Tap video icon → Screen 5
+
+**Key Components:**
+
+1. **Header Bar:**
+   - Back arrow
+   - Title: "Tư Vấn Trực Tuyến" (20pt, semi-bold)
+   - Participant info:
+     - Avatar (40px) + Name: "Nguyễn Văn A" (16pt)
+     - Status: "Đang hoạt động" (green dot)
+   - Right icons:
+     - Video call button (switch to video mode)
+     - Info button (view patient profile)
+
+2. **Session Timer Bar:**
+   - Subtle purple background
+   - Timer: "Đã tư vấn: 12:34" (elapsed time)
+   - Connection quality: Green/amber/red indicator
+
+3. **Chat Messages Area** (Scrollable):
+   - Patient/Rescuer messages (Left-aligned, gray bubbles #F0F0F0):
+     - Avatar + Name above first message
+     - Text message: "Tôi bị rắn cắn, không biết loài gì"
+     - Snake photo (150px wide, rounded corners, tap to fullscreen)
+     - Text: "Vết cắn sưng đỏ, hơi đau"
+     - Timestamp: "14:05" (14pt, gray)
+   
+   - Expert messages (Right-aligned, purple bubbles #E9D5FF):
+     - No avatar (expert = you)
+     - Text: "Cho tôi xem ảnh rõ hơn được không?"
+     - Text: "Đây là Rắn Hổ Mang, rất nguy hiểm"
+     - Text: "Bạn cần đến bệnh viện ngay"
+     - Timestamp: "14:06" (14pt, gray)
+   
+   - System messages (Center-aligned, light gray):
+     - "Ảnh đã được gửi" (with icon)
+     - "Đã xem hồ sơ bệnh nhân"
+
+4. **Typing Indicator:**
+   - "Đang gõ..." (gray, animated dots)
+   - Shows when Patient is typing
+
+5. **Media Messages Support:**
+   - Images inline (150px width, rounded, tap to expand fullscreen)
+   - Voice messages with play button, waveform, duration "0:45"
+   - Location pins with map preview
+   - Snake identification cards (shared from database)
+
+6. **Input Section** (Fixed bottom):
+   - Photo attach button (camera icon, left, 44px)
+   - Text input field:
+     - Placeholder: "Nhắn tin..." 
+     - Rounded rectangle (48px height)
+     - Auto-expand to 3 lines max
+   - Voice record button (mic icon, hold to record, 44px)
+   - Send button (purple arrow icon, 44px, right)
+
+7. **Quick Reply Templates Bar** (Swipe up to expand):
+   - Shows above keyboard when active
+   - 6 template chips (scrollable horizontal):
+     - "Vui lòng chụp ảnh rõ hơn"
+     - "Bạn có thấy triệu chứng nào khác?"
+     - "Tôi khuyên bạn nên đến bệnh viện"
+     - "Hãy giữ bình tĩnh và làm theo hướng dẫn"
+     - "Đây là loài rắn độc, cần cẩn thận"
+     - "Tôi sẽ gửi cho bạn hướng dẫn xử lý"
+   - Tap chip → Insert into input field
+
+8. **Floating Action Buttons** (Right edge):
+   - "Xem Hồ Sơ" button (outlined purple, 48px height)
+   - "Tra Cứu Rắn" button (outlined purple, 48px height)
+   - Position: Stacked vertically, 16px margin from edge
+
+9. **Quick Actions Menu** (Slide up from bottom):
+   - Triggered by "+" button near input
+   - Grid of 6 actions:
+     - "Gửi Ảnh Rắn" (share snake photo from database)
+     - "Yêu Cầu Ảnh Vết Cắn" (request bite wound photo)
+     - "Gửi Hướng Dẫn Sơ Cứu" (share first aid guide)
+     - "Đề Xuất Huyết Thanh" (recommend antivenom)
+     - "Gửi Vị Trí Bệnh Viện" (share hospital location)
+     - "Lên Lịch Tái Khám" (schedule follow-up)
+
+10. **Notes Panel** (Slide-in from right):
+    - Button: "Ghi Chú" (purple tab on right edge)
+    - Panel slides in (50% width):
+      - Header: "Ghi Chú Tư Vấn"
+      - Text area (scrollable)
+      - Voice-to-text button
+      - "Auto-save" green badge
+      - Close button (X)
+
+**Stitch Prompt (English):**
 
 ```
-Live chat consultation screen for snake expert.
+Live chat consultation screen for snake expert mobile app. Professional medical messaging interface with purple theme.
 
-HEADER:
-- Back arrow, "Tư Vấn Trực Tuyến" (20pt)
-- Avatar + "Nguyễn Văn A" (16pt)
-- "Đang hoạt động" green dot
+HEADER BAR (white background):
+- Back arrow (left)
+- "Tư Vấn Trực Tuyến" (20pt semi-bold purple)
+- Avatar (40px) + "Nguyễn Văn A" (16pt) + green dot "Đang hoạt động"
+- Video icon (top-right, 44px, purple outline)
+- Info icon (top-right, 44px)
 
-CHAT MESSAGES (scrollable):
-- Patient messages (left, gray bubbles):
-  * "Tôi bị rắn cắn, không biết loài gì"
-  * Snake image (150px wide, rounded)
-  * "Vết cắn sưng đỏ, hơi đau"
-  * Timestamps "14:05"
+TIMER BAR (light purple #F3E8FF background):
+- "Đã tư vấn: 12:34" (14pt semi-bold)
+- Green connection indicator dot
 
-- Expert messages (right, purple bubbles):
-  * "Cho tôi xem ảnh rõ hơn được không?"
-  * "Đây là Rắn Hổ Mang, rất nguy hiểm"
-  * "Bạn cần đến bệnh viện ngay"
+CHAT MESSAGES (scrollable, white background):
+
+PATIENT MESSAGE GROUP (left-aligned):
+- Small avatar (32px) + "Nguyễn Văn A" (12pt gray) above
+- Gray bubble #F0F0F0:
+  * "Tôi bị rắn cắn, không biết loài gì" (16pt)
+- Image bubble:
+  * Snake photo (150px wide, rounded corners 8px)
+- Gray bubble:
+  * "Vết cắn sưng đỏ, hơi đau" (16pt)
+- Timestamp "14:05" (12pt gray, below bubbles)
+
+EXPERT MESSAGE GROUP (right-aligned):
+- Purple bubble #E9D5FF:
+  * "Cho tôi xem ảnh rõ hơn được không?" (16pt)
+- Purple bubble:
+  * "Đây là Rắn Hổ Mang, rất nguy hiểm" (16pt)
+- Purple bubble:
+  * "Bạn cần đến bệnh viện ngay" (16pt)
+- Timestamp "14:06" (12pt gray, below bubbles)
+
+SYSTEM MESSAGE (center, gray):
+- "Ảnh đã được gửi" (12pt, light gray background pill)
 
 TYPING INDICATOR:
-- "Đang gõ..." (gray, animated dots)
+- "Đang gõ..." (14pt gray) with 3 animated dots
 
-INPUT SECTION (bottom):
-- Photo attach button (left)
-- Text field "Nhắn tin..." (rounded)
-- Voice record button (mic icon, hold to record)
-- Send button (purple arrow, right)
+INPUT SECTION (fixed bottom, white background, shadow):
+- Row layout:
+  * Camera icon button (44px, left, purple)
+  * Text field "Nhắn tin..." (rounded 24px, light gray border, expands to 3 lines)
+  * Mic icon button (44px, purple, hold to record)
+  * Send arrow button (44px, right, purple filled circle)
 
-QUICK REPLY BAR (swipe up):
-- 3 chips:
-  * "Vui lòng chụp ảnh rõ hơn"
-  * "Bạn có thấy triệu chứng nào khác?"
-  * "Tôi khuyên bạn nên đến bệnh viện"
+QUICK REPLY BAR (swipe up, light gray background):
+- Horizontal scroll of chips:
+  * "Vui lòng chụp ảnh rõ hơn" (rounded pill, purple outline)
+  * "Bạn có thấy triệu chứng nào khác?" (rounded pill)
+  * "Tôi khuyên bạn nên đến bệnh viện" (rounded pill)
+  * "Hãy giữ bình tĩnh và làm theo hướng dẫn" (rounded pill)
+  * "Đây là loài rắn độc, cần cẩn thận" (rounded pill)
+  * "Tôi sẽ gửi cho bạn hướng dẫn xử lý" (rounded pill)
 
-SIDE BUTTONS (floating, right edge):
-- "Xem Hồ Sơ" (outlined purple)
-- "Tra Cứu Rắn" (outlined purple)
+FLOATING BUTTONS (right edge, stacked):
+- "Xem Hồ Sơ" (outlined purple, 48px height, rounded)
+- "Tra Cứu Rắn" (outlined purple, 48px height, rounded)
 
-DESIGN: Professional medical chat, clear message distinction, inline media, quick reply templates, easy media sharing.
+NOTES TAB (right edge):
+- Purple vertical tab "Ghi Chú" (rotated text)
+- Slides in panel (50% width) with:
+  * "Ghi Chú Tư Vấn" header
+  * Text area (scrollable)
+  * Mic button (voice-to-text)
+  * "Auto-save" green badge
+
+DESIGN: Professional medical chat interface, clear message bubbles distinction (gray vs purple), inline media support, quick reply templates, voice messaging, comprehensive quick actions, persistent notes access, medical focus with snake identification integration.
 ```
+
+**Notes for Stitch:**
+- Message bubbles phải có max-width 75% để không full screen
+- Timestamp phải subtle (gray, small) không làm rối chat
+- Quick reply chips phải scrollable horizontal với smooth scroll
+- Voice messages phải có waveform animation khi play
+- Images phải có loading skeleton trước khi load xong
+- Typing indicator phải animated (3 dots bouncing)
 
 ---
 

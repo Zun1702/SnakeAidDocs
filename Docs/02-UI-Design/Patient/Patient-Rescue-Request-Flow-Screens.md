@@ -48,168 +48,1500 @@
 
 ---
 
-### Screen 1: Report Snake Discovery Screen (Patient)
+### Screen 1: Report Snake Discovery - Quantity Selection
 
 #### Thông tin màn hình:
-- **Tên:** Màn hình báo cáo phát hiện rắn
-- **Mục đích:** Cho phép người dùng báo cáo phát hiện rắn với ảnh chụp và thông tin chi tiết
+- **Tên:** Màn hình báo cáo phát hiện rắn - Chọn số lượng
+- **Mục đích:** Cho phép người dùng chọn số lượng rắn phát hiện trước khi chụp ảnh
 - **Flow position:** Giai đoạn 2.1 - Phát hiện và báo cáo rắn
 - **Priority:** ⭐⭐⭐ (Cao nhất)
+- **Navigation:** Chọn số lượng → Screen 1A/1B/1C tương ứng
 
 #### Key Components:
 1. **Header:**
    - Back button (top-left)
-   - Title: "Report Snake Sighting"
+   - Title: "Báo Cáo Phát Hiện Rắn"
    - Info icon (top-right)
 
-2. **Camera Section:**
-   - Large dashed border rectangle (camera capture area)
-   - Camera icon in center
-   - Text: "Take photo of the snake"
-   - Subtitle: "Multiple angles recommended"
-   - Primary button: "Open Camera"
-   - Secondary text link: "Choose from Gallery"
+2. **Quantity Selection Section:**
+   - Heading: "Số lượng rắn bạn thấy:"
+   - 3 radio button cards (vertically stacked):
+     
+     **Card 1 (Default selected):**
+     - Radio button (left)
+     - Icon: 1 snake illustration
+     - Title: "1 con rắn"
+     - Subtitle: "Chụp 1-3 ảnh từ nhiều góc độ"
+     - Right arrow
+     
+     **Card 2:**
+     - Radio button (left)
+     - Icon: 2-3 snake illustration
+     - Title: "2-5 con rắn"
+     - Subtitle: "Chụp ảnh từng con rắn riêng biệt"
+     - Right arrow
+     
+     **Card 3:**
+     - Radio button (left)
+     - Icon: Multiple snakes illustration
+     - Title: "Nhiều con / Ổ rắn"
+     - Subtitle: "Chụp ảnh tổng thể và cận cảnh"
+     - Right arrow
 
-3. **Location Section:**
-   - Auto-detected GPS icon with green checkmark
-   - Text: "Location automatically detected"
-   - Address preview (gray text)
-   - Small text link: "Edit location manually"
+3. **Information Note:**
+   - Light blue background info box
+   - Icon: Info circle
+   - Text: "Chọn số lượng giúp chúng tôi báo giá chính xác và điều phối người hỗ trợ phù hợp"
 
-4. **Additional Information Card:**
-   - Title: "Additional Details (Optional)"
-   - 4 input fields with labels:
-     - "Specific location" (text input: e.g., "in house/garden/street")
-     - "Estimated size" (dropdown: small/medium/large)
-     - "Snake behavior" (text input: e.g., "moving/stationary/aggressive")
-     - "Urgency level" (3 chips: Low/Medium/High)
-
-5. **Action Buttons:**
-   - Large primary button (forest green): "Submit Report →"
-   - Text below button: "AI will analyze the snake species"
+4. **Action Button:**
+   - Large primary button (forest green): "Tiếp tục →"
+   - Enabled only when selection made
 
 #### Stitch Prompt (English):
 
 ```
-Mobile app screen for reporting snake discovery in emergency assistance app "SnakeAid". Clean modern design with forest green (#228B22) primary color on white background.
+Mobile app screen for snake quantity selection in emergency assistance app "SnakeAid". Clean modern design with forest green (#228B22) primary color on white background.
 
 Top navigation: Back arrow left, centered title "Báo Cáo Phát Hiện Rắn", info icon right.
 
-Main content area starts with large camera capture section: dashed border rectangle (aspect ratio 4:3) with light gray background. Center contains camera icon and text "Chụp ảnh con rắn" in dark gray. Below that, smaller text "Nên chụp từ nhiều góc độ" in medium gray. Below rectangle, large forest green button "Mở Camera" and small gray text link "Chọn từ thư viện".
+Main content area starts with heading "Số lượng rắn bạn thấy:" in dark gray bold text (20pt).
 
-Below camera section, white card with subtle shadow labeled "Vị Trí". Inside card: green checkmark icon next to "Đã tự động xác định vị trí" text. Below that, gray text showing address preview "123 Tên đường, Quận...". Small blue text link "Chỉnh sửa vị trí thủ công" at bottom right of card.
+Below heading, three vertically stacked white cards with subtle shadow and 16px spacing between them:
 
-Next section titled "Thông Tin Bổ Sung (Tùy chọn)" in dark gray. White card containing 4 form fields vertically stacked with spacing:
-- Text input labeled "Vị trí cụ thể" with placeholder "trong nhà/vườn/đường phố"
-- Dropdown labeled "Kích thước ước tính" showing "Chọn kích thước"
-- Text input labeled "Hành vi của rắn" with placeholder "đang di chuyển/đứng yên/hung dữ"
-- Three horizontal chips labeled "Thấp", "Trung bình", "Cao" under label "Mức độ khẩn cấp". Medium chip has forest green border (selected state).
+CARD 1 (selected state with forest green border 2px):
+Left side: Selected radio button (filled green circle)
+Center-left: Small snake icon (single snake illustration)
+Center: Bold text "1 con rắn" with subtitle below "Chụp 1-3 ảnh từ nhiều góc độ" in gray
+Right side: Right arrow icon
+Card height: 80px
 
-Bottom of screen: Large solid forest green button "Gửi Báo Cáo →" spanning full width with padding. Below button, centered gray text "AI sẽ phân tích loài rắn".
+CARD 2 (unselected state with light gray border 1px):
+Left side: Unselected radio button (empty circle)
+Center-left: Small icon showing 2-3 snakes
+Center: Bold text "2-5 con rắn" with subtitle "Chụp ảnh từng con rắn riêng biệt" in gray
+Right side: Right arrow icon
+Card height: 80px
 
-Design: Clean medical/utility app style, clear form hierarchy, mobile-optimized touch targets, minimal decorative elements.
+CARD 3 (unselected state with light gray border 1px):
+Left side: Unselected radio button (empty circle)
+Center-left: Small icon showing multiple snakes/nest
+Center: Bold text "Nhiều con / Ổ rắn" with subtitle "Chụp ảnh tổng thể và cận cảnh" in gray
+Right side: Right arrow icon
+Card height: 80px
+
+Below cards, light blue background info box (#E3F2FD) with rounded corners:
+Left: Small info circle icon in blue
+Right: Text "Chọn số lượng giúp chúng tôi báo giá chính xác và điều phối người hỗ trợ phù hợp" in dark gray (14pt)
+
+Bottom of screen: Large solid forest green button "Tiếp tục →" spanning full width with padding (60px height).
+
+Design: Clean selection interface, clear card hierarchy, visual distinction between selected/unselected states, mobile-optimized touch targets.
 ```
 
 #### Notes for Stitch:
-- Nếu camera icon không rõ → "Use simple outline camera icon, centered in dashed rectangle"
-- Nếu chips không đều → "Ensure three chips are equal width with 8px spacing"
-- Location card phải nổi bật với green checkmark để user biết GPS đã hoạt động
+- Snake icons nên đơn giản, outline style
+- Selected card phải có green border rõ ràng
+- Radio buttons phải standard size (24px)
+- Cards phải có clear tap feedback
 
 ---
 
-### Screen 2: AI Snake Recognition Result Screen
+### Screen 1A: Report Snake Discovery - Single Snake (1-3 Photos)
 
 #### Thông tin màn hình:
-- **Tên:** Màn hình kết quả nhận diện rắn bằng AI
+- **Tên:** Màn hình báo cáo 1 con rắn (Chụp ảnh HOẶC Chọn loài)
+- **Mục đích:** Chụp 1-3 ảnh từ nhiều góc độ HOẶC chọn loài rắn từ danh sách
+- **Flow position:** Sau Screen 1 khi chọn "1 con rắn"
+- **Priority:** ⭐⭐⭐
+- **Alternative Mode:** Chọn từ database nếu user biết loài hoặc không thể chụp an toàn
+
+#### Key Components:
+1. **Header:**
+   - Back button (top-left)
+   - Title: "Báo Cáo: 1 Con Rắn"
+   - Info icon (top-right)
+
+2. **Mode Switcher (NEW):**
+   - Segmented control / Tab switcher
+   - Two options (equal width):
+     - **Tab 1:** "Chụp Ảnh" (default selected, green underline/background)
+     - **Tab 2:** "Chọn Loài Rắn" (gray)
+   - Subtitle: "Chọn cách bạn muốn báo cáo"
+   - Switches between Photo Upload UI and Species Selection UI
+
+---
+
+### MODE A: PHOTO UPLOAD (Default View)
+
+3. **Multi-Photo Camera Section:**
+   - Heading: "Chụp ảnh con rắn (1-3 góc độ)"
+   - Grid layout for photo slots:
+     - **Slot 1 (Required):** Large dashed rectangle with camera icon + "Ảnh chính (bắt buộc)"
+     - **Slot 2 (Optional):** Medium dashed rectangle + "Góc độ 2 (khuyến nghị)"
+     - **Slot 3 (Optional):** Medium dashed rectangle + "Góc độ 3 (tùy chọn)"
+   - Each filled slot shows thumbnail with "X" delete button
+   - Primary button below: "Thêm ảnh" (visible after photo 1 taken)
+
+4. **Photo Guidelines Card:**
+   - Expandable section: "Mẹo chụp ảnh rắn"
+   - When expanded shows 3 tips:
+     - "Chụp từ xa an toàn (2-3 mét)"
+     - "Chụp rõ đầu và thân rắn"
+     - "Tránh dùng flash nếu rắn đang hung dữ"
+
+5. **Location Section:**
+   - Auto-detected GPS icon with green checkmark
+   - Text: "Vị trí đã xác định"
+   - Address preview (gray text)
+   - Small text link: "Chỉnh sửa vị trí"
+
+6. **Additional Information Card:**
+   - Title: "Thông Tin Bổ Sung (Tùy chọn)"
+   - 4 input fields:
+     - "Vị trí cụ thể" (text input)
+     - "Kích thước ước tính" (dropdown: Nhỏ/Trung bình/Lớn)
+     - "Hành vi của rắn" (text input)
+     - "Mức độ khẩn cấp" (3 chips: Thấp/Trung bình/Cao)
+
+7. **Action Buttons:**
+   - Large primary button (forest green): "Gửi Báo Cáo →"
+   - Enabled only when at least 1 photo uploaded
+   - Text below: "AI sẽ phân tích loài rắn"
+
+---
+
+### MODE B: SPECIES SELECTION (When Tab 2 selected)
+
+3. **Info Banner:**
+   - Light blue background (#E3F2FD)
+   - Icon: Database/Book
+   - Text: "Chọn loài rắn bạn gặp từ danh sách phổ biến ở khu vực"
+   - Subtext: "Dựa trên vị trí GPS của bạn"
+
+4. **Location Display:**
+   - Small card: "Vị trí: Quận 1, TP.HCM" (from GPS)
+   - Change location link if needed
+
+5. **Snake Selection Grid:**
+   - Grid layout: 2 columns
+   - Shows 6-8 most common snakes in user's area
+   - Each card contains:
+     - **Snake photo:** Square 120×120px, clear image
+     - **Venomous badge:** Red "RẮN ĐỘC" or Green "KHÔNG ĐỘC" (top-right overlay)
+     - **Vietnamese name:** "Rắn hổ mang chúa" (bold, 16pt)
+     - **Scientific name:** "Ophiophagus hannah" (gray, 12pt)
+     - **2-3 key features:**
+       - "Đầu dẹt hình thìa"
+       - "Màu nâu vàng, có vân"
+       - "1-3m dài"
+     - **Selection:** Radio button or tap to select
+   - Selected card has green border (3px) and checkmark
+
+6. **Search Option:**
+   - Search bar: "Tìm loài rắn khác..."
+   - Expands full database when tapped
+
+7. **Helper Box:**
+   - Light yellow background (#FFFACD)
+   - Text: "💡 Chọn con GIỐNG NHẤT, không cần chính xác 100%"
+   - Icons showing what to look for: Head shape, Pattern, Size
+
+8. **Location Section:**
+   - Same as Photo Upload mode
+   - Auto-detected GPS location
+
+9. **Additional Information (Simplified):**
+   - Title: "Thông Tin Bổ Sung"
+   - Fields:
+     - "Kích thước ước tính" (required if selecting species)
+     - "Hành vi của rắn" (optional)
+     - "Mức độ khẩn cấp" (optional)
+
+10. **Action Buttons:**
+    - Large green button: "Xác Nhận Loài Rắn →"
+    - Enabled when 1 species selected
+    - Text below: "Bỏ qua AI - Đi thẳng đến yêu cầu cứu hộ"
+
+---
+
+#### Stitch Prompt - MODE A (Photo Upload):
+
+```
+Mobile app screen for reporting single snake in "SnakeAid". Forest green (#228B22) primary color.
+
+Top navigation: Back arrow left, centered title "Báo Cáo: 1 Con Rắn", info icon right.
+
+Below nav, segmented control with 2 equal-width tabs:
+- Left tab "Chụp Ảnh" (selected, forest green background, white text)
+- Right tab "Chọn Loài Rắn" (gray background, dark text)
+Small gray subtitle below: "Chọn cách bạn muốn báo cáo"
+
+Main content starts with heading "Chụp ảnh con rắn (1-3 góc độ)" in bold dark gray.
+
+Photo grid section showing 3 photo slots in grid layout (2 columns, slot 1 spans full width):
+
+SLOT 1 (full width, aspect ratio 4:3):
+Large dashed border rectangle (#CCCCCC, 2px dashed) with light gray background (#F5F5F5)
+Center: Camera icon (48px) and text "Ảnh chính (bắt buộc)" in dark gray
+Small badge in top-right corner: "Required" in red background
+
+SLOT 2 (left column, smaller):
+Medium dashed border rectangle with camera icon (32px)
+Text "Góc độ 2 (khuyến nghị)" in gray
+Small badge: "Recommended" in amber
+
+SLOT 3 (right column, same size as slot 2):
+Medium dashed border rectangle with camera icon (32px)
+Text "Góc độ 3 (tùy chọn)" in gray
+Small badge: "Optional" in light gray
+
+Below grid: Forest green outlined button "Thêm ảnh +" (disabled state shown with gray).
+
+Expandable section "Mẹo chụp ảnh rắn ▼" with small info icon. When expanded shows:
+• Chụp từ xa an toàn (2-3 mét)
+• Chụp rõ đầu và thân rắn
+• Tránh dùng flash nếu rắn đang hung dữ
+
+White card labeled "Vị Trí" with green checkmark icon, text "Vị trí đã xác định", address preview in gray, and small blue link "Chỉnh sửa vị trí".
+
+Section "Thông Tin Bổ Sung (Tùy chọn)" with white card containing 4 form fields:
+- Text input "Vị trí cụ thể" with placeholder "trong nhà/vườn/đường phố"
+- Dropdown "Kích thước ước tính" showing "Chọn kích thước"
+- Text input "Hành vi của rắn" with placeholder "đang di chuyển/đứng yên/hung dữ"
+- Three chips "Thấp", "Trung bình", "Cao" under "Mức độ khẩn cấp"
+
+Bottom: Large forest green button "Gửi Báo Cáo →" (disabled state - grayed out). Below button, centered gray text "AI sẽ phân tích loài rắn".
+
+Design: Clean photo upload interface, clear slot hierarchy, visual distinction between required/optional, mobile-optimized.
+```
+
+#### Notes for Stitch:
+- Mode toggle phải rõ ràng - selected tab có green background
+- Photo slots phải rõ ràng về required vs optional
+- Grid layout responsive - slot 1 full width, slot 2-3 side by side
+- Disabled state của button "Gửi Báo Cáo" khi chưa có ảnh
+- Thumbnail preview khi đã chụp phải có X button để xóa
+
+#### Stitch Prompt - MODE B (Species Selection):
+
+```
+Mobile app species selection screen for single snake in "SnakeAid". Forest green (#228B22) primary.
+
+Top navigation: Back arrow, title "Báo Cáo: 1 Con Rắn", info icon.
+
+Segmented control with 2 tabs:
+- Left "Chụp Ảnh" (gray)
+- Right "Chọn Loài Rắn" (selected, green background, white text)
+Subtitle "Chọn cách bạn muốn báo cáo" gray.
+
+Light blue info banner (#E3F2FD) with database icon:
+"Chọn loài rắn bạn gặp từ danh sách phổ biến ở khu vực" bold
+"Dựa trên vị trí GPS của bạn" small gray
+
+Small location card: "Vị trí: Quận 1, TP.HCM" with pin icon and "Thay đổi" link.
+
+2-column grid of snake cards (6-8 cards visible). Each card:
+- Square snake photo 120×120px
+- Top-right badge: Red "RẮN ĐỘC" or Green "KHÔNG ĐỘC"
+- Bold "Rắn hổ mang chúa" (16pt)
+- Gray italic "Ophiophagus hannah" (12pt)
+- 3 feature lines with small gray text:
+  • Đầu dẹt hình thìa
+  • Màu nâu vàng, có vân
+  • 1-3m dài
+- Radio button (selected card has green border 3px)
+
+Search bar "Tìm loài rắn khác..." with search icon.
+
+Yellow helper box (#FFFACD):
+"💡 Chọn con GIỐNG NHẤT, không cần chính xác 100%"
+Small icons: Head, Pattern, Size
+
+Location card same as Mode A.
+
+Simplified "Thông Tin Bổ Sung" section with 3 fields:
+- Kích thước ước tính (dropdown)
+- Hành vi của rắn (text input)
+- Mức độ khẩn cấp (3 chips)
+
+Large green button "Xác Nhận Loài Rắn →" (enabled when 1 selected).
+Gray text below "Bỏ qua AI - Đi thẳng đến yêu cầu cứu hộ"
+
+Design: Visual selection gallery, clear badges, location-aware, quick identification.
+```
+
+---
+
+### Screen 1B: Report Snake Discovery - Multiple Snakes (2-5 Photos)
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình báo cáo nhiều con rắn (Chụp ảnh HOẶC Chọn loài)
+- **Mục đích:** Chụp ảnh từng con riêng biệt HOẶC chọn loài rắn cho từng con
+- **Flow position:** Sau Screen 1 khi chọn "2-5 con rắn"
+- **Priority:** ⭐⭐⭐
+- **Alternative Mode:** Chọn loài từ database (nhanh hơn nếu biết loài)
+
+#### Key Components:
+1. **Header:**
+   - Back button (top-left)
+   - Title: "Báo Cáo: 2-5 Con Rắn"
+   - Info icon (top-right)
+
+2. **Mode Switcher (NEW):**
+   - Segmented control / Tab switcher
+   - Two options:
+     - **Tab 1:** "Chụp Ảnh" (default, green)
+     - **Tab 2:** "Chọn Loài Rắn" (gray)
+   - Note: "Chọn loài nếu bạn biết rõ hoặc không thể chụp an toàn"
+
+---
+
+### MODE A: PHOTO UPLOAD (Default)
+
+3. **Instruction Banner:**
+   - Light amber background alert box
+   - Icon: Info/Warning
+   - Text: "Vui lòng chụp ảnh TỪNG con rắn riêng biệt để AI phân tích chính xác"
+
+3. **Sequential Photo Upload Section:**
+   - Heading: "Ảnh các con rắn (Tối thiểu 2, Tối đa 5)"
+   - Vertical list of photo cards:
+     
+     **Photo Card Template (repeated for each photo):**
+     - Card number badge: "Con rắn #1", "Con rắn #2"...
+     - Photo slot (dashed border if empty, thumbnail if filled)
+     - "Chụp ảnh" button or "Thay đổi" if filled
+     - Optional text input: "Ghi chú vị trí" (e.g., "trong vườn", "gần cửa")
+     - Delete button (X) on filled cards
+   
+   - Add button at bottom: "+ Thêm con rắn" (max 5)
+   - Counter: "2/5 con rắn đã chụp"
+
+4. **Global Location Section:**
+   - Icon: Map pin
+   - Text: "Vị trí chung: [Address]"
+   - Note: "Tất cả rắn ở khu vực này"
+   - Link: "Chỉnh sửa"
+
+5. **Additional Information Card:**
+   - Title: "Thông Tin Chung (Tùy chọn)"
+   - Fields:
+     - "Kích thước chung" (dropdown: Nhỏ/Trung bình/Lớn/Khác nhau)
+     - "Tình trạng" (text: e.g., "Nhiều con ở các góc khác nhau")
+     - "Mức độ khẩn cấp" (3 chips)
+
+6. **Pricing Estimate:**
+   - Small info box with amber background
+   - Icon: Currency
+   - Text: "Ước tính phí: 575,000 VNĐ × số lượng rắn"
+   - Subtext: "Giá chính xác sau khi Rescuer xác nhận"
+
+7. **Action Buttons:**
+   - Large primary button: "Gửi Báo Cáo →"
+   - Enabled when ≥2 photos uploaded
+   - Text below: "AI sẽ phân tích từng con rắn"
+
+---
+
+### MODE B: SPECIES SELECTION (Multiple Selection)
+
+3. **Info Banner:**
+   - Light blue background
+   - Text: "Chọn loài rắn cho từng con bạn gặp (2-5 con)"
+   - Subtext: "Có thể chọn cùng loài nhiều lần nếu gặp nhiều con giống nhau"
+
+4. **Snake Counter:**
+   - Display: "Đang chọn: Con rắn #1" (updates as user adds)
+   - Counter: "0/5 con đã chọn"
+
+5. **Snake Selection Grid:**
+   - Grid 2 columns showing common snakes
+   - Each card has:
+     - Photo, venomous badge, name, features
+     - Button: "+ Thêm Con Này"
+   - When tapped → adds to selected list below
+
+6. **Selected Snakes List:**
+   - Vertical list showing added snakes (up to 5)
+   - Each entry:
+     - Number badge: "#1", "#2", "#3"...
+     - Snake thumbnail + name
+     - "Xóa" button
+     - Optional note field: "Vị trí cụ thể con này..." (optional)
+
+7. **Global Location:**
+   - Same as Photo Upload mode
+   - Auto-detected GPS
+
+8. **Additional Information:**
+   - Simplified fields
+   - "Mức độ khẩn cấp" (optional)
+
+9. **Pricing Estimate:**
+   - Same as Photo Upload mode
+   - "Ước tính: 575,000 × X con = XXX,XXX VNĐ"
+
+10. **Action Buttons:**
+    - Large green button: "Xác Nhận X Con Rắn →"
+    - Enabled when ≥2 snakes selected
+    - Text below: "Bỏ qua AI - Đi thẳng yêu cầu cứu hộ"
+
+---
+
+#### Stitch Prompt (English):
+
+```
+Mobile app screen for reporting multiple snakes (2-5) in "SnakeAid". Clean design with forest green (#228B22) primary color.
+
+Top navigation: Back arrow left, title "Báo Cáo: 2-5 Con Rắn", info icon right.
+
+Segmented control:
+- Left "Chụp Ảnh" (selected, green background, white text)
+- Right "Chọn Loài Rắn" (gray)
+Note "Chọn loài nếu bạn biết rõ hoặc không thể chụp an toàn" gray.
+
+Amber background banner (#FFF3CD) with info icon:
+"Vui lòng chụp ảnh TỪNG con rắn riêng biệt để AI phân tích chính xác"
+
+Heading "Ảnh các con rắn (Tối thiểu 2, Tối đa 5)" in bold dark gray.
+
+Vertical list of photo upload cards with 12px spacing:
+
+CARD 1 (filled state):
+White card with subtle shadow
+Top-left badge "Con rắn #1" (forest green background, white text)
+Square photo thumbnail (200x200px) showing uploaded snake image
+Small "X" delete button top-right corner of thumbnail
+Below photo: Text input field labeled "Ghi chú vị trí" with placeholder "trong vườn, gần cửa..." and value "Trong vườn"
+Bottom of card: Small gray button "Thay đổi ảnh"
+
+CARD 2 (filled state, similar to Card 1):
+Badge "Con rắn #2"
+Photo thumbnail shown
+"Ghi chú vị trí" input (empty)
+"Thay đổi ảnh" button
+
+CARD 3 (empty state):
+Badge "Con rắn #3" (gray background)
+Large dashed border rectangle (aspect ratio 1:1) with camera icon center
+Text "Chụp ảnh" in gray
+Forest green button "Chụp ảnh +"
+
+Bottom of list: Dashed outlined button "+ Thêm con rắn (Tối đa 5)" in forest green outline.
+Right-aligned text "2/5 con rắn đã chụp" in gray.
+
+White card "Vị trí chung":
+Map pin icon left
+Text "123 Đường ABC, Quận XYZ" bold
+Subtext "Tất cả rắn ở khu vực này" gray
+Right: Small blue link "Chỉnh sửa"
+
+Section "Thông Tin Chung (Tùy chọn)" with white card:
+- Dropdown "Kích thước chung" showing "Khác nhau"
+- Text input "Tình trạng" with placeholder
+- Three chips "Thấp", "Trung bình" (selected), "Cao"
+
+Amber info box (#FFF3CD) with currency icon:
+"Ước tính phí: 575,000 VNĐ × số lượng rắn"
+Small gray text below "Giá chính xác sau khi Rescuer xác nhận"
+
+Bottom: Large forest green button "Gửi Báo Cáo →" enabled state.
+Below button: Gray text "AI sẽ phân tích từng con rắn"
+
+Design: Sequential upload flow, numbered cards, clear photo labeling, pricing transparency, mobile-optimized.
+```
+
+#### Notes for Stitch - MODE A:
+- Mode toggle visible và clear
+- Photo cards phải numbered rõ ràng (#1, #2, #3...)
+- Empty vs Filled state phải khác biệt rõ
+- Add button disabled khi đạt max 5 photos
+- Counter "X/5 con rắn" phải update real-time
+
+#### Stitch Prompt - MODE B (Species Selection):
+
+```
+Mobile app multi-species selection for 2-5 snakes in "SnakeAid". Forest green primary.
+
+Top nav: Back arrow, title "Báo Cáo: 2-5 Con Rắn", info icon.
+
+Segmented control:
+- Left "Chụp Ảnh" (gray)
+- Right "Chọn Loài Rắn" (selected, green background, white text)
+Note "Chọn loài nếu bạn biết rõ hoặc không thể chụp an toàn" gray.
+
+Light blue info banner (#E3F2FD):
+"Chọn loài rắn cho từng con bạn gặp (2-5 con)" bold
+"Có thể chọn cùng loài nhiều lần nếu gặp nhiều con giống nhau" small gray
+
+Counter section with 2 parts:
+Left: "Đang chọn: Con rắn #1" bold
+Right: "0/5 con đã chọn" gray
+
+2-column grid of snake cards (6-8 visible, scrollable). Each card:
+- Square photo 120×120px
+- Top-right badge: Red "RẮN ĐỘC" or Green "KHÔNG ĐỘC"
+- Bold "Rắn hổ mang chúa" (16pt)
+- Gray italic "Ophiophagus hannah" (12pt)
+- 2-3 feature bullets
+- Green button "+ Thêm Con Này" at bottom
+
+Below grid, "Selected Snakes List" section showing added snakes (0-5 cards):
+
+Card #1 (when added):
+- Number badge "#1" (green circle, white text, 32px)
+- Snake thumbnail 60×60px + name "Rắn hổ mang chúa"
+- Red text link "Xóa" top-right
+- Optional text input placeholder "Vị trí cụ thể con này..." gray border
+
+Card #2, #3... same layout with incremented numbers.
+
+Location card: "Vị trí chung: 123 Đường ABC" with pin icon.
+
+Simplified "Mức độ khẩn cấp" section with 3 chips.
+
+Amber pricing box (#FFF3CD):
+"Ước tính: 575,000 × 3 con = 1,725,000 VNĐ" bold
+"Giá chính xác sau khi Rescuer xác nhận" small gray
+
+Large green button "Xác Nhận 3 Con Rắn →" (count updates dynamically).
+Gray text "Bỏ qua AI - Đi thẳng yêu cầu cứu hộ"
+
+Design: Multi-selection interface, running counter, numbered list, dynamic pricing calculation.
+```
+
+#### Notes for Stitch - MODE B:
+- Counter must update as snakes added
+- Selected list shows numbering clearly (#1, #2, #3)
+- Add/Remove buttons easy to tap
+- Dynamic pricing calculation
+- Button text shows current count
+
+---
+
+### Screen 1C: Report Snake Discovery - Snake Nest (Multiple/Overview)
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình báo cáo ổ rắn / nhiều con (Chụp ảnh HOẶC Chọn loài)
+- **Mục đích:** Chụp ảnh tổng thể + chi tiết HOẶC chọn loài rắn chủ đạo
+- **Flow position:** Sau Screen 1 khi chọn "Nhiều con / Ổ rắn"
+- **Priority:** ⭐⭐⭐
+- **Note:** Với ổ rắn, KHUYẾN CÁO chụp ảnh để chuyên gia đánh giá chính xác
+
+#### Key Components:
+1. **Header:**
+   - Back button (top-left)
+   - Title: "Báo Cáo: Ổ Rắn / Nhiều Con"
+   - Info icon (top-right)
+
+2. **Mode Switcher (NEW):**
+   - Segmented control:
+     - **Tab 1:** "Chụp Ảnh Ổ Rắn" (default, green - RECOMMENDED)
+     - **Tab 2:** "Tôi Biết Loài Rắn" (gray)
+   - Warning under tab 2: "⚠️ Với ổ rắn, khuyến nghị chụp ảnh để chuyên gia đánh giá"
+
+---
+
+### MODE A: PHOTO UPLOAD (Strongly Recommended)
+
+3. **Important Alert Banner:**
+   - Red/Orange background warning box
+   - Icon: Warning triangle
+   - Bold text: "CẢNH BÁO: Ổ rắn rất nguy hiểm"
+   - Subtext: "Giữ khoảng cách an toàn tối thiểu 5 mét. Không tiếp cận!"
+
+3. **Photo Strategy Guide:**
+   - Collapsible section: "Hướng dẫn chụp ảnh ổ rắn"
+   - When expanded shows numbered steps:
+     1. "Chụp ảnh TOÀN CẢNH từ xa (để thấy tổng thể khu vực)"
+     2. "Chụp 2-3 ảnh CẬN CẢNH (zoom hoặc dùng telephoto nếu có)"
+     3. "Chụp môi trường xung quanh (cây, đá, lỗ, hốc...)"
+
+4. **Photo Upload Section:**
+   - Heading: "Ảnh chụp (Tối thiểu 2, Tối đa 5)"
+   - Two subsections:
+     
+     **A. Ảnh Tổng Thể (Required):**
+     - Large photo slot labeled "Ảnh toàn cảnh (BẮT BUỘC)"
+     - Badge: "Overview" in red
+     - Camera button
+     
+     **B. Ảnh Chi Tiết (2-4 ảnh):**
+     - Grid of 4 smaller photo slots
+     - Labels: "Chi tiết 1", "Chi tiết 2", "Chi tiết 3", "Chi tiết 4"
+     - First 2 slots marked "Khuyến nghị", last 2 "Tùy chọn"
+   
+   - Counter below: "X/5 ảnh đã chụp"
+
+5. **Quantity Estimate:**
+   - Card with amber background
+   - Icon: Question mark
+   - Title: "Ước tính số lượng rắn"
+   - Slider or number input: "Khoảng... con rắn"
+   - Range selector: "5-10", "10-20", "20-50", ">50"
+   - Text: "Ước tính giúp Rescuer chuẩn bị đầy đủ"
+
+6. **Location & Details:**
+   - Auto-detected location
+   - Additional fields:
+     - "Loại môi trường" (dropdown: Vườn/Rừng/Nhà/Công trình/Khác)
+     - "Đặc điểm khu vực" (text: e.g., "Gần bụi cây, có nhiều lỗ")
+     - "Mức độ khẩn cấp" (default: HIGH - locked)
+
+7. **Specialist Required Notice:**
+   - Info box with blue background
+   - Icon: Expert/helmet
+   - Text: "Trường hợp này CẦN chuyên gia xử lý ổ rắn"
+   - Subtext: "Phí dịch vụ có thể cao hơn. Báo giá sau khi đánh giá."
+
+8. **Action Buttons:**
+   - Large primary button (red/orange): "Gửi Yêu Cầu Khẩn Cấp →"
+   - Enabled when ≥2 photos (1 overview + 1 detail)
+   - Text below: "Ưu tiên cao nhất - Phản hồi trong 5-10 phút"
+
+---
+
+### MODE B: SPECIES SELECTION (If User Knows - NOT Recommended)
+
+3. **Strong Warning Banner:**
+   - Amber background (#FFF3CD)
+   - Icon: Warning
+   - Bold text: "⚠️ CHÚ Ý: Với ổ rắn, KHUYẾN CÁO chụp ảnh để chuyên gia đánh giá chính xác"
+   - Subtext: "Chỉ chọn loài nếu bạn CHẮC CHẮN 100% nhận biết được"
+   - Link: "Tôi muốn chụp ảnh thay vì" (switches back to Photo mode)
+
+4. **Nest Information Section:**
+   - Title: "Thông tin về ổ rắn"
+   - Fields:
+     
+     **A. Loài rắn chủ đạo (Required):**
+     - Show selection cards (similar to 1A/1B)
+     - Note: "Chọn loài chiếm đa số trong ổ"
+     - Cards show common nest-forming snakes
+     
+     **B. Số lượng ước tính (Required):**
+     - Range chips: "5-10 con", "10-20 con", "20-50 con", ">50 con"
+     
+     **C. Loại môi trường (Required):**
+     - Dropdown: Đống gạch/đá, Hốc cây, Dưới đất, Khác
+
+5. **Photo Upload (Optional but Recommended):**
+   - Heading: "Bạn vẫn có thể thêm ảnh để hỗ trợ chuyên gia"
+   - 1-2 photo slots for overview
+   - Note: "Ảnh giúp chuyên gia chuẩn bị trang bị phù hợp"
+
+6. **Location & Urgency:**
+   - Same as Photo Upload mode
+   - Auto-detected GPS
+   - Urgency locked at "CAO"
+
+7. **Specialist Notice:**
+   - Same as Photo Upload mode
+   - "CẦN chuyên gia xử lý ổ rắn"
+
+8. **Pricing Estimate:**
+   - Red/orange info box
+   - Text: "Ước tính phí: 2,500,000 - 5,000,000 VNĐ"
+   - Subtext: "Giá chính xác sẽ được báo SAU KHI chuyên gia khảo sát hiện trường"
+
+9. **Action Buttons:**
+   - Large red button: "Gọi Chuyên Gia Xử Lý Ổ Rắn →"
+   - Enabled when loài + số lượng + môi trường filled
+   - Text below: "Bỏ qua AI - Chuyên gia sẽ liên hệ trong 5-10 phút"
+
+---
+
+#### Stitch Prompt - MODE A (Photo Upload - Recommended):
+
+```
+Mobile app screen for reporting snake nest in "SnakeAid". Emergency-focused design with red (#DC3545) accents.
+
+Top navigation: Back arrow left, title "Báo Cáo: Ổ Rắn / Nhiều Con", info icon right.
+
+Segmented control:
+- Left "Chụp Ảnh Ổ Rắn" (selected, green, RECOMMENDED badge)
+- Right "Tôi Biết Loài Rắn" (gray)
+Amber warning below tab 2: "⚠️ Với ổ rắn, khuyến nghị chụp ảnh để chuyên gia đánh giá"
+
+Red/orange background alert banner (#FFE5E5) with warning triangle icon:
+Bold text "CẢNH BÁO: Ổ rắn rất nguy hiểm"
+Subtext "Giữ khoảng cách an toàn tối thiểu 5 mét. Không tiếp cận!"
+
+Expandable section "Hướng dẫn chụp ảnh ổ rắn ▼". When expanded shows:
+1. Chụp ảnh TOÀN CẢNH từ xa (để thấy tổng thể khu vực)
+2. Chụp 2-3 ảnh CẬN CẢNH (zoom hoặc dùng telephoto nếu có)
+3. Chụp môi trường xung quanh (cây, đá, lỗ, hốc...)
+
+Heading "Ảnh chụp (Tối thiểu 2, Tối đa 5)".
+
+SECTION A - Full width:
+Large dashed rectangle (aspect ratio 16:9) labeled "Ảnh toàn cảnh (BẮT BUỘC)"
+Red badge "Overview" top-left
+Camera icon center with text "Chụp toàn cảnh"
+Forest green button "Mở Camera" below
+
+SECTION B - Grid (2x2):
+Four smaller photo slots arranged in grid:
+Top-left: "Chi tiết 1" with amber badge "Khuyến nghị"
+Top-right: "Chi tiết 2" with amber badge "Khuyến nghị"
+Bottom-left: "Chi tiết 3" with gray badge "Tùy chọn"
+Bottom-right: "Chi tiết 4" with gray badge "Tùy chọn"
+Each slot has dashed border and camera icon
+
+Counter text "2/5 ảnh đã chụp" right-aligned gray.
+
+Amber background card (#FFF3CD) "Ước tính số lượng rắn":
+Question mark icon left
+Text "Khoảng... con rắn"
+Four chip buttons in row: "5-10", "10-20" (selected), "20-50", ">50"
+Small text "Ước tính giúp Rescuer chuẩn bị đầy đủ"
+
+White card "Vị Trí" with map pin and address.
+
+Form section "Thông Tin Khu Vực":
+- Dropdown "Loại môi trường" showing "Vườn"
+- Text input "Đặc điểm khu vực" with value "Gần bụi cây, có nhiều lỗ"
+- "Mức độ khẩn cấp" showing "CAO" chip selected and locked (disabled other options)
+
+Blue background info box (#E3F2FD) with expert icon:
+"Trường hợp này CẦN chuyên gia xử lý ổ rắn"
+Small gray text "Phí dịch vụ có thể cao hơn. Báo giá sau khi đánh giá."
+
+Bottom: Large red button "Gửi Yêu Cầu Khẩn Cấp →" (60px height).
+Below: Gray text "Ưu tiên cao nhất - Phản hồi trong 5-10 phút"
+
+Design: Emergency-focused, clear photo strategy, quantity estimation, specialist emphasis, high urgency visual treatment.
+```
+
+#### Notes for Stitch - MODE A:
+- Mode toggle with warning for Mode B visible
+- Warning banner phải prominent với red/orange color
+- Overview photo slot phải largest và most prominent
+- Quantity estimate slider/chips phải easy to use
+- "Mức độ khẩn cấp" locked ở HIGH - không cho user change
+- CTA button màu red thay vì green để nhấn mạnh emergency
+
+#### Stitch Prompt - MODE B (Species Selection - NOT Recommended):
+
+```
+Mobile app nest species selection in "SnakeAid". Emergency design with strong amber warnings.
+
+Top nav: Back arrow, title "Báo Cáo: Ổ Rắn / Nhiều Con", info icon.
+
+Segmented control:
+- Left "Chụp Ảnh Ổ Rắn" (gray, small green "Khuyến nghị" badge above)
+- Right "Tôi Biết Loài Rắn" (selected, green background)
+
+Strong amber warning banner (#FFF3CD, 4px left border #FFC107):
+"⚠️ CHÚ Ý: Với ổ rắn, KHUYẾN CÁO chụp ảnh để chuyên gia đánh giá chính xác" bold 16pt
+"Chỉ chọn loài nếu bạn CHẮC CHẮN 100% nhận biết được" gray 14pt
+Blue text link "Tôi muốn chụp ảnh thay vì"
+
+Heading "Thông tin về ổ rắn" bold dark gray.
+
+Section A - "Loài rắn chủ đạo (Bắt buộc)" with red asterisk:
+2-column grid showing nest-forming snakes (king cobra, rat snake, etc.). Cards similar to Mode A with photo, badges, features.
+Small gray note: "Chọn loài chiếm đa số trong ổ"
+
+Section B - "Số lượng ước tính (Bắt buộc)" with red asterisk:
+4 horizontal chips in single row:
+"5-10 con", "10-20 con" (selected, green), "20-50 con", ">50 con"
+
+Section C - "Loại môi trường (Bắt buộc)" with red asterisk:
+Dropdown showing "Đống gạch/đá" selected.
+Options: Hốc cây, Dưới đất, Khác
+
+Collapsible section "Bạn vẫn có thể thêm ảnh để hỗ trợ chuyên gia ▼":
+When expanded shows 1-2 photo slots (dashed border, camera icon).
+Note "Ảnh giúp chuyên gia chuẩn bị trang bị phù hợp" gray.
+
+Location card with pin icon: "Vị trí: 123 Đường ABC" and "Chỉnh sửa" link.
+
+Urgency section: "Mức độ khẩn cấp" with red "CAO" chip (locked, disabled state).
+
+Blue specialist notice box (#E3F2FD):
+Expert helmet icon
+"CẦN chuyên gia xử lý ổ rắn"
+"Phí dịch vụ có thể cao hơn. Báo giá sau khi đánh giá." gray
+
+Red/orange pricing box (#FFEBEE, red left border 4px):
+"Ước tính phí: 2,500,000 - 5,000,000 VNĐ" bold 18pt
+"Giá chính xác sẽ được báo SAU KHI chuyên gia khảo sát hiện trường" gray 14pt
+
+Large red button "Gọi Chuyên Gia Xử Lý Ổ Rắn →" (56px height, #DC3545).
+Gray text "Bỏ qua AI - Chuyên gia sẽ liên hệ trong 5-10 phút"
+
+Design: Warning-heavy interface, required field emphasis, optional photo encouragement, pricing transparency with range, emergency red CTA.
+```
+
+#### Notes for Stitch - MODE B:
+- Warning banner must be very prominent to discourage this mode
+- Link to switch back to Photo mode clearly visible
+- Required fields marked with red asterisk
+- Optional photo section collapsed by default but accessible
+- Pricing range (2.5M-5M) clearly shown as estimate
+- Red button emphasizes emergency nature
+
+---
+
+### Screen 2A: AI Snake Recognition Result - Single Snake
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình kết quả nhận diện 1 con rắn
 - **Mục đích:** Hiển thị kết quả phân tích AI về loài rắn và đưa ra 2 lựa chọn hành động
-- **Flow position:** Sau khi submit báo cáo, AI xử lý và trả về kết quả
+- **Flow position:** Sau Screen 1A - Khi AI phân tích xong 1 con rắn
 - **Priority:** ⭐⭐⭐
 
 #### Key Components:
 1. **Header:**
    - Back button
-   - Title: "Snake Identified"
+   - Title: "Kết Quả Nhận Diện"
    - Close button (X)
 
-2. **Uploaded Image Display:**
-   - Show the photo user uploaded (thumbnail preview)
-   - Small edit icon to retake/change photo
+2. **Report Summary Badge:**
+   - Small gray badge: "1 con rắn đã phân tích"
+   - Icon: Checkmark
 
-3. **AI Result Card:**
-   - Badge: "AI Analysis" with icon
+3. **Photo Gallery Preview:**
+   - Horizontal scrollable row showing uploaded photos (1-3 ảnh)
+   - Primary photo highlighted with green border
+   - Each thumbnail 80x80px with rounded corners
+   - Tap to view full size
+
+4. **AI Result Card:**
+   - Badge: "AI Analysis" with robot icon
    - Snake name (Vietnamese + Scientific name)
    - Example: "Rắn hổ mang chúa (Ophiophagus hannah)"
-   - Confidence level: "95% Match"
+   - Confidence level badge: "95% Chính xác"
+   - Small info text: "Dựa trên 3 góc độ ảnh"
 
-4. **Danger Level Indicator:**
-   - Color-coded alert box:
-     - High danger: Red background with "⚠️ HIGHLY VENOMOUS"
-     - Medium: Amber with "⚠️ MILDLY VENOMOUS"
-     - Low: Green with "✓ NON-VENOMOUS"
-   - Risk description text below
+5. **Danger Level Indicator:**
+   - Color-coded alert box (full-width):
+     - High danger: Red background with "NGUY HIỂM CAO - RẮN ĐỘC MẠNH"
+     - Medium: Amber with "CẢNH BÁO - RẮN ĐỘC VỪA"
+     - Low: Green with "AN TOÀN - RẮN KHÔNG ĐỘC"
+   - Icon: Warning triangle or checkmark
+   - Risk description: "Loài này có thể gây nguy hiểm nghiêm trọng. Giữ khoảng cách và gọi chuyên gia."
 
-5. **Snake Information Summary:**
-   - Expandable section titled "Species Details"
-   - Bullet points:
-     - Habitat
-     - Behavior
-     - Distribution area
+6. **Snake Information Summary:**
+   - Expandable section: "Thông Tin Loài Rắn"
+   - When expanded shows 4 points:
+     - Môi trường sống: Rừng, đồng cỏ
+     - Hành vi: Hung dữ khi bị đe dọa
+     - Phân bố: Đông Nam Á
+     - Kích thước: 3-4 mét
 
-6. **Action Choice Section:**
-   - Bold heading: "What would you like to do?"
-   - Two large option cards (vertically stacked):
+7. **Location Confirmed:**
+   - Small card with map pin icon
+   - Text: "Vị trí: [Address]"
+   - Size estimate: "Kích thước ước tính: Lớn"
+
+8. **Recommendation Box:**
+   - Light green background (#E8F5E9)
+   - Icon: Thumbs up
+   - Bold text: "Chúng tôi KHUYẾN NGHỊ gọi đội cứu hộ chuyên nghiệp"
+   - Subtext: "An toàn, nhanh chóng và được bảo hiểm"
+
+9. **Action Choice Section:**
+   - Bold heading: "Bạn muốn làm gì tiếp theo?"
+   - Three option cards (vertically stacked, 16px spacing):
      
-     **Option A Card (Primary):**
-     - Icon: Rescue truck or person icon
-     - Title: "Request Rescue Team"
-     - Subtitle: "Professional snake catcher will arrive"
-     - Badge: "Paid Service"
-     - Right arrow
+     **Option A Card (PRIMARY - Highly Recommended):**
+     - Large card, prominent design
+     - Top-right badge: "KHUYẾN NGHỊ" (green background, white text)
+     - Left icon: Rescue truck icon (48px, forest green)
+     - Title: "Gọi Đội Cứu Hộ Chuyên Nghiệp" (20pt bold)
+     - Subtitle: "Chuyên gia bắt rắn sẽ đến trong 15-30 phút"
+     - Features list (small gray text):
+       - "✓ An toàn và chuyên nghiệp"
+       - "✓ Được bảo hiểm"
+       - "✓ Đặt cọc chỉ 150,000 VNĐ"
+     - Price preview: "Tổng phí: ≈ 575,000 VNĐ" (medium text)
+     - Large green button inside card: "Chọn dịch vụ này →"
+     - Forest green border (3px), card height 160px
      
-     **Option B Card (Secondary):**
-     - Icon: Bell or alert icon
-     - Title: "Alert Community Only"
-     - Subtitle: "Notify nearby users about snake sighting"
-     - Badge: "Free"
-     - Right arrow
+     **Option B Card (SECONDARY - Expert Consultation):**
+     - Medium card, professional design
+     - Left icon: Video call/Expert icon (40px, blue #007BFF)
+     - Title: "Đặt Lịch Tư Vấn Chuyên Gia" (18pt bold)
+     - Subtitle: "Gọi video với chuyên gia về rắn để được tư vấn" (gray)
+     - Features list (small gray text):
+       - "✓ Tư vấn từ xa qua video"
+       - "✓ Không cần di chuyển"
+       - "✓ Đặt lịch linh hoạt"
+     - Price: "500,000 VNĐ / 30 phút" (medium text)
+     - Badge: "Có sẵn 24/7"
+     - Medium blue outlined button inside card: "Đặt Lịch Ngay →"
+     - Blue border (2px), card height 140px
+     
+     **Option C Card (ALTERNATIVE - Not Recommended for Dangerous Snakes):**
+     - Smaller card, subtle design
+     - Left icon: Bell icon (32px, gray)
+     - Title: "Chỉ Cảnh Báo Cộng Đồng" (16pt)
+     - Subtitle: "Thông báo cho người dùng gần đó" (gray)
+     - Warning text (amber): "⚠️ Không xử lý rắn - Bạn tự chịu trách nhiệm"
+     - Badge: "Miễn phí"
+     - Small gray link: "Chọn tùy chọn này"
+     - Light gray border (1px), card height 80px
 
 #### Stitch Prompt (English):
 
 ```
-Mobile app screen showing AI snake identification results for emergency snake app "SnakeAid". Modern clean interface with forest green (#228B22) brand color.
+Mobile app screen showing AI snake identification result for single snake in "SnakeAid". Modern clean interface with forest green (#228B22) brand color.
 
-Top navigation: Back arrow left, centered title "Snake Identified", X close button right.
+Top navigation: Back arrow left, centered title "Kết Quả Nhận Diện", X close button right.
 
-Content begins with small uploaded image thumbnail (square, rounded corners, 80px) showing user's snake photo. Small pencil edit icon overlaid on bottom-right of thumbnail.
+Small badge at top: "1 con rắn đã phân tích" with checkmark icon, gray background.
 
-Below image, prominent white card with subtle shadow labeled with small badge "AI Analysis" in top-left (forest green background, white text). Inside card: Large bold heading "Rắn hổ mang chúa" in dark gray. Below that, italic gray text "(Ophiophagus hannah)". Small green badge showing "95% Match".
+Horizontal scrollable photo gallery showing 3 uploaded photos (80x80px each, rounded corners, 8px spacing). First photo has forest green border (2px) indicating primary image. Each thumbnail tappable.
 
-Next, full-width alert box with red background (#FFEBEE) and red left border. Contains warning emoji and bold text "⚠️ HIGHLY VENOMOUS" in red. Below that, smaller gray text "This snake species can cause serious harm. Keep distance and contact professionals."
+Below gallery, prominent white card with subtle shadow. Top-left has small badge "AI Analysis" (forest green background, white text) with robot icon. Inside card: Large bold heading "Rắn hổ mang chúa" (24pt) in dark gray. Below, italic gray text "(Ophiophagus hannah)" (16pt). Right side has green badge "95% Chính xác". Small gray text below "Dựa trên 3 góc độ ảnh".
 
-Below alert, expandable section with heading "Species Details" and small down arrow. When expanded, shows 3 bullet points in gray text:
-• Habitat: Forests and grasslands
-• Behavior: Aggressive when threatened
-• Distribution: Southeast Asia regions
+Full-width alert box with red background (#FFEBEE) and red left border (4px). Warning triangle icon left, bold red text "NGUY HIỂM CAO - RẮN ĐỘC MẠNH". Below in gray text: "Loài này có thể gây nguy hiểm nghiêm trọng. Giữ khoảng cách và gọi chuyên gia."
 
-Large heading "What would you like to do?" in dark gray below species info.
+Expandable section "Thông Tin Loài Rắn ▼" (collapsed state shown). When expanded shows 4 bullet points:
+• Môi trường sống: Rừng, đồng cỏ
+• Hành vi: Hung dữ khi bị đe dọa
+• Phân bố: Đông Nam Á
+• Kích thước: 3-4 mét
 
-Two large vertically stacked cards with white background and subtle shadow:
+Small white card with map pin icon: "Vị trí: 123 Đường ABC, Quận XYZ" and "Kích thước ước tính: Lớn" in gray.
 
-CARD 1 (primary focus): Left side has rescue icon. Main text "Request Rescue Team" in bold dark gray. Subtitle below "Professional snake catcher will arrive" in medium gray. Small amber badge "Paid Service" in top-right. Right arrow on far right. Forest green left border (4px).
+Light green recommendation box (#E8F5E9) with thumbs up icon:
+"Chúng tôi KHUYẾN NGHỊ gọi đội cứu hộ chuyên nghiệp" bold
+"An toàn, nhanh chóng và được bảo hiểm" gray subtext
 
-CARD 2 (secondary): Left side has bell icon. Main text "Alert Community Only" in bold. Subtitle "Notify nearby users about snake sighting" in gray. Small green badge "Free" in top-right. Right arrow on far right. Gray left border (2px).
+Heading "Bạn muốn làm gì tiếp theo?" (20pt bold) in dark gray.
 
-Design: Card-based medical app interface, clear visual hierarchy, color-coded danger levels, tap-friendly card heights (minimum 80px).
+Three vertically stacked cards (16px spacing):
+
+CARD 1 (PRIMARY - Large, prominent):
+Top-right green badge "KHUYẾN NGHỊ" (white text)
+Left: Large rescue truck icon (48px, forest green)
+Center section:
+- Title "Gọi Đội Cứu Hộ Chuyên Nghiệp" (20pt bold)
+- Subtitle "Chuyên gia bắt rắn sẽ đến trong 15-30 phút" (14pt gray)
+- Features list in small gray text:
+  ✓ An toàn và chuyên nghiệp
+  ✓ Được bảo hiểm
+  ✓ Đặt cọc chỉ 150,000 VNĐ
+- Price "Tổng phí: ≈ 575,000 VNĐ" (16pt medium gray)
+- Large green button inside card "Chọn dịch vụ này →" (full width, 48px height)
+Forest green border (3px), card total height 160px
+
+CARD 2 (SECONDARY - Medium, professional):
+Left: Video call/Expert icon (40px, blue #007BFF)
+Center section:
+- Title "Đặt Lịch Tư Vấn Chuyên Gia" (18pt bold)
+- Subtitle "Gọi video với chuyên gia về rắn để được tư vấn" (14pt gray)
+- Features list in small gray text:
+  ✓ Tư vấn từ xa qua video
+  ✓ Không cần di chuyển
+  ✓ Đặt lịch linh hoạt
+- Price "500,000 VNĐ / 30 phút" (16pt medium gray)
+- Top-right badge "Có sẵn 24/7" (blue background, white text)
+- Medium blue outlined button inside card "Đặt Lịch Ngay →" (full width, 44px height)
+Blue border (2px), card total height 140px
+
+CARD 3 (ALTERNATIVE - Smaller, subtle):
+Left: Bell icon (32px, gray)
+Center: Title "Chỉ Cảnh Báo Cộng Đồng" (16pt), subtitle "Thông báo cho người dùng gần đó" gray
+Amber warning text "⚠️ Không xử lý rắn - Bạn tự chịu trách nhiệm"
+Top-right: Gray badge "Miễn phí"
+Small gray text link "Chọn tùy chọn này" (no arrow)
+Light gray border (1px), card height 80px
+
+Design: Clean result display, photo gallery preview, clear danger indication, three-tier action choices with expert consultation option, Vietnamese-focused, pricing transparency.
 ```
 
 #### Notes for Stitch:
-- Danger level box phải rất nổi bật (full width, strong color)
-- Nếu scientific name hiển thị khó đọc → "Use italic gray text for scientific name, smaller than Vietnamese name"
-- 2 option cards phải có kích thước bằng nhau nhưng visual weight khác nhau (primary có border màu)
+- Photo gallery phải scrollable horizontally nếu có nhiều ảnh
+- Danger level alert phải full-width và prominent với color-coded (red/amber/green)
+- Card hierarchy rõ ràng: Card 1 (PRIMARY) 160px > Card 2 (SECONDARY) 140px > Card 3 (ALTERNATIVE) 80px
+- Card 1 (Rescue) emphasized với green border 3px và "KHUYẾN NGHỊ" badge
+- Card 2 (Expert Consultation) professional với blue theme (#007BFF), medium size
+- Card 3 (Community Alert) minimal và discouraged
+- Each card có pricing rõ ràng để user compare: 575K vs 500K/30min vs Free
+- Features list (✓) giúp user understand benefits
 
 ---
 
-### Screen 3: Request Rescue Confirmation & Deposit Payment Screen
+### Screen 2B: AI Snake Recognition Result - Multiple Snakes
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình kết quả nhận diện nhiều con rắn (2-5 con)
+- **Mục đích:** Hiển thị kết quả phân tích AI cho từng con rắn và tổng hợp
+- **Flow position:** Sau Screen 1B - Khi AI phân tích xong 2-5 con rắn
+- **Priority:** ⭐⭐⭐
+
+#### Key Components:
+1. **Header:**
+   - Back button
+   - Title: "Kết Quả Nhận Diện"
+   - Close button (X)
+
+2. **Summary Overview Card:**
+   - Badge: "Đã phân tích hoàn tất"
+   - Summary stats:
+     - "Tổng số: X con rắn"
+     - "Số loài khác nhau: Y loài"
+     - "Độc tính cao nhất: [Level]"
+
+3. **Individual Snake Results (Expandable List):**
+   - Vertical list of result cards, 1 card per snake
+   - Each card shows:
+     
+     **Snake Card (#1, #2, #3...):**
+     - Collapsed state:
+       - Number badge: "Con rắn #1"
+       - Thumbnail photo (60x60px)
+       - Snake name: "Rắn hổ mang chúa"
+       - Danger badge: Red/Amber/Green
+       - Expand arrow "▼"
+     
+     - Expanded state:
+       - Full photo preview
+       - Scientific name
+       - Confidence: "92% Chính xác"
+       - Danger level alert box (compact)
+     Strong Recommendation Box:**
+   - Orange/amber background (#FFF3CD) with warning icon
+   - Bold text: "KHUYẾN CÁO MẠNH: Nhiều con rắn CẦN đội chuyên nghiệp"
+   - Subtext: "Tự xử lý rất nguy hiểm - Chúng tôi KHÔNG khuyến nghị"
+
+8. **Action Section:**
+   - Heading: "Hành động được khuyến nghị:"
+   - Two option cards (large spacing):
+     
+     **Option A (REQUIRED ACTION - Highly Emphasized):**
+     - Extra large card with emphasis
+     - Top banner: Red badge "KHUYẾN CÁO MẠNH" spanning width
+     - Left icon: Team/Multiple rescuers icon (56px, forest green)
+     - Title: "Gọi Đội Cứu Hộ Chuyên Nghiệp" (22pt bold)
+     - Subtitle: "Xử lý nhiều con rắn an toàn và hiệu quả"
+     - Key features (checkmarks):
+       - "✓ Đội ngũ 2+ người có kinh nghiệm"
+       - "✓ Trang bị chuyên dụng đầy đủ"
+       - "✓ Được bảo hiểm toàn diện"
+       - "✓ Đặt cọc 150,000 VNĐ - Trả sau khi hoàn tất"
+     - Price: "Tổng ước tính: XXX,XXX VNĐ" (large, bold)
+     - Very large green button: "YÊU CẦU DỊCH VỤ NGAY →" (56px height)
+     - Forest green border (4px), card height 200px
+     
+     **Option B (STRONGLY DISCOURAGED):**
+     - Small, heavily dimmed card (opacity 0.5)
+     - Disabled appearance
+     - Icon: Bell (gray, small 24px)
+     - Title: "Chỉ Cảnh Báo Cộng Đồng" (crossed out style)
+     - Red warning box: "🚫 KHÔNG KHUYẾN NGHỊ"
+     - Warning list:
+       - "• Không xử lý rắn"
+       - "• Nguy hiểm cao với nhiều con"
+       - "• Bạn hoàn toàn tự chịu trách nhiệm"
+     - Gray text link: "Tôi hiểu rủi ro và vẫn muốn chọn"
+     - Red dashed border (2px), card height 100px phí:"
+   - Breakdown:
+     - "Phí cơ bản: 575,000 VNĐ × X con"
+     - "Tổng ước tính: XXX,XXX VNĐ"
+   - Note: "Giá chính xác sau khi Rescuer đánh giá hiện trường"
+
+7. **Action Choice Section:**
+   - Heading: "Bạn muốn làm gì tiếp theo?"
+   - Two option cards:
+     
+     **Option A (Strongly Recommended):**
+     - Badge: "KHUYẾN CÁO MẠNH" (red badge)
+     - Icon: Team/Multiple rescuers icon
+     - Title: "Gọi Đội Cứu Hộ Chuyên Nghiệp"
+     - Subtitle: "Xử lý nhiều con rắn an toàn"
+     - Price: "≈ XXX,XXX VNĐ"
+     - Note: "Có thể cần 2+ người hỗ trợ"
+     - Right arrow
+     
+     **Option B (Not Recommended):**
+     - Dimmed/grayed out appearance
+     - Icon: Bell (gray)
+     - Title: "Chỉ Cảnh Báo Cộng Đồng"
+     - Warning text: "⚠️ Không khuyến nghị cho nhiều con rắn"
+     - Badge: "Miễn phí"
+
+#### Stitch Prompt (English):
+
+```
+Mobile app screen showing AI results for multiple snakes (2-5) in "SnakeAid". Complex data display with forest green (#228B22) primary color.
+
+Top navigation: Back arrow left, title "Kết Quả Nhận Diện", X close button right.
+
+Summary card at top with green background (#E8F5E9):
+Badge "Đã phân tích hoàn tất" with checkmark
+Three stats in row:
+"Tổng số: 3 con rắn" | "Số loài: 2 loài khác nhau" | "Độc tính: CAO"
+
+Below summary, vertical list of snake result cards (12px spacing):
+
+CARD #1 (expanded state):
+White card with shadow
+Top: Badge "Con rắn #1" (forest green), thumbnail 60x60px, "Rắn hổ mang chúa" bold, red danger badge
+Expanded content:
+- Larger photo 200x150px
+- "(Ophiophagus hannah)" italic gray
+- "92% Chính xác" green badge
+- Compact red alert box "NGUY HIỂM CAO - ĐỘC MẠNH"
+- "Ghi chú: Trong vườn" in gray
+- 2 bullet points: Môi trường, Hành vi
+
+CARD #2 (collapsed state):
+Badge "Con rắn #2", thumbnail, "Rắn lục đuôi đỏ", amber danger badge, down arrow "▼"
+
+CARD #3 (collapsed state):
+Badge "Con rắn #3", thumbnail, "Rắn hổ mang chúa", red danger badge, down arrow "▼"
+
+Large red/orange alert card (#FFEBEE):
+Warning shield icon left
+"Mức độ nguy hiểm tổng thể: CAO" bold red (20pt)
+"Có 3 con rắn độc trong số 3 con" gray text
+"Khuyến nghị GỌI chuyên gia ngay" bold
+
+Small map card: "Tất cả rắn ở: 123 Đường ABC, Quận XYZ" with note "Khu vực rộng - Cần kiểm tra toàn diện"
+
+Amber pricing box (#FFF3CD):
+Calculator icon, heading "Ước tính chi phí:"
+"Phí cơ bản: 575,000 VNĐ × 3 con"
+"Tổng ước tính: 1,725,000 VNĐ" (bold, large)
+Small gray note "Giá chính xác sau khi Rescuer đánh giá hiện trường"
+
+Orange recommendation box (#FFF3CD) with warning icon:
+"KHUYẾN CÁO MẠNH: Nhiều con rắn CẦN đội chuyên nghiệp" bold
+"Tự xử lý rất nguy hiểm - Chúng tôi KHÔNG khuyến nghị" gray
+
+Heading "Hành động được khuyến nghị:" bold
+
+CARD A (PRIMARY - Extra large, emphasized):
+Top banner spanning width: Red badge "KHUYẾN CÁO MẠNH" (white text)
+Left: Team icon 56px (multiple rescuers, forest green)
+Center section:
+- Title "Gọi Đội Cứu Hộ Chuyên Nghiệp" (22pt bold)
+- Subtitle "Xử lý nhiều con rắn an toàn và hiệu quả" gray
+- Checkmarked features:
+  ✓ Đội ngũ 2+ người có kinh nghiệm
+  ✓ Trang bị chuyên dụng đầy đủ
+  ✓ Được bảo hiểm toàn diện
+  ✓ Đặt cọc 150,000 VNĐ - Trả sau khi hoàn tất
+- Price "Tổng ước tính: 1,725,000 VNĐ" (20pt bold)
+- Very large green button "YÊU CẦU DỊCH VỤ NGAY →" (56px height, full width)
+Forest green border (4px), total card height 200px
+
+CARD B (SECONDARY - Medium, professional):
+Left: Video call/Expert icon 40px (blue #007BFF)
+Center section:
+- Title "Đặt Lịch Tư Vấn Chuyên Gia" (18pt bold)
+- Subtitle "Gọi video với chuyên gia về rắn để được tư vấn" (14pt gray)
+- Checkmarked features (small gray text):
+  ✓ Tư vấn từ xa qua video
+  ✓ Không cần di chuyển
+  ✓ Đặt lịch linh hoạt
+- Price "500,000 VNĐ / 30 phút" (16pt medium, gray)
+- Top-right badge: "Có sẵn 24/7" (blue background, white text, 12pt)
+- Medium blue outlined button inside card: "Đặt Lịch Ngay →" (full width, 44px height)
+Blue border (2px), card total height 140px
+
+CARD C (DISCOURAGED - Small, dimmed):
+Opacity 0.5, disabled appearance
+Bell icon 24px gray
+Title "Chỉ Cảnh Báo Cộng Đồng" with strikethrough style
+Red warning box "🚫 KHÔNG KHUYẾN NGHỊ"
+Warning list:
+• Không xử lý rắn
+• Nguy hiểm cao với nhiều con
+• Bạn hoàn toàn tự chịu trách nhiệm
+Small gray text link "Tôi hiểu rủi ro và vẫn muốn chọn" (no button)
+Red dashed border (2px), height 100px
+
+Design: Complex data visualization, expandable cards, clear danger aggregation, pricing transparency, strong recommendation guidance.
+```
+
+#### Notes for Stitch:
+- Snake cards phải expandable - tap to expand/collapse
+- Summary stats phải prominent ở đầu page
+- Overall risk assessment phải based on highest danger level
+- Pricing calculation rõ ràng: 575K × số lượng (ví dụ: 3 con = 1,725,000 VNĐ)
+- THREE CARDS with hierarchy: Card 1 (PRIMARY) 200px > Card 2 (SECONDARY) 140px > Card 3 (DISCOURAGED) 100px
+- Card 1 (Rescue): Forest green border 4px, "KHUYẾN CÁO MẠNH" badge, very large button
+- Card 2 (Expert Consultation): Blue theme #007BFF, medium size, "Có sẵn 24/7" badge, outlined button
+- Card 3 (Community Alert): Dimmed/discouraged, opacity 0.5, no real button
+- Pricing comparison: 1,725K (for 3 snakes) vs 500K/30min vs Free
+- Features list with ✓ checkmarks giúp user understand benefits of each option
+- Card 3 phải dimmed/discouraged cho nhiều con rắn (unsafe)
+
+---
+
+### Screen 2C: AI Snake Recognition Result - Snake Nest
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình kết quả phân tích ổ rắn
+- **Mục đích:** Hiển thị kết quả phân tích cho trường hợp ổ rắn/nhiều con rắn
+- **Flow position:** Sau Screen 1C - Khi AI phân tích xong ổ rắn
+- **Priority:** ⭐⭐⭐
+
+#### Key Components:
+1. **Header:**
+   - Back button
+   - Title: "Kết Quả Phân Tích"
+   - Close button (X)
+
+2. **Critical Alert Banner:**
+   - Red background with warning stripes pattern
+   - Large warning icon
+   - Bold text: "PHÁT HIỆN Ổ RẮN / NHIỀU CON RẮN"
+   - Subtext: "Tình huống nguy hiểm - Yêu cầu chuyên gia"
+
+3. **Analysis Summary Card:**
+   - Badge: "AI Analysis - Complex Situation"
+   - Detected information:
+     - "Loài chính: [Snake name]" (nếu AI detect được)
+     - "Số lượng ước tính: X-Y con" (based on user input + AI)
+     - "Khu vực: [Environment type]"
+     - "Mức độ rủi ro: CỰC KỲ CAO"
+
+4. **Photo Analysis Grid:**
+   - Grid showing uploaded photos (2-5 ảnh)
+   - Labels:
+     - "Ảnh tổng thể" (overview photo)
+     - "Chi tiết 1-4" (detail photos)
+   - Tap to view full size
+   - AI annotations: "Phát hiện X con rắn trong ảnh này"
+
+5. **Danger Assessment:**
+   - Large red alert box
+   - Icon: Skull/Extreme danger
+   - Text: "NGUY HIỂM CỰC KỲ CAO"
+   - Bullet points:
+     - "Nhiều con rắn trong khu vực nhỏ"
+     - "Có thể có rắn mẹ và đàn con"
+     - "Rất hung dữ khi bảo vệ ổ"
+     - "CẤM tiếp cận - Nguy hiểm chết người"
+
+6. **Expert Assessment Required:**
+   - Yellow/amber card with warning stripes
+   - Icon: Expert/Specialist helmet
+   - Title: "CẦN CHUYÊN GIA XỬ LÝ Ổ RẮN"
+   - Details:
+     - "✓ Đội ngũ có kinh nghiệm ổ rắn"
+     - "✓ Trang bị chuyên dụng đầy đủ"
+     - "✓ Có thể cần 2-4 người hỗ trợ"
+     - "✓ Thời gian xử lý: 2-4 giờ"
+
+7. **Location & Environment:**
+   - Map card
+   - Full address
+   - Environment details from user input
+   - Note: "Khu vực nguy hiểm - Đã cảnh báo người xung quanh"
+
+8. **Pricing Estimate (Complex):**
+   - Amber box with calculator icon
+   - Heading: "Ước tính chi phí (Phức tạp)"
+   - Breakdown:
+     - "Phí cơ bản ổ rắn: 1,500,000 VNĐ"
+     - "Phí theo số lượng: 575,000 × X con"
+     - "Phí chuyên gia: 500,000 - 1,000,000 VNĐ"
+     - "Trang bị đặc biệt: 200,000 - 500,000 VNĐ"
+   - Total range: "Tổng ước tính: 2,500,000 - 5,000,000 VNĐ"
+   - Important note: "Giá chính xác SAU khi chuyên gia khảo sát hiện trường"
+
+9. **Action Section:**
+   - Heading: "Hành động được khuyến nghị:"
+   - Three option cards with strong recommendation:
+     
+     **Option A Card (PRIMARY - Extra large, emergency):**
+     - Top banner spanning width: Red badge "KHUYẾN CÁO MẠNH" (white text)
+     - Left: Emergency/Specialist icon 56px (red #DC3545)
+     - Center section:
+       - Title "Gọi Chuyên Gia Xử Lý Ổ Rắn" (22pt bold)
+       - Subtitle "Đội ngũ chuyên gia xử lý tình huống phức tạp" gray
+       - Checkmarked features:
+         ✓ Chuyên gia có kinh nghiệm ổ rắn
+         ✓ Đội ngũ 2-4 người hỗ trợ
+         ✓ Trang bị đặc biệt đầy đủ
+         ✓ Đặt cọc 150,000 VNĐ - Giá chính xác sau khảo sát
+       - Price range "Ước tính: 2,500,000 - 5,000,000 VNĐ" (20pt bold)
+       - Very large red button "YÊU CẦU DỊCH VỤ NGAY →" (56px height, full width)
+     - Red border (4px), total card height 200px
+     
+     **Option B Card (SECONDARY - Medium, professional):**
+     - Left: Video call/Expert icon 40px (blue #007BFF)
+     - Center section:
+       - Title "Đặt Lịch Tư Vấn Chuyên Gia" (18pt bold)
+       - Subtitle "Gọi video với chuyên gia để được tư vấn sơ bộ" (14pt gray)
+       - Checkmarked features (small gray text):
+         ✓ Tư vấn từ xa qua video
+         ✓ Không cần di chuyển
+         ✓ Đặt lịch linh hoạt
+       - Price "500,000 VNĐ / 30 phút" (16pt medium, gray)
+       - Top-right badge: "Có sẵn 24/7" (blue background, white text, 12pt)
+       - Medium blue outlined button inside card: "Đặt Lịch Ngay →" (full width, 44px height)
+     - Blue border (2px), card total height 140px
+     - Warning note below card (amber): "⚠️ Tư vấn không thay thế xử lý trực tiếp cho ổ rắn"
+     
+     **Option C Card (DISCOURAGED - Small, dimmed):**
+     - Opacity 0.3, highly discouraged appearance
+     - Bell icon 24px gray
+     - Title "Chỉ Cảnh Báo Cộng Đồng" with strikethrough style
+     - Red warning box "🚫 KHÔNG KHUYẾN NGHỊ - CỰC KỲ NGUY HIỂM"
+     - Warning list:
+       • Không xử lý ổ rắn
+       • Nguy hiểm chết người
+       • Bạn hoàn toàn tự chịu trách nhiệm
+     - Small gray text link "Tôi hiểu rủi ro và vẫn muốn chọn" (no button)
+     - Red dashed border (2px), height 100px
+
+10. **Safety Instructions:**
+    - Collapsible red box: "Hướng dẫn an toàn trong khi chờ"
+    - When expanded:
+      - "1. GIỮ khoảng cách an toàn tối thiểu 10 mét"
+      - "2. KHÔNG cố gắng tiếp cận hoặc tự xử lý"
+      - "3. CẢNH BÁO người xung quanh không đến gần"
+      - "4. GIỮ trẻ em và thú cưng xa khu vực"
+      - "5. CHỜ chuyên gia đến - Không vội vàng"
+
+#### Stitch Prompt (English):
+
+```
+Mobile app emergency screen showing snake nest analysis result in "SnakeAid". Critical emergency design with red (#DC3545) primary accent.
+
+Top navigation: Back arrow left, title "Kết Quả Phân Tích", X close button right.
+
+Critical alert banner at top with red background (#DC3545) and diagonal warning stripes pattern:
+Large warning triangle icon (white)
+Bold white text "PHÁT HIỆN Ổ RẮN / NHIỀU CON RẮN" (24pt)
+Subtext "Tình huống nguy hiểm - Yêu cầu chuyên gia" white (16pt)
+
+White card with badge "AI Analysis - Complex Situation" (red background):
+"Loài chính: Rắn hổ mang chúa" bold
+"Số lượng ước tính: 15-20 con" 
+"Khu vực: Vườn/Bụi rậm"
+"Mức độ rủi ro: CỰC KỲ CAO" (red text, large)
+
+Photo grid (2x3 layout) showing 5 uploaded photos:
+Top row: Large overview photo with label "Ảnh tổng thể", annotation "Phát hiện 12+ con rắn"
+Bottom row: 4 smaller detail photos labeled "Chi tiết 1-4"
+Each 150x150px, rounded corners, tap to enlarge
+
+Large red alert box (#FFEBEE) with extreme danger icon:
+Heading "NGUY HIỂM CỰC KỲ CAO" bold red (22pt)
+Four bullet points:
+• Nhiều con rắn trong khu vực nhỏ
+• Có thể có rắn mẹ và đàn con
+• Rất hung dữ khi bảo vệ ổ
+• CẤM tiếp cận - Nguy hiểm chết người
+
+Yellow/amber card (#FFF3CD) with warning stripes border:
+Expert helmet icon
+Title "CẦN CHUYÊN GIA XỬ LÝ Ổ RẮN" bold (20pt)
+Four checkmarked items:
+✓ Đội ngũ có kinh nghiệm ổ rắn
+✓ Trang bị chuyên dụng đầy đủ
+✓ Có thể cần 2-4 người hỗ trợ
+✓ Thời gian xử lý: 2-4 giờ
+
+Map card with location and environment details.
+
+Amber pricing box with calculator icon:
+Heading "Ước tính chi phí (Phức tạp)"
+Breakdown:
+Phí cơ bản ổ rắn: 1,500,000 VNĐ
+Phí theo số lượng: 575,000 × 18 con
+Phí chuyên gia: 500,000 - 1,000,000 VNĐ
+Trang bị đặc biệt: 200,000 - 500,000 VNĐ
+Divider line
+"Tổng ước tính: 2,500,000 - 5,000,000 VNĐ" bold large (22pt)
+Small note "Giá chính xác SAU khi chuyên gia khảo sát hiện trường"
+
+Heading "Hành động được khuyến nghị:" bold
+
+CARD 1 (PRIMARY - Extra large, emergency):
+Top banner spanning width: Red badge "KHUYẾN CÁO MẠNH" (white text)
+Left: Emergency/Specialist icon 56px (red #DC3545)
+Center section:
+- Title "Gọi Chuyên Gia Xử Lý Ổ Rắn" (22pt bold)
+- Subtitle "Đội ngũ chuyên gia xử lý tình huống phức tạp" gray
+- Checkmarked features:
+  ✓ Chuyên gia có kinh nghiệm ổ rắn
+  ✓ Đội ngũ 2-4 người hỗ trợ
+  ✓ Trang bị đặc biệt đầy đủ
+  ✓ Đặt cọc 150,000 VNĐ - Giá chính xác sau khảo sát
+- Price range "Ước tính: 2,500,000 - 5,000,000 VNĐ" (20pt bold)
+- Very large red button "YÊU CẦU DỊCH VỤ NGAY →" (56px height, full width)
+Red border (4px), total card height 200px
+
+CARD 2 (SECONDARY - Medium, professional):
+Left: Video call/Expert icon 40px (blue #007BFF)
+Center section:
+- Title "Đặt Lịch Tư Vấn Chuyên Gia" (18pt bold)
+- Subtitle "Gọi video với chuyên gia để được tư vấn sơ bộ" (14pt gray)
+- Checkmarked features (small gray text):
+  ✓ Tư vấn từ xa qua video
+  ✓ Không cần di chuyển
+  ✓ Đặt lịch linh hoạt
+- Price "500,000 VNĐ / 30 phút" (16pt medium, gray)
+- Top-right badge: "Có sẵn 24/7" (blue background, white text, 12pt)
+- Medium blue outlined button inside card: "Đặt Lịch Ngay →" (full width, 44px height)
+Blue border (2px), card total height 140px
+Amber warning below: "⚠️ Tư vấn không thay thế xử lý trực tiếp cho ổ rắn"
+
+CARD 3 (DISCOURAGED - Small, dimmed):
+Opacity 0.3, highly discouraged
+Bell icon 24px gray
+Title "Chỉ Cảnh Báo Cộng Đồng" with strikethrough
+Red warning box "🚫 KHÔNG KHUYẾN NGHỊ - CỰC KỲ NGUY HIỂM"
+Warning list:
+• Không xử lý ổ rắn
+• Nguy hiểm chết người
+• Bạn hoàn toàn tự chịu trách nhiệm
+Small gray text link "Tôi hiểu rủi ro và vẫn muốn chọn" (no button)
+Red dashed border (2px), height 100px
+
+Collapsible red-bordered box "Hướng dẫn an toàn trong khi chờ ▼"
+When expanded shows 5 numbered safety instructions
+
+Design: Emergency-critical interface with three-tier options, strong red accents for primary action, expert consultation available but with warnings, extensive safety warnings, pricing transparency for complex situation, community alert highly discouraged.
+```
+
+#### Notes for Stitch:
+- Warning banner phải most prominent element với stripes pattern
+- Photo grid phải show AI annotations về số lượng rắn detected
+- Pricing range rộng (2.5M-5M) vì complexity cao - user cần understand
+- THREE CARDS with strong recommendation hierarchy: Card 1 (PRIMARY) 200px > Card 2 (SECONDARY) 140px > Card 3 (HIGHLY DISCOURAGED) 100px
+- Card 1 (Rescue Specialist): Red theme #DC3545, "KHUYẾN CÁO MẠNH" badge, extra large button, emergency styling
+- Card 2 (Expert Consultation): Blue theme #007BFF, "Có sẵn 24/7" badge, outlined button, with warning that consultation doesn't replace physical handling
+- Card 3 (Community Alert): Opacity 0.3 (highly dimmed), strikethrough title, "KHÔNG KHUYẾN NGHỊ - CỰC KỲ NGUY HIỂM" warning
+- Pricing comparison: 2.5M-5M (range, survey-based) vs 500K/30min vs Free
+- Card 3 must be EXTREMELY discouraged for nest situations (much more than screens 2A/2B)
+- Expert consultation card includes amber warning below: "Tư vấn không thay thế xử lý trực tiếp"
+- KHÔNG có option "Community Alert" - too dangerous
+- Only 1 CTA button - emergency red color
+- Safety instructions collapsible nhưng nên default expanded
+
+---
+
+### Screen 3: Request Rescue Service - Rescuer Matching
+
+**Screen 3 has 3 variants based on snake quantity selected in Screen 1:**
+- **Screen 3A:** Single snake (575,000 VNĐ total)
+- **Screen 3B:** Multiple snakes (575,000 × quantity VNĐ total)
+- **Screen 3C:** Snake nest (2,500,000 - 5,000,000 VNĐ range)
+
+All variants use **SAME 150,000 VNĐ fixed deposit** mechanism.
+
+---
+
+### Screen 3A: Deposit Payment - Single Snake
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình xác nhận cứu hộ 1 con rắn và thanh toán đặt cọc
+- **Mục đích:** Hiển thị phí dịch vụ 575K, thanh toán đặt cọc 150K và xác nhận yêu cầu
+- **Flow position:** Sau Screen 2A → User chọn "Gọi Đội Cứu Hộ"
+- **Priority:** ⭐⭐⭐
+- **Scenario:** 1 con rắn
 
 #### Thông tin màn hình:
 - **Tên:** Màn hình xác nhận yêu cầu cứu hộ và thanh toán đặt cọc
@@ -221,116 +1553,411 @@ Design: Card-based medical app interface, clear visual hierarchy, color-coded da
 #### Key Components:
 1. **Header:**
    - Back button
-   - Title: "Confirm Rescue Request"
+   - Title: "Xác Nhận Cứu Hộ" (not "Request" - more direct Vietnamese)
 
 2. **Service Summary Card:**
-   - Icon: Checkmark
-   - Service type: "Snake Rescue Service"
-   - Snake species detected
-   - Your location preview
+   - Badge: "1 CON RẮN" (green badge)
+   - Service type icon: Rescue truck
+   - Snake species: "Loài: [AI detected name]"
+   - Danger level: Color-coded badge (Red/Amber/Green)
+   - Your location preview: "Vị trí: [Address]"
+   - Estimated time: "Đội cứu hộ đến trong: 15-30 phút"
 
-3. **Estimated Fee Section:**
-   - Title: "Service Fee Breakdown"
-   - Base fee amount: "500,000 VNĐ"
-   - Platform fee (10%): "50,000 VNĐ"
-   - Insurance fund (5%): "25,000 VNĐ"
-   - Divider line
-   - Total amount (bold, large): "575,000 VNĐ"
-   - Small note: "Final fee may vary based on distance and complexity"
+3. **Service Fee Section:**
+   - Title: "Chi Phí Dịch Vụ (1 con rắn)"
+   - White card with breakdown:
+     - "Phí cứu hộ cơ bản": "500,000 VNĐ"
+     - "Phí nền tảng (10%)": "50,000 VNĐ"
+     - "Quỹ bảo hiểm (5%)": "25,000 VNĐ"
+     - Divider line
+     - "Tổng Cộng": "575,000 VNĐ" (bold, large, 24pt)
+   - Small note: "Chi phí cuối cùng có thể thay đổi tùy khoảng cách"
 
-4. **Deposit Payment Section:**
-   - Title: "Service Commitment Fee (Hold)"
-   - Info box (light blue):
-     - "Fixed deposit: 150,000 VNĐ to confirm booking"
-     - "⚠️ This deposit will be DEDUCTED from total fee"
-   - Breakdown (all amounts dynamic/configurable):
+4. **Balance Payment Preview:**
+   - Light green info box (#E8F5E9)
+   - Icon: Calculator
+   - Text: "Sau khi cứu hộ hoàn tất, bạn thanh toán:"
+   - Large amount: "425,000 VNĐ" (575K - 150K deposit, 20pt forest green)
+   - Subtext: "(Tổng phí 575K - Đặt cọc 150K)"
+
+5. **Deposit Payment Section:**
+   - Title: "Phí Cam Kết Dịch Vụ (Đặt Cọc)"
+   - Info box (light blue #E7F3FF):
+     - "Đặt cọc cố định: 150,000 VNĐ để xác nhận"
+     - "⚠️ Cọc này sẽ được TRỪ vào tổng chi phí"
+   - White card - Breakdown (all amounts dynamic/configurable):
      - "Cam kết yêu cầu": "25,000 VNĐ"
      - "Điều phối người hỗ trợ": "30,000 VNĐ"
      - "Di chuyển tối thiểu": "95,000 VNĐ" (or ₫/km × distance)
      - Divider line
-     - "Tổng cọc": "150,000 VNĐ" (bold, large, forest green)
-   - Note below: "👉 Sẽ được trừ vào tổng chi phí" (amber text)
+     - "Tổng Đặt Cọc": "150,000 VNĐ" (bold, large, forest green, 24pt)
+   - Note below: "👉 Sẽ được trừ vào tổng chi phí" (amber text #FFC107)
 
-5. **Payment Method Selection:**
-   - Title: "Select Payment Method"
-   - Radio buttons or cards for:
+6. **Payment Method Selection:**
+   - Title: "Chọn Phương Thức Thanh Toán"
+   - Four payment option cards (horizontal scroll or 2×2 grid):
      - Momo (with logo)
      - VNPay (with logo)
      - ZaloPay (with logo)
-     - Credit Card
+     - Thẻ tín dụng (Credit Card icon)
+   - Selected card has forest green border (3px)
 
-6. **What Happens Next:**
-   - Numbered steps (1-2-3) with icons:
-     1. "Pay deposit & finding rescuer (2-5 min)"
-     2. "Rescuer arrives and handles snake"
-     3. "Pay remaining 70% after completion"
+7. **What Happens Next:**
+   - Title: "Điều Gì Sẽ Xảy Ra Tiếp Theo"
+   - Numbered steps (1-2-3) with circular badges (32px):
+     1. "Thanh toán đặt cọc & tìm đội cứu hộ (2-5 phút)"
+     2. "Đội cứu hộ đến và xử lý rắn"
+     3. "Thanh toán số tiền còn lại: 425,000 VNĐ"
 
-7. **Important Notes:**
-   - Yellow info box with bullet points:
-     - "Stay safe, keep distance from snake"
-     - "Rescuer response time: 15-60 minutes"
-     - "You can track rescuer location on map"
-     - "Deposit is refundable if no rescuer available"
+8. **Important Notes:**
+   - Yellow info box (#FFF3CD background, #FFC107 left border 4px)
+   - Title: "Lưu Ý Quan Trọng"
+   - Bullet points:
+     - "Giữ an toàn, giữ khoảng cách với rắn"
+     - "Thời gian đội cứu hộ đến: 15-30 phút"
+     - "Bạn có thể theo dõi vị trí đội cứu hộ trên bản đồ"
+     - "Đặt cọc được hoàn lại nếu không tìm thấy đội cứu hộ"
 
-8. **Action Buttons:**
-   - Large primary button (forest green): "Thanh toán cọc 150,000 VNĐ & Xác nhận"
+9. **Action Buttons:**
+   - Large primary button (forest green, 56px height): "Thanh Toán Cọc 150,000 VNĐ & Xác Nhận"
+   - Secondary text link (centered, gray): "Hủy và quay lại"
+
+#### Stitch Prompt (English):
+
+```
+Mobile app deposit payment screen for single snake rescue in "SnakeAid". Transaction interface with forest green (#228B22) primary color.
+
+Top navigation: Back arrow left, centered title "Xác Nhận Cứu Hộ".
+
+White service summary card with green badge "1 CON RẮN" top-right. Rescue truck icon 40px left. Bold "Loài: Rắn hổ mang chúa", danger level badge (red/amber/green) next to it. Below: "Vị trí: 123 Đường ABC, Quận XYZ" gray, and "Đội cứu hộ đến trong: 15-30 phút" small gray.
+
+Section "Chi Phí Dịch Vụ (1 con rắn)" bold dark gray. White card:
+- "Phí cứu hộ cơ bản" left, "500,000 VNĐ" right (dark gray)
+- "Phí nền tảng (10%)" left, "50,000 VNĐ" right (medium gray)
+- "Quỹ bảo hiểm (5%)" left, "25,000 VNĐ" right (medium gray)
+- Thin gray divider
+- "Tổng Cộng" bold left, "575,000 VNĐ" bold 24pt right
+Small gray text "Chi phí cuối cùng có thể thay đổi tùy khoảng cách"
+
+Light green info box (#E8F5E9) with calculator icon:
+"Sau khi cứu hộ hoàn tất, bạn thanh toán:"
+"425,000 VNĐ" large 20pt forest green
+"(Tổng phí 575K - Đặt cọc 150K)" small gray
+
+Section "Phí Cam Kết Dịch Vụ (Đặt Cọc)" bold dark gray. Light blue info box (#E7F3FF):
+• Đặt cọc cố định: 150,000 VNĐ để xác nhận
+• ⚠️ Cọc này sẽ được TRỪ vào tổng chi phí
+
+White card deposit breakdown:
+- "Cam kết yêu cầu" left, "25,000 VNĐ" right
+- "Điều phối người hỗ trợ" left, "30,000 VNĐ" right
+- "Di chuyển tối thiểu" left, "95,000 VNĐ" right
+- Thin gray divider
+- "Tổng Đặt Cọc" bold left, "150,000 VNĐ" bold large 24pt forest green right
+Amber text below "👉 Sẽ được trừ vào tổng chi phí" (#FFC107)
+
+"Chọn Phương Thức Thanh Toán" heading. Four payment cards in 2×2 grid: Momo logo, VNPay logo, ZaloPay logo, Credit card icon. First card has forest green border 3px (selected).
+
+"Điều Gì Sẽ Xảy Ra Tiếp Theo" heading. Three steps with circular badges 32px diameter forest green:
+1. Thanh toán đặt cọc & tìm đội cứu hộ (2-5 phút)
+2. Đội cứu hộ đến và xử lý rắn
+3. Thanh toán số tiền còn lại: 425,000 VNĐ
+
+Yellow info box (#FFF3CD, left border #FFC107 4px) titled "Lưu Ý Quan Trọng":
+• Giữ an toàn, giữ khoảng cách với rắn
+• Thời gian đội cứu hộ đến: 15-30 phút
+• Bạn có thể theo dõi vị trí đội cứu hộ trên bản đồ
+• Đặt cọc được hoàn lại nếu không tìm thấy đội cứu hộ
+
+Large forest green button 56px height "Thanh Toán Cọc 150,000 VNĐ & Xác Nhận" full width.
+Centered gray link "Hủy và quay lại" below.
+
+Design: Clean transaction flow, clear balance preview, payment breakdown transparency, reassuring next-steps timeline.
+```
+
+#### Notes for Stitch:
+- Badge "1 CON RẮN" should be small and subtle, top-right of service card
+- Balance preview box (#E8F5E9) helps user understand they'll pay 425K later
+- Pricing alignment must be precise (left-right)
+- Circular badges for steps should be 32px diameter, forest green background, white numbers
+- Payment method cards should be equal size in 2×2 grid layout
+
+---
+
+### Screen 3B: Deposit Payment - Multiple Snakes
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình xác nhận cứu hộ nhiều con rắn và thanh toán đặt cọc
+- **Mục đích:** Hiển thị phí dịch vụ theo số lượng (575K × N), thanh toán đặt cọc 150K
+- **Flow position:** Sau Screen 2B → User chọn "Gọi Đội Cứu Hộ"
+- **Priority:** ⭐⭐⭐
+- **Scenario:** 2-5 con rắn
+
+#### Key Components:
+1. **Header:**
+   - Back button
+   - Title: "Xác Nhận Cứu Hộ"
+
+2. **Service Summary Card:**
+   - Badge: "X CON RẮN" (amber badge with count)
+   - Icon: Team of rescuers (2+ people)
+   - Title: "Dịch Vụ Cứu Hộ Nhiều Con Rắn"
+   - List of snakes (if different species):
+     - "Con rắn #1: Rắn hổ mang (Nguy hiểm)"
+     - "Con rắn #2: Rắn ri cá (Nguy hiểm thấp)"
+     - "Con rắn #3: Chưa xác định"
+   - OR: "X con rắn đã phát hiện - Cần đội ngũ 2+ người"
+   - Location: "Vị trí: [Address]"
+   - Estimated time: "Đội cứu hộ đến trong: 15-30 phút"
+
+3. **Service Fee Section:**
+   - Title: "Chi Phí Dịch Vụ (X con rắn)"
+   - White card with calculation:
+     - "Phí cơ bản mỗi con": "575,000 VNĐ"
+     - "Số lượng rắn": "× X con"
+     - Divider line
+     - "Tổng Cộng": "XXX,XXX VNĐ" (bold, large, 24pt, e.g., 1,725,000 for 3 snakes)
+   - Info note (light amber #FFF3CD):
+     - "ℹ️ Phí theo số lượng để đảm bảo đầy đủ trang bị và nhân lực"
+   - Small note: "Chi phí cuối cùng có thể thay đổi tùy khoảng cách"
+
+4. **Balance Payment Preview:**
+   - Light green info box (#E8F5E9)
+   - Icon: Calculator
+   - Text: "Sau khi cứu hộ hoàn tất, bạn thanh toán:"
+   - Large amount: "XXX,XXX VNĐ" (Total - 150K, e.g., 1,575,000 for 3 snakes)
+   - Subtext: "(Tổng phí XXX,XXXK - Đặt cọc 150K)"
+
+5. **Deposit Payment Section:**
+   - Title: "Phí Cam Kết Dịch Vụ (Đặt Cọc)"
+   - Info box (light blue #E7F3FF):
+     - "Đặt cọc cố định: 150,000 VNĐ (KHÔNG phụ thuộc số lượng)"
+     - "⚠️ Cọc này sẽ được TRỪ vào tổng chi phí"
+   - White card - Breakdown:
+     - "Cam kết yêu cầu": "25,000 VNĐ"
+     - "Điều phối đội ngũ": "30,000 VNĐ"
+     - "Di chuyển tối thiểu": "95,000 VNĐ"
+     - Divider
+     - "Tổng Đặt Cọc": "150,000 VNĐ" (forest green, 24pt)
+   - Note: "👉 Sẽ được trừ vào tổng chi phí" (amber)
+
+6-9. **Same as Screen 3A:**
+   - Payment Method Selection
+   - What Happens Next (update step 3 with correct balance amount)
+   - Important Notes
+   - Action Buttons
+
+#### Stitch Prompt (English):
+
+```
+Mobile app deposit payment for multiple snake rescue in "SnakeAid". Transaction interface, forest green (#228B22) primary, amber (#FFC107) accents.
+
+Top: Back arrow, title "Xác Nhận Cứu Hộ".
+
+Service card with amber badge "3 CON RẮN" top-right. Team icon (2+ people) 48px. Title "Dịch Vụ Cứu Hộ Nhiều Con Rắn" bold. Snake list:
+• Con rắn #1: Rắn hổ mang (Nguy hiểm)
+• Con rắn #2: Rắn ri cá (Nguy hiểm thấp)
+• Con rắn #3: Chưa xác định
+Below: "Vị trí: 123 Đường ABC" gray, "Đội cứu hộ đến trong: 15-30 phút" small gray.
+
+Section "Chi Phí Dịch Vụ (3 con rắn)" bold. White card:
+- "Phí cơ bản mỗi con" left, "575,000 VNĐ" right (dark gray)
+- "Số lượng rắn" left, "× 3 con" right (medium gray)
+- Gray divider
+- "Tổng Cộng" bold left, "1,725,000 VNĐ" bold 24pt right
+
+Light amber info box (#FFF3CD):
+"ℹ️ Phí theo số lượng để đảm bảo đầy đủ trang bị và nhân lực"
+Small gray "Chi phí cuối cùng có thể thay đổi tùy khoảng cách"
+
+Light green box (#E8F5E9) with calculator icon:
+"Sau khi cứu hộ hoàn tất, bạn thanh toán:"
+"1,575,000 VNĐ" large 20pt forest green
+"(Tổng phí 1,725K - Đặt cọc 150K)" small gray
+
+Section "Phí Cam Kết Dịch Vụ (Đặt Cọc)". Light blue box (#E7F3FF):
+• Đặt cọc cố định: 150,000 VNĐ (KHÔNG phụ thuộc số lượng)
+• ⚠️ Cọc này sẽ được TRỪ vào tổng chi phí
+
+White card breakdown:
+- "Cam kết yêu cầu" / "25,000 VNĐ"
+- "Điều phối đội ngũ" / "30,000 VNĐ"
+- "Di chuyển tối thiểu" / "95,000 VNĐ"
+- Gray divider
+- "Tổng Đặt Cọc" bold / "150,000 VNĐ" bold 24pt forest green
+Amber text "👉 Sẽ được trừ vào tổng chi phí"
+
+[Same payment methods, steps, notes as 3A but step 3 shows "1,575,000 VNĐ"]
+
+Large green button "Thanh Toán Cọc 150,000 VNĐ & Xác Nhận" 56px.
+Gray link "Hủy và quay lại" centered.
+
+Design: Quantity emphasis, fixed deposit clarity, balance calculation transparency, team requirement signals.
+```
+
+#### Notes for Stitch:
+- Badge "3 CON RẮN" should use amber to signal higher complexity
+- Snake list helps user verify what they reported
+- Info box explaining per-quantity fee reduces confusion
+- CRITICAL: Emphasize deposit is FIXED 150K regardless of snake count
+- Balance calculation must be clear: (1,725,000 - 150,000 = 1,575,000)
+
+---
+
+### Screen 3C: Deposit Payment - Snake Nest
+
+#### Thông tin màn hình:
+- **Tên:** Màn hình xác nhận cứu hộ ổ rắn và thanh toán đặt cọc
+- **Mục đích:** Hiển thị phí dịch vụ phức tạp (2.5M-5M range), thanh toán đặt cọc 150K, cảnh báo nghiêm trọng
+- **Flow position:** Sau Screen 2C → User chọn "Gọi Chuyên Gia Xử Lý Ổ Rắn"
+- **Priority:** ⭐⭐⭐
+- **Scenario:** Ổ rắn / Nhiều con rất nguy hiểm
+
+#### Key Components:
+1. **Header:**
+   - Back button
+   - Title: "Xác Nhận Yêu Cầu Khẩn Cấp"
+
+2. **Critical Alert Banner:**
+   - Red background with warning stripes
+   - Icon: Skull/Extreme danger
+   - Bold text: "Ổ RẮN - TÌNH HUỐNG NGUY HIỂM"
+   - Subtext: "Yêu cầu chuyên gia và trang bị đặc biệt"
+
+3. **Service Summary Card:**
+   - Badge: "Ổ RẮN" (red badge)
+   - Icon: Specialist helmet
+   - Title: "Dịch Vụ Xử Lý Ổ Rắn Chuyên Nghiệp"
+   - Details:
+     - "Loài chính: [Name]" (if detected)
+     - "Số lượng ước tính: X-Y con"
+     - "Mức độ rủi ro: CỰC KỲ CAO"
+     - "Khu vực: [Environment type]"
+   - Location: "Vị trí: [Address]"
+   - Estimated time: "Đội chuyên gia đến trong: 10-20 phút"
+
+4. **Complex Pricing Section:**
+   - Title: "Chi Phí Dịch Vụ (Ước Tính Phức Tạp)"
+   - Warning box (amber #FFF3CD):
+     - "⚠️ Giá cuối cùng SAU KHI chuyên gia khảo sát hiện trường"
+   - White card with breakdown:
+     - "Phí cơ bản ổ rắn": "1,500,000 VNĐ"
+     - "Phí theo số lượng (X con)": "575,000 × X"
+     - "Phí chuyên gia": "500,000 - 1,000,000 VNĐ"
+     - "Trang bị đặc biệt": "200,000 - 500,000 VNĐ"
+     - Divider (dotted line)
+     - "Ước Tính Tổng": "2,500,000 - 5,000,000 VNĐ" (bold, red, 24pt, range)
+   - Important note (red text):
+     - "Bạn chỉ cam kết 150K đặt cọc ngay. Giá chính xác sẽ được báo SAU khảo sát."
+
+5. **Deposit Payment Section (SAME 150K):**
+   - Title: "Phí Cam Kết Dịch Vụ (Đặt Cọc)"
+   - Info box (light blue #E7F3FF):
+     - "Đặt cọc cố định: 150,000 VNĐ để xác nhận yêu cầu khẩn cấp"
+     - "⚠️ Cọc này sẽ được TRỪ vào tổng chi phí sau khi khảo sát"
+   - White card - Breakdown:
+     - "Cam kết yêu cầu": "25,000 VNĐ"
+     - "Điều phối chuyên gia": "30,000 VNĐ"
+     - "Di chuyển tối thiểu": "95,000 VNĐ"
+     - Divider
+     - "Tổng Đặt Cọc": "150,000 VNĐ" (forest green, 24pt)
+   - Note: "👉 Sẽ được trừ vào tổng chi phí cuối cùng" (amber)
+
+6. **Payment Method Selection:**
+   - Same as 3A/3B
+
+7. **What Happens Next (Modified):**
+   - Title: "Điều Gì Sẽ Xảy Ra Tiếp Theo"
+   - Numbered steps (1-4):
+     1. "Thanh toán đặt cọc 150K & tìm chuyên gia (5-10 phút)"
+     2. "Chuyên gia đến KHẢO SÁT hiện trường"
+     3. "Báo giá CHÍNH XÁC dựa trên tình hình thực tế"
+     4. "Bạn xác nhận → Xử lý ổ rắn → Thanh toán số tiền còn lại"
+
+8. **Important Notes (CRITICAL):**
+   - Red border info box (#FFEBEE background, #DC3545 left border 4px)
+   - Title: "LƯU Ý CỰC KỲ QUAN TRỌNG"
+   - Bullet points (bold):
+     - "TUYỆT ĐỐI giữ khoảng cách an toàn tối thiểu 10 mét"
+     - "KHÔNG tiếp cận hoặc cố gắng tự xử lý"
+     - "CẢNH BÁO người xung quanh không đến gần"
+     - "Đội chuyên gia sẽ liên hệ SAU khi khảo sát để báo giá chính xác"
+     - "Đặt cọc được hoàn lại 100% nếu bạn không chấp nhận giá sau khảo sát"
+
+9. **Action Buttons:**
+   - Large red button (not green, emergency style, 56px): "Thanh Toán Cọc 150,000 VNĐ & Yêu Cầu Khẩn Cấp"
    - Secondary text link: "Hủy và quay lại"
 
 #### Stitch Prompt (English):
 
 ```
-Mobile app confirmation and deposit payment screen for snake rescue in app "SnakeAid". Transactional interface with forest green (#228B22) primary color.
+Mobile app emergency deposit payment for snake nest rescue in "SnakeAid". Critical interface, red (#DC3545) emergency accent, forest green for payment.
 
-Top navigation: Back arrow left, centered title "Xác Nhận Yêu Cầu Cứu Hộ".
+Top: Back arrow, title "Xác Nhận Yêu Cầu Khẩn Cấp".
 
-Main content starts with white card containing checkmark icon in forest green circle. Next to icon: bold text "Dịch Vụ Cứu Hộ Rắn". Below that, two lines of gray text: "Loài: Rắn hổ mang chúa" and "Vị trí: 123 Tên đường, Quận".
+Red alert banner with warning stripes pattern. Skull icon, bold white text "Ổ RẮN - TÌNH HUỐNG NGUY HIỂM". Subtext "Yêu cầu chuyên gia và trang bị đặc biệt".
 
-Below service card, section titled "Chi Phí Dịch Vụ" in dark gray bold. White card with pricing breakdown:
-- Line 1: "Phí cứu hộ cơ bản" aligned left, "500,000 VNĐ" aligned right, both in dark gray
-- Line 2: "Phí nền tảng (10%)" aligned left, "50,000 VNĐ" aligned right, medium gray
-- Line 3: "Quỹ bảo hiểm (5%)" aligned left, "25,000 VNĐ" aligned right, medium gray
-- Thin gray divider line
-- Line 4: "Tổng Cộng" bold dark gray left, "575,000 VNĐ" bold large dark gray right
-Below card, small gray italic text "Chi phí cuối cùng có thể thay đổi tùy khoảng cách và độ phức tạp".
+Service card with red badge "Ổ RẮN". Specialist helmet icon 48px. Title "Dịch Vụ Xử Lý Ổ Rắn Chuyên Nghiệp" bold. Details:
+• Loài chính: Rắn hổ mang chúa
+• Số lượng ước tính: 15-20 con
+• Mức độ rủi ro: CỰC KỲ CAO (red)
+• Khu vực: Đống gạch/đá
+"Vị trí: 123 Đường ABC" gray, "Đội chuyên gia đến trong: 10-20 phút" small gray.
 
-Next section titled "Phí Cam Kết Dịch Vụ (Tạm Giữ)" in dark gray bold. Light blue info box (#E7F3FF background) with 2 lines:
-• Đặt cọc cố định: 150,000 VNĐ để xác nhận
-• ⚠️ Cọc này sẽ được TRỪ vào tổng chi phí
+Section "Chi Phí Dịch Vụ (Ước Tính Phức Tạp)" bold. Amber warning box (#FFF3CD):
+"⚠️ Giá cuối cùng SAU KHI chuyên gia khảo sát hiện trường"
 
-White card with deposit breakdown:
-- Line 1: "Cam kết yêu cầu" left, "25,000 VNĐ" right (dark gray)
-- Line 2: "Điều phối người hỗ trợ" left, "30,000 VNĐ" right (dark gray)
-- Line 3: "Di chuyển tối thiểu" left, "95,000 VNĐ" right (dark gray)
-- Thin gray divider line
-- Line 4: "Tổng Cọc" bold left, "150,000 VNĐ" bold large forest green right (24pt)
-Below card, amber text "👉 Sẽ được trừ vào tổng chi phí" (#FFC107).
+White card:
+- "Phí cơ bản ổ rắn" / "1,500,000 VNĐ" (dark gray)
+- "Phí theo số lượng (18 con)" / "575,000 × 18" (medium gray)
+- "Phí chuyên gia" / "500,000 - 1,000,000 VNĐ" (medium gray)
+- "Trang bị đặc biệt" / "200,000 - 500,000 VNĐ" (medium gray)
+- Dotted divider
+- "Ước Tính Tổng" bold / "2,500,000 - 5,000,000 VNĐ" bold 24pt RED (range)
 
-Next section titled "Chọn Phương Thức Thanh Toán". Four horizontally arranged payment option cards (equal width, white background, forest green border when selected):
-- Card 1: "Momo" with Momo logo placeholder (selected with forest green border)
-- Card 2: "VNPay" with VNPay logo placeholder
-- Card 3: "ZaloPay" with ZaloPay logo placeholder
-- Card 4: "Thẻ" with credit card icon
+Red text note: "Bạn chỉ cam kết 150K đặt cọc ngay. Giá chính xác sẽ được báo SAU khảo sát."
 
-Next section titled "Điều Gì Sẽ Xảy Ra Tiếp Theo" with 3 numbered steps. Each step has circular number badge (1, 2, 3) in forest green:
-1. Thanh toán đặt cọc & tìm đội cứu hộ (2-5 phút)
-2. Đội cứu hộ đến và xử lý rắn
-3. Thanh toán số tiền còn lại (Tổng phí - Cọc 150K)
+Section "Phí Cam Kết Dịch Vụ (Đặt Cọc)". Light blue box (#E7F3FF):
+• Đặt cọc cố định: 150,000 VNĐ để xác nhận yêu cầu khẩn cấp
+• ⚠️ Cọc này sẽ được TRỪ vào tổng chi phí sau khi khảo sát
 
-Yellow info box (#FFF3CD background, #FFC107 left border) titled "Lưu ý Quan Trọng" with 4 bullet points:
-• Giữ an toàn, giữ khoảng cách với rắn
-• Thời gian đội cứu hộ phản hồi: 15-60 phút
-• Bạn có thể theo dõi vị trí đội cứu hộ trên bản đồ
-• Đặt cọc được hoàn lại nếu không tìm thấy đội cứu hộ
+White card breakdown:
+- "Cam kết yêu cầu" / "25,000 VNĐ"
+- "Điều phối chuyên gia" / "30,000 VNĐ"
+- "Di chuyển tối thiểu" / "95,000 VNĐ"
+- Gray divider
+- "Tổng Đặt Cọc" bold / "150,000 VNĐ" bold 24pt forest green
+Amber text "👉 Sẽ được trừ vào tổng chi phí cuối cùng"
 
-Bottom section: Large solid forest green button "Thanh Toán Cọc 150,000 VNĐ & Xác Nhận" spanning full width. Below button, centered gray text link "Hủy và quay lại".
+[Payment methods same as 3A]
 
-Design: Transaction confirmation style with integrated payment, clear deposit amount, reassuring information, mobile payment optimization.
+"Điều Gì Sẽ Xảy Ra Tiếp Theo" with 4 circular badges:
+1. Thanh toán đặt cọc 150K & tìm chuyên gia (5-10 phút)
+2. Chuyên gia đến KHẢO SÁT hiện trường
+3. Báo giá CHÍNH XÁC dựa trên tình hình thực tế
+4. Bạn xác nhận → Xử lý ổ rắn → Thanh toán số tiền còn lại
+
+Red-bordered box (#FFEBEE background, #DC3545 left border 4px) titled "LƯU Ý CỰC KỲ QUAN TRỌNG" bold:
+• TUYỆT ĐỐI giữ khoảng cách an toàn tối thiểu 10 mét
+• KHÔNG tiếp cận hoặc cố gắng tự xử lý
+• CẢNH BÁO người xung quanh không đến gần
+• Đội chuyên gia sẽ liên hệ SAU khi khảo sát để báo giá chính xác
+• Đặt cọc được hoàn lại 100% nếu bạn không chấp nhận giá sau khảo sát
+
+Large RED button 56px "Thanh Toán Cọc 150,000 VNĐ & Yêu Cầu Khẩn Cấp" (#DC3545).
+Gray link "Hủy và quay lại" centered.
+
+Design: Emergency critical style, pricing transparency for complex situation, deposit simplicity, refund guarantee for user confidence.
 ```
 
 #### Notes for Stitch:
-- Pricing section phải rất rõ ràng với alignment left-right cho label và amount
-- Yellow info box không được quá sáng làm khó đọc
-- Nếu numbered steps không tròn đều → "Use circular badges for numbers 1-2-3, each 32px diameter"
+- Alert banner MUST be prominent with stripes pattern
+- Pricing range (2.5M-5M) shown clearly as ESTIMATE not final
+- Red note explaining price will be confirmed AFTER survey is critical
+- Deposit still 150K (same as other scenarios) - this must be clear
+- Red button (not green) for emergency context
+- Refund guarantee (100% if reject price after survey) builds trust
+- 4 steps instead of 3 - extra step for survey & quote
 
 ---
 
